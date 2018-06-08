@@ -6,23 +6,32 @@ const request = require('request');
 const cheerio = require('cheerio');
 
 app.use(cors());
-// `https://glosbe.com/gapi/translate?from=eng&dest=fra&format=json&phrase=${req.params.word}`,
 
 app.get('/search/:word', (req, res) => {
 	request(
-		'https://ejje.weblio.jp/content/%E9%A3%9F%E3%81%B9%E3%82%8B',
+		`https://ejje.weblio.jp/content/${req.params.word}`,
 		(error, body, html) => {
-			console.log(html);
+			const $ = cheerio.load(html);
+			const exampleList = [];
+			$('.qotC').each((i, e) => {
+				const jp = $(e)
+					.children()
+					.eq(0)
+					.text()
+					.replace('例文帳に追加', '');
+				const en = $(e)
+					.children()
+					.eq(1)
+					.text()
+					.split(/\s\-\s/)[0];
+				exampleList.push({
+					jp,
+					en
+				});
+			});
+			res.send(exampleList.filter(e => e.jp !== ''));
 		}
 	);
 });
-
-request(
-	'https://ejje.weblio.jp/content/%E9%A3%9F%E3%81%B9%E3%82%8B',
-	(error, body, html) => {
-		const $ = cheerio.load(html);
-		console.log($('#h1Query').text());
-	}
-);
 
 app.listen(1234, () => console.log('Up & Running...'));
