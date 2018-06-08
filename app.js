@@ -13,7 +13,11 @@ app.get('/search/:word', (req, res) => {
 		`https://ejje.weblio.jp/content/${querystring.escape(req.params.word)}`,
 		(error, body, html) => {
 			const $ = cheerio.load(html);
+			const kanji = $('#h1Query').text();
+			const hiragana = $('.summaryL .ruby').text();
+			const meaning = $('.content-explanation').text();
 			const exampleList = [];
+
 			$('.qotC').each((i, e) => {
 				const jp = $(e)
 					.children()
@@ -25,12 +29,20 @@ app.get('/search/:word', (req, res) => {
 					.eq(1)
 					.text()
 					.split(/\s\-\s/)[0];
-				exampleList.push({
-					jp,
-					en
-				});
+				jp &&
+					en &&
+					exampleList.push({
+						jp,
+						en
+					});
 			});
-			res.send(exampleList.filter(e => e.jp !== ''));
+
+			res.send({
+				kanji,
+				hiragana,
+				meaning,
+				exampleList
+			});
 		}
 	);
 });
