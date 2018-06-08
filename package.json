@@ -4,5 +4,11 @@
   "main": "index.js",
   "repository": "https://github.com/jrorsini/jpVerbBuilder.git",
   "author": "<jeanroger.orsini@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "webpack-cli": "^3.0.3"
+  },
+  "scripts": {
+    "dev": "webpack --watch"
+  }
 }
