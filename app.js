@@ -1,3 +1,4 @@
+const querystring = require('querystring');
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -9,7 +10,7 @@ app.use(cors());
 
 app.get('/search/:word', (req, res) => {
 	request(
-		`https://ejje.weblio.jp/content/${req.params.word}`,
+		`https://ejje.weblio.jp/content/${querystring.escape(req.params.word)}`,
 		(error, body, html) => {
 			const $ = cheerio.load(html);
 			const exampleList = [];
