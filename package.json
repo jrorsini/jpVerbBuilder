@@ -1,0 +1,8 @@
+{
+  "name": "jpVerbBuilder",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jrorsini/jpVerbBuilder.git",
+  "author": "<jeanroger.orsini@gmail.com>",
+  "license": "MIT"
+}
