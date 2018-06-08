@@ -6,9 +6,10 @@
   "author": "<jeanroger.orsini@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
     "webpack-cli": "^3.0.3"
   },
   "scripts": {
-    "dev": "webpack --watch"
+    "dev": "node app.js --watch"
   }
 }
