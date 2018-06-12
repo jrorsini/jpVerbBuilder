@@ -5,6 +5,7 @@ import VerbItem from './components/VerbItem';
 
 class JpVerbBuilder extends React.Component {
 	state = {
+		errorMessage: null,
 		verb: {
 			kanji: null,
 			hiragana: null,
@@ -14,16 +15,20 @@ class JpVerbBuilder extends React.Component {
 	};
 
 	searchVerb = e => {
-		search(e.target.elements.verbSearchBar.value)
-			.then(res => {
-				this.setState(() => ({
-					verb: {
-						...JSON.parse(res)
-					}
-				}));
-			})
-			.catch(err => console.log(err));
-		console.log();
+		const inputValue = e.target.elements.verbSearchBar.value;
+		inputValue
+			? search(inputValue)
+					.then(res => {
+						this.setState(() => ({
+							verb: {
+								...JSON.parse(res)
+							}
+						}));
+					})
+					.catch(err => console.log(err))
+			: this.setState(() => ({
+					errorMessage: 'Your enter input a verb!'
+			  }));
 		e.target.elements.verbSearchBar.value = '';
 		e.preventDefault();
 	};
@@ -31,8 +36,13 @@ class JpVerbBuilder extends React.Component {
 	render() {
 		return (
 			<div>
+				<p>Try this one! 食べる</p>
+
 				<form onSubmit={this.searchVerb}>
-					<input name="verbSearchBar" />
+					<p>
+						<input name="verbSearchBar" />
+						{this.state.errorMessage && <span>{this.state.errorMessage}</span>}
+					</p>
 				</form>
 				{this.state.verb.kanji && <VerbItem {...this.state.verb} />}
 			</div>

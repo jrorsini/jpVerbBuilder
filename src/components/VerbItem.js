@@ -1,5 +1,8 @@
 import React from 'react';
 
-const VerbItem = () => <div>test</div>;
+const VerbItem = props => {
+	console.log(props);
+	return <div>test</div>;
+};
 
 export default VerbItem;
