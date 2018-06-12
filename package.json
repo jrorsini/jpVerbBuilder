@@ -26,6 +26,6 @@
     "webpack-dev-server": "^3.1.4"
   },
   "scripts": {
-    "dev": "concurrently \"node app.js --watch\" \"webpack-dev-server\""    
+    "dev": "concurrently \"webpack-dev-server\" \"node app.js --watch\""    
   }
 }
