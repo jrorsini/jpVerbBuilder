@@ -19,6 +19,8 @@
     "express": "^4.16.3",
     "node-sass": "^4.9.0",
     "querystring": "^0.2.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
     "request": "^2.87.0",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
@@ -26,6 +28,6 @@
     "webpack-dev-server": "^3.1.4"
   },
   "scripts": {
-    "dev": "concurrently \"webpack-dev-server\" \"node app.js --watch\""    
+    "dev": "concurrently \"webpack-dev-server\" \"node app.js --watch\""
   }
 }
