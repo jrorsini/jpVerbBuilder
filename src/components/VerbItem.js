@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import { addVerb, removeVerb } from '../actions/verbs';
 
 const VerbItem = ({ kanji, hiragana, meaning, exampleList }) => {
+	console.log(props);
 	return (
 		<div>
 			<h2>
 				{kanji} (<span>{hiragana}</span>)
 				<button
 					onClick={() => {
-						props.dispatch(
+						dispatch(
 							addVerb({
 								id: 1234,
 								kanji,
@@ -38,8 +39,7 @@ const VerbItem = ({ kanji, hiragana, meaning, exampleList }) => {
 };
 
 const mapStateToProps = state => {
-	console.log(state);
-	return { todo: 'test' };
+	return state;
 };
 
 export default connect(mapStateToProps)(VerbItem);
