@@ -5,6 +5,7 @@ const VerbItem = ({ kanji, hiragana, meaning, exampleList }) => {
 		<div>
 			<h2>
 				{kanji} (<span>{hiragana}</span>)
+				<button>Add</button>
 			</h2>
 			<p>{meaning.replace(/\、/g, ', ')}</p>
 			{exampleList.map((example, exampleId) => {

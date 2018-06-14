@@ -1,17 +1,26 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import search from './logic/search_handler';
 import VerbItem from './components/VerbItem';
+import verbReducer from './reducers/verbReducer';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
-class JpVerbBuilder extends React.Component {
+const store = createStore(verbReducer);
+
+/**
+	Search engine looking for verbs.s
+ */
+class App extends React.Component {
 	state = {
 		errorMessage: null,
-		verb: {
+		verbPreview: {
 			kanji: null,
 			hiragana: null,
 			meaning: null,
 			exampleList: null
-		}
+		},
+		verbs: []
 	};
 
 	searchVerb = e => {
@@ -20,12 +29,16 @@ class JpVerbBuilder extends React.Component {
 			? search(inputValue)
 					.then(res => {
 						this.setState(() => ({
-							verb: {
+							verbPreview: {
 								...JSON.parse(res)
 							}
 						}));
 					})
-					.catch(err => console.log(err))
+					.catch(err =>
+						this.setState(() => ({
+							errorMessage: err
+						}))
+					)
 			: this.setState(() => ({
 					errorMessage: 'Your enter input a verb!'
 			  }));
@@ -40,14 +53,21 @@ class JpVerbBuilder extends React.Component {
 
 				<form onSubmit={this.searchVerb}>
 					<p>
-						<input name="verbSearchBar" />
+						<input name="verbSearchBar" autoComplete="off" />
 						{this.state.errorMessage && <span>{this.state.errorMessage}</span>}
 					</p>
 				</form>
-				{this.state.verb.kanji && <VerbItem {...this.state.verb} />}
+				{this.state.verbPreview.kanji && (
+					<VerbItem {...this.state.verbPreview} />
+				)}
 			</div>
 		);
 	}
 }
 
-ReactDOM.render(<JpVerbBuilder />, document.getElementById('app'));
+render(
+	<Provider store={store}>
+		<App />
+	</Provider>,
+	document.getElementById('root')
+);
