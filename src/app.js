@@ -48,8 +48,6 @@ class App extends React.Component {
 	};
 
 	render() {
-		console.log(store);
-
 		return (
 			<div>
 				<SearchBar searchVerb={this.searchVerb} />

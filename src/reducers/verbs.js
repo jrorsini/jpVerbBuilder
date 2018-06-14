@@ -1,6 +1,6 @@
 const initialState = [];
 
-const verbReducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
 	switch (action.type) {
 		case 'ADD_VERB':
 			return { ...state, verbs: state.verbs.concat(action.verb) };
@@ -15,5 +15,3 @@ const verbReducer = (state = initialState, action) => {
 			break;
 	}
 };
-
-export default verbReducer;
