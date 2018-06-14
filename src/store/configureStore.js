@@ -1,7 +1,7 @@
 import { createStore, combineReducers } from 'redux';
-import verbs from '../reducers/verbs';
+import verbsReducer from '../reducers/verbs';
 
 export default () => {
-	const store = createStore(combineReducers({ verbs }));
+	const store = createStore(combineReducers({ verbs: verbsReducer }));
 	return store;
 };

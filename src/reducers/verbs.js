@@ -1,6 +1,4 @@
-const initialState = [];
-
-export default (state = initialState, action) => {
+export default (state = [], action) => {
 	switch (action.type) {
 		case 'ADD_VERB':
 			return state.concat(action.verb);
@@ -9,6 +7,7 @@ export default (state = initialState, action) => {
 			return state.filter(verb => verb.id !== action.id);
 			break;
 		default:
+			return state;
 			break;
 	}
 };
