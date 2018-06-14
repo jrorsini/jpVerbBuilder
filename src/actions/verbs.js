@@ -1,5 +1,3 @@
-/**
- ACTIONS */
 export const addVerb = verb => ({
 	type: 'ADD_VERB',
 	verb

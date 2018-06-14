@@ -1,6 +1,7 @@
 import React from 'react';
 import search from './logic/search_handler';
 import VerbItem from './components/VerbItem';
+import SearchBar from './components/SearchBar';
 import verbReducer from './reducers/verbReducer';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
@@ -51,12 +52,7 @@ class App extends React.Component {
 			<div>
 				<p>Try this one! 食べる</p>
 
-				<form onSubmit={this.searchVerb}>
-					<p>
-						<input name="verbSearchBar" autoComplete="off" />
-						{this.state.errorMessage && <span>{this.state.errorMessage}</span>}
-					</p>
-				</form>
+				<SearchBar searchVerb={this.searchVerb} />
 				{this.state.verbPreview.kanji && (
 					<VerbItem {...this.state.verbPreview} />
 				)}
