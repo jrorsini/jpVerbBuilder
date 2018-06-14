@@ -6,6 +6,13 @@ const verbSample = {
 	hiragana: 'たべる',
 	meaning: 'to eat'
 };
+
+const verbSampleTwo = {
+	id: '123456',
+	kanji: '食べる',
+	hiragana: 'たべる',
+	meaning: 'to eat'
+};
 const initialState = [];
 
 /**
@@ -15,6 +22,11 @@ const addVerb = verb => ({
 	verb
 });
 
+const removeVerb = id => ({
+	type: 'REMOVE_VERB',
+	id
+});
+
 /**
  REDUCERS */
 
@@ -22,6 +34,9 @@ const verbReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case 'ADD_VERB':
 			return [...state.concat(action.verb)];
+			break;
+		case 'REMOVE_VERB':
+			return [...state.filter(verb => verb.id !== action.id)];
 			break;
 
 		default:
@@ -36,5 +51,5 @@ store.subscribe(() => {
 });
 
 store.dispatch(addVerb(verbSample));
-store.dispatch(addVerb(verbSample));
-store.dispatch(addVerb(verbSample));
+store.dispatch(addVerb(verbSampleTwo));
+store.dispatch(removeVerb(verbSample.id));
