@@ -4,11 +4,9 @@ import VerbItem from './components/VerbItem';
 import SearchBar from './components/SearchBar';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
 import configureStore from './store/configureStore';
 import 'normalize.css/normalize.css';
 
-const store = configureStore();
 /**
 	Search engine looking for verbs.s
  */
@@ -58,6 +56,8 @@ class App extends React.Component {
 		);
 	}
 }
+
+const store = configureStore();
 
 render(
 	<Provider store={store}>
