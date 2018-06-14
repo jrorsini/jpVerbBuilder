@@ -2,13 +2,13 @@ import React from 'react';
 import search from './logic/search_handler';
 import VerbItem from './components/VerbItem';
 import SearchBar from './components/SearchBar';
-import verbReducer from './reducers/verbReducer';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import configureStore from './store/configureStore';
+import 'normalize.css/normalize.css';
 
-const store = createStore(verbReducer);
-
+const store = configureStore();
 /**
 	Search engine looking for verbs.s
  */
@@ -48,6 +48,8 @@ class App extends React.Component {
 	};
 
 	render() {
+		console.log(store);
+
 		return (
 			<div>
 				<SearchBar searchVerb={this.searchVerb} />
