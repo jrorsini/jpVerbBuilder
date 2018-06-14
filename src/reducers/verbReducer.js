@@ -1,4 +1,6 @@
-const initialState = [];
+const initialState = {
+	todo: 'hello'
+};
 
 const verbReducer = (state = initialState, action) => {
 	switch (action.type) {

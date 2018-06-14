@@ -1,11 +1,11 @@
 /**
  ACTIONS */
-const addVerb = verb => ({
+export const addVerb = verb => ({
 	type: 'ADD_VERB',
 	verb
 });
 
-const removeVerb = id => ({
+export const removeVerb = id => ({
 	type: 'REMOVE_VERB',
 	id
 });
