@@ -9,9 +9,9 @@ const verbSample = {
 
 const verbSampleTwo = {
 	id: '123456',
-	kanji: '食べる',
-	hiragana: 'たべる',
-	meaning: 'to eat'
+	kanji: '飲む',
+	hiragana: 'のむ',
+	meaning: 'to drink'
 };
 const initialState = [];
 
