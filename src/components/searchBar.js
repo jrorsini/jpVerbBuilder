@@ -4,20 +4,20 @@ import { connect } from 'react-redux';
 import { setPreview } from '../actions/verbPreview';
 import { setErrorTxt } from '../actions/errorMessage';
 
-const searchBar = props => {
+const searchBar = ({ dispatch }) => {
 	const searchVerb = e => {
 		const inputValue = e.target.elements.verbSearchBar.value;
 		inputValue
 			? search(inputValue)
 					.then(res =>
-						props.dispatch(
+						dispatch(
 							setPreview({
 								...JSON.parse(res)
 							})
 						)
 					)
-					.catch(err => props.dispatch(setErrorTxt(err)))
-			: props.dispatch(setErrorTxt('Your enter input a verb!'));
+					.catch(err => dispatch(setErrorTxt(err)))
+			: dispatch(setErrorTxt('Your enter input a verb!'));
 
 		e.target.elements.verbSearchBar.value = '';
 		e.preventDefault();

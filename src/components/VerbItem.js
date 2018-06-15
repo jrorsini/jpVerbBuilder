@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addVerb, removeVerb } from '../actions/verbs';
 
-const VerbItem = ({ kanji, hiragana, meaning, exampleList }) => {
+const VerbItem = ({ dispatch, kanji, hiragana, meaning, exampleList }) => {
 	return (
 		<div>
 			<h2>
@@ -23,7 +23,7 @@ const VerbItem = ({ kanji, hiragana, meaning, exampleList }) => {
 					Add
 				</button>
 			</h2>
-			<p>{meaning.replace(/\„Ä?/g, ', ')}</p>
+			<p>{meaning.replace(/\„ÄÅ/g, ', ')}</p>
 			{exampleList.map((example, exampleId) => {
 				return (
 					<div key={exampleId}>
@@ -37,7 +37,8 @@ const VerbItem = ({ kanji, hiragana, meaning, exampleList }) => {
 };
 
 const mapStateToProps = state => {
-	return state;
+	console.log(state);
+	return state.verbPreview;
 };
 
 export default connect(mapStateToProps)(VerbItem);

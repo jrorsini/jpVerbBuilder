@@ -1,12 +1,22 @@
 import React from 'react';
 import VerbItem from '../VerbItem';
 import SearchBar from '../SearchBar';
+import { connect } from 'react-redux';
 
 /**
 	Search engine looking for verbs.s
  */
-export default () => (
-	<div>
-		<SearchBar />
-	</div>
-);
+const SearchPage = ({ kanji }) => {
+	return (
+		<div>
+			<SearchBar />
+			{kanji && <VerbItem />}
+		</div>
+	);
+};
+
+const mapStateToProps = state => {
+	return state.verbPreview;
+};
+
+export default connect(mapStateToProps)(SearchPage);
