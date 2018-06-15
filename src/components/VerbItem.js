@@ -2,20 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addVerb, removeVerb } from '../actions/verbs';
 
-const VerbItem = ({ dispatch, kanji, hiragana, meaning, exampleList }) => {
+const VerbItem = props => {
+	console.log(props);
 	return (
 		<div>
 			<h2>
-				{kanji} (<span>{hiragana}</span>)
+				{props.verbPreview.kanji} (<span>{props.verbPreview.hiragana}</span>)
 				<button
 					onClick={() => {
-						dispatch(
+						props.dispatch(
 							addVerb({
 								id: 1234,
-								kanji,
-								hiragana,
-								meaning,
-								exampleList
+								kanji: props.verbPreview.kanji,
+								hiragana: props.verbPreview.hiragana,
+								meaning: props.verbPreview.meaning,
+								exampleList: props.verbPreview.exampleList
 							})
 						);
 					}}
@@ -23,8 +24,8 @@ const VerbItem = ({ dispatch, kanji, hiragana, meaning, exampleList }) => {
 					Add
 				</button>
 			</h2>
-			<p>{meaning.replace(/\、/g, ', ')}</p>
-			{exampleList.map((example, exampleId) => {
+			<p>{props.verbPreview.meaning.replace(/\、/g, ', ')}</p>
+			{props.verbPreview.exampleList.map((example, exampleId) => {
 				return (
 					<div key={exampleId}>
 						<p>{example.jp}</p>
@@ -37,8 +38,7 @@ const VerbItem = ({ dispatch, kanji, hiragana, meaning, exampleList }) => {
 };
 
 const mapStateToProps = state => {
-	console.log(state);
-	return state.verbPreview;
+	return state;
 };
 
 export default connect(mapStateToProps)(VerbItem);
