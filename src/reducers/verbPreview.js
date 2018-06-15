@@ -8,7 +8,7 @@ const initialState = {
 export default (state = initialState, action) => {
 	switch (action.type) {
 		case 'FILL_PREVIEW':
-			return state.verb;
+			return action.verb;
 			break;
 		default:
 			return state;

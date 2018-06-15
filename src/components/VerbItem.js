@@ -18,13 +18,12 @@ const VerbItem = ({ kanji, hiragana, meaning, exampleList }) => {
 								exampleList
 							})
 						);
-						console.log('added');
 					}}
 				>
 					Add
 				</button>
 			</h2>
-			<p>{meaning.replace(/\ã€/g, ', ')}</p>
+			<p>{meaning.replace(/\ã€?/g, ', ')}</p>
 			{exampleList.map((example, exampleId) => {
 				return (
 					<div key={exampleId}>
