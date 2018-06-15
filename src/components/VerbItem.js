@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { addVerb, removeVerb } from '../actions/verbs';
 
 const VerbItem = ({ kanji, hiragana, meaning, exampleList }) => {
-	console.log(props);
 	return (
 		<div>
 			<h2>

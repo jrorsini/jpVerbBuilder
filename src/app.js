@@ -48,7 +48,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<SearchBar searchVerb={this.searchVerb} />
+				<SearchBar />
 				{this.state.verbPreview.kanji && (
 					<VerbItem {...this.state.verbPreview} />
 				)}
