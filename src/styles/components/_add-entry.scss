@@ -1,0 +1,38 @@
+.addEntry {
+  margin-top: $l-size;
+  // display: flex;
+  // justify-content: space-between;
+}
+
+.addEntry__line {
+  width: 100%;
+  height: 40px;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.addEntry__line .Select {
+  outline: none;
+  border: none;
+  margin: 0 5px;
+  flex-grow: 1;
+  width: 100%;
+  border-radius: 2px;
+  -webkit-appearance: none;
+}
+
+.addEntry__input {
+  margin: 0 5px;
+  text-indent: $s-size;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  flex-grow: 1;
+}
+
+.addEntry__button {
+  width: 100%;
+  margin: 0 5px;
+}
