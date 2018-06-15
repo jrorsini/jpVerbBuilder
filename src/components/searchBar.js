@@ -5,6 +5,9 @@ import { setPreview } from '../actions/verbPreview';
 import { setErrorTxt } from '../actions/errorMessage';
 
 const searchBar = ({ errorMessage, dispatch }) => {
+	/**
+		SearchVerb function that fetches data from one verb (taken as an argument)
+	 */
 	const searchVerb = e => {
 		const inputValue = e.target.elements.verbSearchBar.value;
 		inputValue && inputValue.match(/[a-z]/gi) === null
