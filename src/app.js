@@ -22,29 +22,6 @@ class App extends React.Component {
 		verbs: []
 	};
 
-	searchVerb = e => {
-		const inputValue = e.target.elements.verbSearchBar.value;
-		inputValue
-			? search(inputValue)
-					.then(res => {
-						this.setState(() => ({
-							verbPreview: {
-								...JSON.parse(res)
-							}
-						}));
-					})
-					.catch(err =>
-						this.setState(() => ({
-							errorMessage: err
-						}))
-					)
-			: this.setState(() => ({
-					errorMessage: 'Your enter input a verb!'
-			  }));
-		e.target.elements.verbSearchBar.value = '';
-		e.preventDefault();
-	};
-
 	render() {
 		return (
 			<div>
