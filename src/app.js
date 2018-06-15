@@ -7,6 +7,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import 'normalize.css/normalize.css';
+import './styles/styles.scss';
 
 const store = configureStore();
 
