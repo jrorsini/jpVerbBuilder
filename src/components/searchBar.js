@@ -29,7 +29,7 @@ const searchBar = ({ dispatch }) => {
 				<input
 					name="verbSearchBar"
 					autoComplete="off"
-					value="食べる"
+					// value="食べる"
 					onChange={() => {}}
 				/>
 			</p>
