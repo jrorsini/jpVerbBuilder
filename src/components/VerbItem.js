@@ -6,7 +6,7 @@ const VerbItem = props => {
 	console.log(props);
 	return (
 		<div>
-			<h2>
+			<h2 className="VerbItem__header">
 				{props.verbPreview.kanji} (<span>{props.verbPreview.hiragana}</span>)
 				<button
 					onClick={() => {
