@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
  */
 const SearchPage = ({ kanji }) => {
 	return (
-		<div>
+		<div className="container">
 			<SearchBar />
 			{kanji && <VerbItem />}
 		</div>
