@@ -29,13 +29,15 @@ const searchBar = ({ errorMessage, dispatch }) => {
 
 	return (
 		<form onSubmit={searchVerb}>
-			<p>
+			<p className="searchBar__container">
 				<input
 					name="verbSearchBar"
+					className="searchBar__bar"
 					autoComplete="off"
 					// value="食べる"
 					onChange={() => {}}
 				/>
+				<button className="searchBar__button button">Search</button>
 			</p>
 			<span>{errorMessage}</span>
 		</form>

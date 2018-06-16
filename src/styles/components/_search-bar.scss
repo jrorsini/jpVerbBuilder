@@ -1,0 +1,14 @@
+.searchBar__container {
+	display: flex;
+	height: 40px;
+	border-radius: 2px;
+	overflow: hidden;
+}
+
+.searchBar__bar {
+	flex-grow: 1;
+}
+
+.searchBar__button {
+	padding: 0 $l-size;
+}
