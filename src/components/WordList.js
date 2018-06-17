@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 const WordList = props => {
 	console.log(props);
 	return (
-		<ul>{props.verbs.map(verb => <li key={verb.kanji}>{verb.kanji}</li>)}</ul>
+		<div>
+			<ul className="WordList__list">
+				{props.verbs.map(verb => <li key={verb.kanji}>{verb.kanji}</li>)}
+			</ul>
+		</div>
 	);
 };
 
