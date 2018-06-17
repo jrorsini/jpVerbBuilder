@@ -6,8 +6,10 @@ const VerbItem = props => {
 	console.log(props);
 	return (
 		<div>
-			<h2 className="VerbItem__header">
-				{props.verbPreview.kanji} (<span>{props.verbPreview.hiragana}</span>)
+			<div className="VerbItem__header">
+				<h2>
+					{props.verbPreview.kanji} (<span>{props.verbPreview.hiragana}</span>)
+				</h2>
 				<button
 					onClick={() => {
 						props.dispatch(
@@ -23,13 +25,14 @@ const VerbItem = props => {
 				>
 					Add
 				</button>
-			</h2>
+			</div>
 			<p>{props.verbPreview.meaning.replace(/\、/g, ', ')}</p>
+			<hr />
 			{props.verbPreview.exampleList.map((example, exampleId) => {
 				return (
-					<div key={exampleId}>
-						<p>{example.jp}</p>
-						<p>{example.en}</p>
+					<div className="VerbItem__example" key={exampleId}>
+						<span>{example.jp}</span>
+						<span>{example.en}</span>
 					</div>
 				);
 			})}

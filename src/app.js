@@ -10,6 +10,10 @@ import 'normalize.css/normalize.css';
 import './styles/style.scss';
 
 const store = configureStore();
+store.subscribe(() => {
+	localStorage.setItem('verbs', JSON.stringify(store.getState().verbs));
+	console.log(localStorage.getItem('verbs'));
+});
 
 const App = () => (
 	<Router>
