@@ -4,12 +4,7 @@ import { connect } from 'react-redux';
 const WordList = props => {
 	console.log(props);
 	return (
-		<ul>
-			<li>test</li>
-			<li>test</li>
-			<li>test</li>
-			<li>test</li>
-		</ul>
+		<ul>{props.verbs.map(verb => <li key={verb.kanji}>{verb.kanji}</li>)}</ul>
 	);
 };
 
@@ -17,4 +12,4 @@ const mapStateToProps = state => {
 	return state;
 };
 
-export default connect()(WordList);
+export default connect(mapStateToProps)(WordList);
