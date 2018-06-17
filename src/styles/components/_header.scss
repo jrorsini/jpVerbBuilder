@@ -37,6 +37,11 @@
 	font-size: $m-size + 0.4rem;
 }
 
+.header__link--home {
+	color: #fff;
+	text-decoration: none;
+}
+
 .header__link--active {
 	font-weight: bold;
 }
