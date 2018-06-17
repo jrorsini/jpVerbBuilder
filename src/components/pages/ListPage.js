@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 const List = props => {
 	console.log(props);
 	return (
-		<div>
+		<div className="container">
 			{props.verbs && (
 				<ul>
 					{props.verbs.map(verb => <li key={verb.kanji}>{verb.kanji}</li>)}

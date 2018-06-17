@@ -1,13 +1,19 @@
 .header {
 	background-color: lighten($red, 8%);
 	color: #fff;
-	padding: $m-size 0;
+	// padding: $m-size 0;
+	position: fixed;
+	display: inline-block;
+	width: 100%;
+	margin-bottom: 100px;
+	top: 0;
 }
 
 .header .container {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	margin-top: 0;
 }
 
 .header__title {
