@@ -5,7 +5,11 @@ const List = props => {
 	console.log(props);
 	return (
 		<div>
-			{props.verbs && <ul>{props.verbs.map(verb => <li>{verb.kanji}</li>)}</ul>}
+			{props.verbs && (
+				<ul>
+					{props.verbs.map(verb => <li key={verb.kanji}>{verb.kanji}</li>)}
+				</ul>
+			)}
 		</div>
 	);
 };

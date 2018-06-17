@@ -1,4 +1,8 @@
-export default (state = [], action) => {
+const initialState =
+	localStorage.getItem('verbs') !== null
+		? JSON.parse(localStorage.getItem('verbs'))
+		: [];
+export default (state = initialState, action) => {
 	switch (action.type) {
 		case 'ADD_VERB':
 			return state.concat(action.verb);

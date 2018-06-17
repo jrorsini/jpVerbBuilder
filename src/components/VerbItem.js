@@ -11,6 +11,7 @@ const VerbItem = props => {
 					{props.verbPreview.kanji} (<span>{props.verbPreview.hiragana}</span>)
 				</h2>
 				<button
+					className="VerbItem__button button"
 					onClick={() => {
 						props.dispatch(
 							addVerb({
@@ -23,7 +24,7 @@ const VerbItem = props => {
 						);
 					}}
 				>
-					Add
+					Add to word's list
 				</button>
 			</div>
 			<p>{props.verbPreview.meaning.replace(/\、/g, ', ')}</p>
@@ -31,8 +32,12 @@ const VerbItem = props => {
 			{props.verbPreview.exampleList.map((example, exampleId) => {
 				return (
 					<div className="VerbItem__example" key={exampleId}>
-						<span>{example.jp}</span>
-						<span>{example.en}</span>
+						<span className="VerbItem__example--jp">
+							{example.jp.split(props.verbPreview.kanji)[0]}
+							<b>{props.verbPreview.kanji}</b>
+							{example.jp.split(props.verbPreview.kanji)[1]}
+						</span>
+						<span className="VerbItem__example--en">{example.en}</span>
 					</div>
 				);
 			})}
