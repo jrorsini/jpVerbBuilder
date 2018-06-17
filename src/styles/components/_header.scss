@@ -1,11 +1,12 @@
 .header {
-	background-color: $red;
+	background-color: lighten($red, 8%);
 	color: #fff;
 	padding: $m-size 0;
 }
 
 .header .container {
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 }
 

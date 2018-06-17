@@ -7,6 +7,8 @@
 
 .searchBar__bar {
 	flex-grow: 1;
+	border: none;
+	border-bottom: 3px solid darken(#fff, 10%);
 }
 
 .searchBar__button {
