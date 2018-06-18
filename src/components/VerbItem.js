@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { addVerb, removeVerb } from '../actions/verbs';
 
 const VerbItem = props => {
-	const listed = (list, preview) => {
+	const listed = () => {
 		let isThere = false;
-		list.map(verb => {
-			if (verb.kanji === preview.kanji) isThere = true;
+		props.verbs.map(verb => {
+			if (verb.kanji === props.verbPreview.kanji) isThere = true;
 		});
 		return isThere;
 	};
@@ -17,7 +17,11 @@ const VerbItem = props => {
 					{props.verbPreview.kanji} (<span>{props.verbPreview.hiragana}</span>)
 				</h2>
 				<button
-					className="VerbItem__button button"
+					className={
+						listed()
+							? 'VerbItem__button button VerbItem__button--listed'
+							: 'VerbItem__button button'
+					}
 					onClick={() => {
 						listed(props.verbs, props.verbPreview)
 							? props.dispatch(removeVerb(props.verbPreview.kanji))
@@ -32,14 +36,12 @@ const VerbItem = props => {
 							  );
 					}}
 				>
-					{listed(props.verbs, props.verbPreview) ? (
-						<i className="material-icons">remove</i>
+					{listed() ? (
+						<i className="material-icons">delete</i>
 					) : (
-						<i className="material-icons">add</i>
+						<i className="material-icons">save</i>
 					)}
-					{listed(props.verbs, props.verbPreview)
-						? "Remove from word's list"
-						: "Add to word's list"}
+					{listed() ? "Remove from word's list" : "Add to word's list"}
 				</button>
 			</div>
 			<p>{props.verbPreview.meaning.replace(/\、/g, ', ')}</p>

@@ -12,6 +12,11 @@
 	padding: $s-size $m-size;
 }
 
+.VerbItem__button--listed {
+	background: darken($red, 1%);
+	border-bottom-color: darken($red, 16%);
+}
+
 .VerbItem__example {
 	padding: $s-size 0;
 	justify-content: space-between;
