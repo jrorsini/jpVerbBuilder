@@ -37,7 +37,9 @@ const searchBar = ({ errorMessage, dispatch }) => {
 					// value="食べる"
 					onChange={() => {}}
 				/>
-				<button className="searchBar__button button">Search</button>
+				<button className="searchBar__button button">
+					<i className="material-icons">search</i>Search
+				</button>
 			</p>
 			<span>{errorMessage}</span>
 		</form>

@@ -23,6 +23,12 @@
 	color: #fff;
 	font-weight: 500;
 	padding: $s-size;
+	display: flex;
+	align-items: center;
+}
+
+.button i {
+	margin-right: $s-size - 0.5rem;
 }
 
 // bem

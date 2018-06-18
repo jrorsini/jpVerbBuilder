@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { addVerb, removeVerb } from '../actions/verbs';
 
 const VerbItem = props => {
-	console.log(props);
 	const listed = (list, preview) => {
 		let isThere = false;
 		list.map(verb => {
@@ -20,17 +19,24 @@ const VerbItem = props => {
 				<button
 					className="VerbItem__button button"
 					onClick={() => {
-						props.dispatch(
-							addVerb({
-								id: 1234,
-								kanji: props.verbPreview.kanji,
-								hiragana: props.verbPreview.hiragana,
-								meaning: props.verbPreview.meaning,
-								exampleList: props.verbPreview.exampleList
-							})
-						);
+						listed(props.verbs, props.verbPreview)
+							? props.dispatch(removeVerb(props.verbPreview.kanji))
+							: props.dispatch(
+									addVerb({
+										id: 1234,
+										kanji: props.verbPreview.kanji,
+										hiragana: props.verbPreview.hiragana,
+										meaning: props.verbPreview.meaning,
+										exampleList: props.verbPreview.exampleList
+									})
+							  );
 					}}
 				>
+					{listed(props.verbs, props.verbPreview) ? (
+						<i className="material-icons">remove</i>
+					) : (
+						<i className="material-icons">add</i>
+					)}
 					{listed(props.verbs, props.verbPreview)
 						? "Remove from word's list"
 						: "Add to word's list"}

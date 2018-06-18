@@ -3,7 +3,7 @@ export const addVerb = verb => ({
 	verb
 });
 
-export const removeVerb = id => ({
+export const removeVerb = kanji => ({
 	type: 'REMOVE_VERB',
-	id
+	kanji
 });

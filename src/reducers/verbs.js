@@ -14,7 +14,7 @@ export default (state = initialState, action) => {
 			return isAlreadyThere ? state : state.concat(action.verb);
 			break;
 		case 'REMOVE_VERB':
-			return state.filter(verb => verb.id !== action.id);
+			return state.filter(verb => verb.kanji !== action.kanji);
 			break;
 		default:
 			return state;
