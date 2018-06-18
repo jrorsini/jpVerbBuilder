@@ -8,9 +8,7 @@ export default (state = initialState, action) => {
 		case 'ADD_VERB':
 			let isAlreadyThere = 0;
 			state.map(verb => {
-				if (verb.kanji === action.verb.kanji) {
-					isAlreadyThere = 1;
-				}
+				if (verb.kanji === action.verb.kanji) isAlreadyThere = 1;
 				return verb;
 			});
 			return isAlreadyThere ? state : state.concat(action.verb);

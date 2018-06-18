@@ -4,6 +4,13 @@ import { addVerb, removeVerb } from '../actions/verbs';
 
 const VerbItem = props => {
 	console.log(props);
+	const listed = (list, preview) => {
+		let isThere = false;
+		list.map(verb => {
+			if (verb.kanji === preview.kanji) isThere = true;
+		});
+		return isThere;
+	};
 	return (
 		<div>
 			<div className="VerbItem__header">
@@ -24,7 +31,9 @@ const VerbItem = props => {
 						);
 					}}
 				>
-					Add to word's list
+					{listed(props.verbs, props.verbPreview)
+						? "Remove from word's list"
+						: "Add to word's list"}
 				</button>
 			</div>
 			<p>{props.verbPreview.meaning.replace(/\、/g, ', ')}</p>
