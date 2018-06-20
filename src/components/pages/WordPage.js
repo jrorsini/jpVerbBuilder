@@ -9,7 +9,7 @@ const WordPage = props => {
 	return (
 		<div className="container">
 			<NavLink to="/list">Back to list</NavLink>
-			Test
+			<p>Test</p>
 		</div>
 	);
 };

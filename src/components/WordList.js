@@ -8,7 +8,12 @@ const WordList = props => {
 		<div>
 			<ul className="WordList__list">
 				{props.verbs.map(verb => (
-					<NavLink exact key={verb.kanji} to={`/word/${verb.kanji}`}>
+					<NavLink
+						exact
+						className="WordList__link"
+						key={verb.kanji}
+						to={`/word/${verb.kanji}`}
+					>
 						{verb.kanji}
 					</NavLink>
 				))}

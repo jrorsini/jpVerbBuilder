@@ -2,3 +2,15 @@
 	list-style: none;
 	padding: 0;
 }
+
+
+.WordList__link {
+	width: 100%;
+	display: inline-block;
+	text-decoration: none;
+	color: black;
+	margin: 5px 0;
+	&:hover {
+		text-decoration: underline;
+	}
+}
