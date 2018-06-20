@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './components/Header';
 import ListPage from './components/pages/ListPage';
 import SearchPage from './components/pages/SearchPage';
+import WordPage from './components/pages/WordPage';
 import configureStore from './store/configureStore';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
@@ -20,7 +21,7 @@ const App = () => (
 			<Header />
 			<Route exact path="/" component={SearchPage} />
 			<Route path="/list" component={ListPage} />
-			<Route path="/word/:id" component={ListPage} />
+			<Route path="/word/:id" component={WordPage} />
 		</div>
 	</Router>
 );
