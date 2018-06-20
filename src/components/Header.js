@@ -5,7 +5,7 @@ const Header = () => (
 	<div className="header">
 		<div className="container">
 			<NavLink exact={true} className="header__link--home" to="/">
-				<h1 className="header__title">Emotional Diary</h1>
+				<h1 className="header__title">Vocab Builder</h1>
 			</NavLink>
 			<ul className="header__list">
 				<li className="header__item">

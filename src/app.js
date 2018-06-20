@@ -20,6 +20,7 @@ const App = () => (
 			<Header />
 			<Route exact path="/" component={SearchPage} />
 			<Route path="/list" component={ListPage} />
+			<Route path="/word/:id" component={ListPage} />
 		</div>
 	</Router>
 );
