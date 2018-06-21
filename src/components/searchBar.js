@@ -8,9 +8,6 @@ import { tokenize, getTokenizer } from 'kuromojin';
 
 getTokenizer({ dicPath: '/dict' });
 
-tokenize('食べる').then(results => {
-	console.log(results[0]);
-});
 const searchBar = ({ errorMessage, dispatch }) => {
 	/**
 		SearchVerb function that fetches data from one verb (taken as an argument)
@@ -20,6 +17,11 @@ const searchBar = ({ errorMessage, dispatch }) => {
 		inputValue && inputValue.match(/[a-z]/gi) === null
 			? search(inputValue)
 					.then(res => {
+						tokenize(inputValue).then(results => {
+							const hiraganaReading = toHiragana(results[0].reading);
+							console.log(hiraganaReading);
+						});
+						console.log(JSON.parse(res));
 						dispatch(
 							setPreview({
 								...JSON.parse(res)
