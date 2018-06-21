@@ -18,7 +18,6 @@ const findWord = (wordToFind, wordsList) => {
  */
 const WordPage = props => {
 	const word = findWord(props.match.params.word, props.verbs);
-	console.log(word);
 	return (
 		<div className="container">
 			<NavLink to="/list">Back to list</NavLink>

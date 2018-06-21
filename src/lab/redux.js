@@ -2,8 +2,8 @@ import { createStore } from 'redux';
 
 const verbSample = {
 	id: '12345',
-	kanji: '食べる',
-	hiragana: 'たべる',
+	kanji: '食べ�?',
+	hiragana: 'たべ�?',
 	meaning: 'to eat'
 };
 

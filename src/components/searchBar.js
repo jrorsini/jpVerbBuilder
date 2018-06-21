@@ -5,6 +5,7 @@ import { setPreview } from '../actions/verbPreview';
 import { setErrorTxt } from '../actions/errorMessage';
 import { toHiragana } from 'wanakana';
 import { tokenize, getTokenizer } from 'kuromojin';
+import Button from '@material-ui/core/Button';
 
 getTokenizer({ dicPath: '/dict' });
 
@@ -44,9 +45,13 @@ const searchBar = ({ errorMessage, dispatch }) => {
 					autoComplete="off"
 					onChange={() => {}}
 				/>
-				<button className="searchBar__button button">
+				<Button
+					variant="contained"
+					color="primary"
+					className="searchBar__button button"
+				>
 					<i className="material-icons">search</i>Search
-				</button>
+				</Button>
 			</p>
 			<span>{errorMessage}</span>
 		</form>
