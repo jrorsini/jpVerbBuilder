@@ -19,15 +19,14 @@ const searchBar = ({ errorMessage, dispatch }) => {
 					.then(res => {
 						tokenize(inputValue).then(results => {
 							const hiraganaReading = toHiragana(results[0].reading);
-							console.log(hiraganaReading);
+							dispatch(
+								setPreview({
+									...JSON.parse(res),
+									hiragana: hiraganaReading
+								})
+							);
+							dispatch(setErrorTxt(null));
 						});
-						console.log(JSON.parse(res));
-						dispatch(
-							setPreview({
-								...JSON.parse(res)
-							})
-						);
-						dispatch(setErrorTxt(null));
 					})
 					.catch(err => dispatch(setErrorTxt(err)))
 			: dispatch(setErrorTxt('Your enter input a verb!'));
