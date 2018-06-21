@@ -3,7 +3,14 @@ import search from '../logic/search_handler';
 import { connect } from 'react-redux';
 import { setPreview } from '../actions/verbPreview';
 import { setErrorTxt } from '../actions/errorMessage';
+import { toHiragana } from 'wanakana';
+import { tokenize, getTokenizer } from 'kuromojin';
 
+getTokenizer({ dicPath: '/dict' });
+
+tokenize('食べる').then(results => {
+	console.log(results[0]);
+});
 const searchBar = ({ errorMessage, dispatch }) => {
 	/**
 		SearchVerb function that fetches data from one verb (taken as an argument)
