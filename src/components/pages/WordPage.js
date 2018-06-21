@@ -25,7 +25,20 @@ const WordPage = props => {
 			<p>
 				{word.kanji}（{word.hiragana}）
 			</p>
-			<p>{word.meaning}</p>
+			<p>{word.meaning.replace(/\、/g, ', ')}</p>
+			<hr />
+			{word.exampleList.map((example, exampleId) => {
+				return (
+					<div className="VerbItem__example" key={exampleId}>
+						<span className="VerbItem__example--jp">
+							{example.jp.split(word.kanji)[0]}
+							<b>{word.kanji}</b>
+							{example.jp.split(word.kanji)[1]}
+						</span>
+						<span className="VerbItem__example--en">{example.en}</span>
+					</div>
+				);
+			})}
 		</div>
 	);
 };
