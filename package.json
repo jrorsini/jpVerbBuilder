@@ -17,6 +17,7 @@
 		"cors": "^2.8.4",
 		"css-loader": "^0.28.11",
 		"express": "^4.16.3",
+		"kuromojin": "^1.4.0",
 		"node-sass": "^4.9.0",
 		"normalize.css": "^8.0.0",
 		"querystring": "^0.2.0",

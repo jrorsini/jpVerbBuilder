@@ -34,7 +34,6 @@ const searchBar = ({ errorMessage, dispatch }) => {
 					name="verbSearchBar"
 					className="searchBar__bar"
 					autoComplete="off"
-					// value="食べる"
 					onChange={() => {}}
 				/>
 				<button className="searchBar__button button">
