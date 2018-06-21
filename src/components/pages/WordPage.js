@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 	Search engine looking for verbs.s
  */
 const WordPage = props => {
+	console.log(props);
 	return (
 		<div className="container">
 			<NavLink to="/list">Back to list</NavLink>
