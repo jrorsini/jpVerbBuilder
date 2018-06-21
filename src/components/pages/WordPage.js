@@ -3,14 +3,29 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 /**
+
+ */
+const findWord = (wordToFind, wordsList) => {
+	let foundWord;
+	wordsList.map(word => {
+		if (word.kanji === wordToFind) foundWord = word;
+	});
+	return foundWord;
+};
+
+/**
 	Search engine looking for verbs.s
  */
 const WordPage = props => {
-	console.log(props);
+	const word = findWord(props.match.params.word, props.verbs);
+	console.log(word);
 	return (
 		<div className="container">
 			<NavLink to="/list">Back to list</NavLink>
-			<p>Test</p>
+			<p>
+				{word.kanji}（{word.hiragana}）
+			</p>
+			<p>{word.meaning}</p>
 		</div>
 	);
 };
