@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addVerb, removeVerb } from '../actions/verbs';
+import { NavLink } from 'react-router-dom';
 
 const VerbItem = props => {
 	const listed = () => {
@@ -13,9 +14,22 @@ const VerbItem = props => {
 	return (
 		<div>
 			<div className="VerbItem__header">
-				<h2>
-					{props.verbPreview.kanji} (<span>{props.verbPreview.hiragana}</span>)
-				</h2>
+				{listed() ? (
+					<h2>
+						<NavLink
+							className="VerbItem__link"
+							to={`/word/${props.verbPreview.kanji}`}
+						>
+							{props.verbPreview.kanji} (<span>
+								{props.verbPreview.hiragana}
+							</span>)
+						</NavLink>
+					</h2>
+				) : (
+					<h2>
+						{props.verbPreview.kanji} (<span>{props.verbPreview.hiragana}</span>)
+					</h2>
+				)}
 				<button
 					className={
 						listed()

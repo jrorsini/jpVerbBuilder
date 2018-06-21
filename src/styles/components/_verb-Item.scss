@@ -40,3 +40,11 @@
 
 .VerbItem__example span:last-child {
 }
+
+.VerbItem__link {
+	text-decoration: none;
+	color: black;
+	&:hover {
+		text-decoration: underline;
+	}
+}

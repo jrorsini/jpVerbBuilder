@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 const WordList = props => (
 	<div>
 		<ul className="WordList__list">
-			{props.verbs.map(verb => (
+			{props.verbs.reverse().map(verb => (
 				<NavLink
 					exact
 					className="WordList__link"
