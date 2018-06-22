@@ -10,13 +10,26 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import 'normalize.css/normalize.css';
 import './styles/style.scss';
+import { setQuestion } from './actions/flashcard';
 
 const store = configureStore();
 
+/**
+	This is for the flashcard section, 
+	setting it up into the component itself will re add the event hence firing multiple actions.
+ */
+const generateQuestion = () => {
+	const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
+	const wordIndex = getRandomInt(store.getState().verbs.length);
+	const exampleIndex = getRandomInt(
+		store.getState().verbs[wordIndex].exampleList.length
+	);
+	return store.getState().verbs[wordIndex].exampleList[exampleIndex];
+};
+
 document.addEventListener('keydown', e => {
 	if (window.location.pathname === '/word-practice' && e.keyCode === 13)
-		console.log('test');
-	// props.dispatch(setQuestion(generateQuestion()));
+		console.log(store.dispatch(setQuestion(generateQuestion())));
 });
 
 store.subscribe(() => {

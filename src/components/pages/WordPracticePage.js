@@ -3,18 +3,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { setQuestion } from '../../actions/flashcard';
 
-const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
-
 const WordPractice = props => {
-	console.log('object');
-	const generateQuestion = () => {
-		const wordIndex = getRandomInt(props.verbs.length);
-		const exampleIndex = getRandomInt(
-			props.verbs[wordIndex].exampleList.length
-		);
-		return props.verbs[wordIndex].exampleList[exampleIndex];
-	};
-
 	return (
 		<div className="container">
 			<div className="WordPractice">
