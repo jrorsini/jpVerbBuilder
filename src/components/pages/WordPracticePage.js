@@ -14,24 +14,27 @@ const WordPractice = props => {
 		return props.verbs[wordIndex].exampleList[exampleIndex];
 	};
 
+	props.dispatch(setQuestion(generateQuestion()));
+
 	const keyDownEvenHandler = e => {
 		window.location.pathname === '/word-practice' &&
 			e.keyCode === 13 &&
-			setQuestion('test');
-		console.log(props);
+			props.dispatch(setQuestion(generateQuestion()));
 	};
 
 	document.addEventListener('keydown', keyDownEvenHandler);
 	return (
 		<div className="container">
-			<div>{props.flashcard.question}</div>
+			<div>
+				<p>{props.flashcard.question && props.flashcard.question.jp}</p>
+				<p>{props.flashcard.question && props.flashcard.question.en}</p>
+			</div>
 			<div>Answer</div>
 		</div>
 	);
 };
 
 const mapStateToProps = state => {
-	console.log(state);
 	return state;
 };
 
