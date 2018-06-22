@@ -17,9 +17,8 @@ const WordPractice = props => {
 	const keyDownEvenHandler = e => {
 		window.location.pathname === '/word-practice' &&
 			e.keyCode === 13 &&
-			setQuestion({ question: 'hello' });
-
-		console.log(setQuestion('test'));
+			setQuestion('test');
+		console.log(props);
 	};
 
 	document.addEventListener('keydown', keyDownEvenHandler);
