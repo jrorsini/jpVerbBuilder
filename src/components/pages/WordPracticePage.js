@@ -14,8 +14,6 @@ const WordPractice = props => {
 		return props.verbs[wordIndex].exampleList[exampleIndex];
 	};
 
-	props.dispatch(setQuestion(generateQuestion()));
-
 	const keyDownEvenHandler = e => {
 		window.location.pathname === '/word-practice' &&
 			e.keyCode === 13 &&
@@ -25,11 +23,10 @@ const WordPractice = props => {
 	document.addEventListener('keydown', keyDownEvenHandler);
 	return (
 		<div className="container">
-			<div>
+			<div className="WordPractice">
 				<p>{props.flashcard.question && props.flashcard.question.jp}</p>
 				<p>{props.flashcard.question && props.flashcard.question.en}</p>
 			</div>
-			<div>Answer</div>
 		</div>
 	);
 };
