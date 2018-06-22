@@ -6,6 +6,7 @@ import { setQuestion } from '../../actions/flashcard';
 const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
 
 const WordPractice = props => {
+	console.log('object');
 	const generateQuestion = () => {
 		const wordIndex = getRandomInt(props.verbs.length);
 		const exampleIndex = getRandomInt(
@@ -14,13 +15,6 @@ const WordPractice = props => {
 		return props.verbs[wordIndex].exampleList[exampleIndex];
 	};
 
-	const keyDownEvenHandler = e => {
-		window.location.pathname === '/word-practice' &&
-			e.keyCode === 13 &&
-			props.dispatch(setQuestion(generateQuestion()));
-	};
-
-	document.addEventListener('keydown', keyDownEvenHandler);
 	return (
 		<div className="container">
 			<div className="WordPractice">

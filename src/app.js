@@ -12,6 +12,13 @@ import 'normalize.css/normalize.css';
 import './styles/style.scss';
 
 const store = configureStore();
+
+document.addEventListener('keydown', e => {
+	if (window.location.pathname === '/word-practice' && e.keyCode === 13)
+		console.log('test');
+	// props.dispatch(setQuestion(generateQuestion()));
+});
+
 store.subscribe(() => {
 	console.log(store.getState());
 	localStorage.setItem('verbs', JSON.stringify(store.getState().verbs));
