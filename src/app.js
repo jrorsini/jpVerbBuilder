@@ -29,7 +29,7 @@ const generateQuestion = () => {
 
 document.addEventListener('keydown', e => {
 	if (window.location.pathname === '/word-practice' && e.keyCode === 13)
-		console.log(store.dispatch(setQuestion(generateQuestion())));
+		store.dispatch(setQuestion(generateQuestion()));
 });
 
 store.subscribe(() => {

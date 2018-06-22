@@ -6,7 +6,7 @@ import { setQuestion } from '../../actions/flashcard';
 const WordPractice = props => {
 	return (
 		<div className="container">
-			<div className="WordPractice">
+			<div className="WordPractice__questions">
 				<p>{props.flashcard.question && props.flashcard.question.jp}</p>
 				<p>{props.flashcard.question && props.flashcard.question.en}</p>
 			</div>
