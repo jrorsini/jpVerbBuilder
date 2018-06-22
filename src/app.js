@@ -13,6 +13,7 @@ import './styles/style.scss';
 
 const store = configureStore();
 store.subscribe(() => {
+	console.log(store.getState());
 	localStorage.setItem('verbs', JSON.stringify(store.getState().verbs));
 });
 
