@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { toHiragana } from 'wanakana';
+import { setQuestion, setAnswer } from '../../actions/flashcard';
+
+const generateQuestionAnswer = props => {
+	const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
+	const wordIndex = getRandomInt(props.verbs.length);
+	const exampleIndex = getRandomInt(props.verbs[wordIndex].exampleList.length);
+	const obj = props.verbs[wordIndex];
+	const qObj = obj.exampleList[exampleIndex];
+	return {
+		question: {
+			jp: qObj.jp.split(obj.kanji),
+			en: qObj.en
+		},
+		answer: obj.kanji
+	};
+};
 
 const WordPractice = props => {
 	return (
