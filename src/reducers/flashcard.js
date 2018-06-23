@@ -8,6 +8,9 @@ export default (state = initialState, action) => {
 		case 'SET_QUESTION':
 			return { ...state, question: action.question };
 			break;
+		case 'SET_ANSWER':
+			return { ...state, answer: action.answer };
+			break;
 		default:
 			return state;
 			break;

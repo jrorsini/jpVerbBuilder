@@ -10,3 +10,8 @@ export const setQuestion = question => ({
 	type: 'SET_QUESTION',
 	question
 });
+
+export const setAnswer = answer => ({
+	type: 'SET_ANSWER',
+	answer
+});

@@ -7,7 +7,7 @@ import WordPage from './components/pages/WordPage';
 import configureStore from './store/configureStore';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { setQuestion } from './actions/flashcard';
+import { setQuestion, setAnswer } from './actions/flashcard';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import 'normalize.css/normalize.css';
 import './styles/style.scss';
@@ -37,11 +37,12 @@ const generateQuestionAnswer = () => {
 
 document.addEventListener('keydown', e => {
 	if (window.location.pathname === '/word-practice' && e.keyCode === 13) {
-		store.dispatch(setQuestion(generateQuestionAnswer().question));
+		store.dispatch(setAnswer(''));
+		const genQA = generateQuestionAnswer();
+		store.dispatch(setQuestion(genQA.question));
 		document.getElementById('answerInput').value = '';
-		if (store.getState().flashcard.question) {
-			// show Answer to the question
-		}
+		console.log(store.getState().flashcard.question.en);
+		store.dispatch(setAnswer(genQA.answer));
 	}
 });
 
