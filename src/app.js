@@ -7,10 +7,10 @@ import WordPage from './components/pages/WordPage';
 import configureStore from './store/configureStore';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import { setQuestion } from './actions/flashcard';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import 'normalize.css/normalize.css';
 import './styles/style.scss';
-import { setQuestion } from './actions/flashcard';
 
 const store = configureStore();
 

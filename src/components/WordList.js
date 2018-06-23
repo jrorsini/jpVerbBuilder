@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { removeVerb } from '../actions/verbs';
 
 const WordList = props => (
 	<div>
@@ -11,7 +12,14 @@ const WordList = props => (
 					<NavLink exact className="WordList__link" to={`/word/${verb.kanji}`}>
 						{verb.kanji} ({verb.hiragana})
 					</NavLink>
-					<button className="WordList__button button">Remove</button>
+					<button
+						onClick={e => {
+							props.dispatch(removeVerb(verb.kanji));
+						}}
+						className="WordList__button button"
+					>
+						Remove
+					</button>
 				</li>
 			))}
 		</ul>
