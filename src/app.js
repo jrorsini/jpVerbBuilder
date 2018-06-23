@@ -33,8 +33,10 @@ const generateQuestion = () => {
 };
 
 document.addEventListener('keydown', e => {
-	if (window.location.pathname === '/word-practice' && e.keyCode === 13)
+	if (window.location.pathname === '/word-practice' && e.keyCode === 13) {
 		store.dispatch(setQuestion(generateQuestion()));
+		document.getElementById('answerInput').value = '';
+	}
 });
 
 store.subscribe(() => {
