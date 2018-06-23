@@ -3,31 +3,6 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { toHiragana } from 'wanakana';
 
-/**
-	This is for the flashcard section, 
-	setting it up into the component itself will re add the event hence firing multiple actions.
- */
-const generateQuestion = () => {
-	const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
-	const wordIndex = getRandomInt(store.getState().verbs.length);
-	const exampleIndex = getRandomInt(
-		store.getState().verbs[wordIndex].exampleList.length
-	);
-	const obj = store.getState().verbs[wordIndex];
-	const qObj = obj.exampleList[exampleIndex];
-	return {
-		jp: qObj.jp.split(obj.kanji),
-		en: qObj.en
-	};
-};
-
-document.addEventListener('keydown', e => {
-	if (window.location.pathname === '/word-practice' && e.keyCode === 13) {
-		store.dispatch(setQuestion(generateQuestion()));
-		document.getElementById('answerInput').value = '';
-	}
-});
-
 const WordPractice = props => {
 	return (
 		<div className="container">

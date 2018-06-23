@@ -18,7 +18,7 @@ const store = configureStore();
 	This is for the flashcard section, 
 	setting it up into the component itself will re add the event hence firing multiple actions.
  */
-const generateQuestion = () => {
+const generateQuestionAnswer = () => {
 	const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
 	const wordIndex = getRandomInt(store.getState().verbs.length);
 	const exampleIndex = getRandomInt(
@@ -27,15 +27,21 @@ const generateQuestion = () => {
 	const obj = store.getState().verbs[wordIndex];
 	const qObj = obj.exampleList[exampleIndex];
 	return {
-		jp: qObj.jp.split(obj.kanji),
-		en: qObj.en
+		question: {
+			jp: qObj.jp.split(obj.kanji),
+			en: qObj.en
+		},
+		answer: obj.kanji
 	};
 };
 
 document.addEventListener('keydown', e => {
 	if (window.location.pathname === '/word-practice' && e.keyCode === 13) {
-		store.dispatch(setQuestion(generateQuestion()));
+		store.dispatch(setQuestion(generateQuestionAnswer().question));
 		document.getElementById('answerInput').value = '';
+		if (store.getState().flashcard.question) {
+			// show Answer to the question
+		}
 	}
 });
 
