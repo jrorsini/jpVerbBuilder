@@ -24,13 +24,12 @@ const generateQuestion = () => {
 	const exampleIndex = getRandomInt(
 		store.getState().verbs[wordIndex].exampleList.length
 	);
-	const obj = store.getState().verbs[wordIndex].exampleList[exampleIndex];
-	const question = {
-		jp: '',
-		en: ''
+	const obj = store.getState().verbs[wordIndex];
+	const qObj = obj.exampleList[exampleIndex];
+	return {
+		jp: qObj.jp.split(obj.kanji),
+		en: qObj.en
 	};
-	console.log(obj.jp);
-	return store.getState().verbs[wordIndex].exampleList[exampleIndex];
 };
 
 document.addEventListener('keydown', e => {
