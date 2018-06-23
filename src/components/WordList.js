@@ -7,14 +7,17 @@ const WordList = props => (
 		<NavLink to="/word-practice">Practice</NavLink>
 		<ul className="WordList__list">
 			{props.verbs.reverse().map(verb => (
-				<NavLink
-					exact
-					className="WordList__link"
-					key={verb.kanji}
-					to={`/word/${verb.kanji}`}
-				>
-					{verb.kanji}
-				</NavLink>
+				<li className="WordList__item">
+					<NavLink
+						exact
+						className="WordList__link"
+						key={verb.kanji}
+						to={`/word/${verb.kanji}`}
+					>
+						{verb.kanji}
+					</NavLink>
+					<button>Remove</button>
+				</li>
 			))}
 		</ul>
 	</div>
