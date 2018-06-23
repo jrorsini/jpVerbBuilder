@@ -24,6 +24,11 @@ const generateQuestion = () => {
 	const exampleIndex = getRandomInt(
 		store.getState().verbs[wordIndex].exampleList.length
 	);
+	const question = {
+		jp: '',
+		en: ''
+	};
+	console.log(store.getState().verbs[wordIndex].exampleList[exampleIndex]);
 	return store.getState().verbs[wordIndex].exampleList[exampleIndex];
 };
 
