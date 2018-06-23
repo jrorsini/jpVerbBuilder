@@ -7,7 +7,13 @@ const WordPractice = props => {
 	return (
 		<div className="container">
 			<div className="WordPractice__questions">
-				<p>{props.flashcard.question && props.flashcard.question.jp}</p>
+				{props.flashcard.question && (
+					<div>
+						<p>{props.flashcard.question.jp[0]}</p>
+						<input />
+						<p>{props.flashcard.question.jp[1]}</p>
+					</div>
+				)}
 				<p>{props.flashcard.question && props.flashcard.question.en}</p>
 			</div>
 		</div>
