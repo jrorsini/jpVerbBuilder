@@ -3,6 +3,12 @@
 	padding: 0;
 }
 
+.WordList__item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: $s-size 0;
+}
 
 .WordList__link {
 	width: 100%;
@@ -13,4 +19,9 @@
 	&:hover {
 		text-decoration: underline;
 	}
+}
+
+.WordList__button {
+	padding: $s-size - 0.5rem $m-size;
+	border-radius: 2px;
 }
