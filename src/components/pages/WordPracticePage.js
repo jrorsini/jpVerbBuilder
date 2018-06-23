@@ -6,13 +6,13 @@ import { setQuestion } from '../../actions/flashcard';
 const WordPractice = props => {
 	return (
 		<div className="container">
-			<div className="WordPractice__questions">
+			<div className="WordPractice__wrapper">
 				{props.flashcard.question && (
-					<div>
-						<p>{props.flashcard.question.jp[0]}</p>
-						<input />
-						<p>{props.flashcard.question.jp[1]}</p>
-					</div>
+					<p className="WordPractice__question">
+						<span>{props.flashcard.question.jp[0]}</span>
+						<input className="WordPractice__input" />
+						<span>{props.flashcard.question.jp[1]}</span>
+					</p>
 				)}
 				<p>{props.flashcard.question && props.flashcard.question.en}</p>
 			</div>

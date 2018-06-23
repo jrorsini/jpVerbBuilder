@@ -1,3 +1,10 @@
-.WordPractice__questions {
-  text-align: center;
+.WordPractice__wrapper {
+	text-align: center;
+}
+
+.WordPractice__input {
+	border: none;
+	-webkit-appearance: none;
+	border-bottom: 1px solid lighten($red, 20%);
+	background: transparent;
 }
