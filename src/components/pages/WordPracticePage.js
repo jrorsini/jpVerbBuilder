@@ -32,7 +32,9 @@ const WordPractice = props => {
 							id="answerInput"
 							className="WordPractice__input"
 							onKeyUp={e => {
-								e.target.value = toHiragana(e.target.value);
+								const genQA = generateQuestionAnswer(props);
+								store.dispatch(setQuestion(genQA.question));
+								store.dispatch(setAnswer(genQA.answer));
 							}}
 						/>
 						<span>{props.flashcard.question.jp[1]}</span>
