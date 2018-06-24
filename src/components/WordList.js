@@ -2,18 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { removeVerb } from '../actions/verbs';
+import { setQuestion, setAnswer } from '../actions/flashcard';
 
 /**
 	This is for the flashcard section, 
 	setting it up into the component itself will re add the event hence firing multiple actions.
  */
-const generateQuestionAnswer = () => {
+const generateQuestionAnswer = props => {
 	const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
-	const wordIndex = getRandomInt(store.getState().verbs.length);
-	const exampleIndex = getRandomInt(
-		store.getState().verbs[wordIndex].exampleList.length
-	);
-	const obj = store.getState().verbs[wordIndex];
+	const wordIndex = getRandomInt(props.verbs.length);
+	const exampleIndex = getRandomInt(props.verbs[wordIndex].exampleList.length);
+	const obj = props.verbs[wordIndex];
 	const qObj = obj.exampleList[exampleIndex];
 	return {
 		question: {
@@ -29,7 +28,9 @@ const WordList = props => (
 		<NavLink
 			to="/word-practice"
 			onClick={e => {
-				console.log(e);
+				const genQA = generateQuestionAnswer(props);
+				props.dispatch(setQuestion(genQA.question));
+				props.dispatch(setAnswer(genQA.answer));
 			}}
 		>
 			Practice

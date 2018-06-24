@@ -30,11 +30,10 @@ const WordPractice = props => {
 							type="text"
 							name="answerInput"
 							id="answerInput"
+							autoComplete="off"
 							className="WordPractice__input"
 							onKeyUp={e => {
-								const genQA = generateQuestionAnswer(props);
-								store.dispatch(setQuestion(genQA.question));
-								store.dispatch(setAnswer(genQA.answer));
+								e.target.value = toHiragana(e.target.value);
 							}}
 						/>
 						<span>{props.flashcard.question.jp[1]}</span>
