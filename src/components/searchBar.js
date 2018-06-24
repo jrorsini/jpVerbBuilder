@@ -5,7 +5,6 @@ import { setPreview } from '../actions/verbPreview';
 import { setErrorTxt } from '../actions/errorMessage';
 import { toHiragana } from 'wanakana';
 import { tokenize, getTokenizer } from 'kuromojin';
-import RaisedButton from 'material-ui/RaisedButton';
 
 getTokenizer({ dicPath: '/dict' });
 

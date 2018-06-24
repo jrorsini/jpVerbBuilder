@@ -7,10 +7,13 @@ import WordPage from './components/pages/WordPage';
 import configureStore from './store/configureStore';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import { tokenize, getTokenizer } from 'kuromojin';
 import { setQuestion, setAnswer } from './actions/flashcard';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import 'normalize.css/normalize.css';
 import './styles/style.scss';
+
+getTokenizer({ dicPath: '/dict' });
 
 const store = configureStore();
 
@@ -37,11 +40,14 @@ const generateQuestionAnswer = () => {
 
 document.addEventListener('keydown', e => {
 	if (window.location.pathname === '/word-practice' && e.keyCode === 13) {
+		const userAnswer =
+			document.getElementById('answerInput') &&
+			document.getElementById('answerInput').value;
 		store.dispatch(setAnswer(''));
 		const genQA = generateQuestionAnswer();
 		store.dispatch(setQuestion(genQA.question));
 		document.getElementById('answerInput').value = '';
-		console.log(store.getState().flashcard.question.en);
+		tokenize(genQA.answer).then(res => console.log(res));
 		store.dispatch(setAnswer(genQA.answer));
 	}
 });
