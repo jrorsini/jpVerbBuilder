@@ -5,7 +5,14 @@ import { removeVerb } from '../actions/verbs';
 
 const WordList = props => (
 	<div>
-		<NavLink to="/word-practice">Practice</NavLink>
+		<NavLink
+			to="/word-practice"
+			onClick={e => {
+				console.log(e);
+			}}
+		>
+			Practice
+		</NavLink>
 		<ul className="WordList__list">
 			{props.verbs.reverse().map(verb => (
 				<li className="WordList__item" key={verb.kanji}>
