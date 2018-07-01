@@ -41,7 +41,7 @@ const WordPractice = props => {
 				)}
 				<p>{props.flashcard.question && props.flashcard.question.en}</p>
 
-				<p>{props.flashcard.answer && props.flashcard.answer}</p>
+				{/* <p>{props.flashcard.answer && props.flashcard.answer}</p> */}
 			</div>
 		</div>
 	);
