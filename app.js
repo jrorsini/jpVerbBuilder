@@ -47,4 +47,43 @@ app.get('/search/:word', (req, res) => {
 	);
 });
 
+app.get('/eng-search/:word', (req, res) => {
+	request(
+		`https://ejje.weblio.jp/content/${querystring.escape(req.params.word)}`,
+		(error, body, html) => {
+			const $ = cheerio.load(html);
+			const kanji = $('#h1Query').text();
+			const hiragana = $('.summaryL .ruby').text();
+			const meaning = $('.content-explanation').text();
+			const exampleList = [];
+
+			$('.qotC').each((i, e) => {
+				const jp = $(e)
+					.children()
+					.eq(0)
+					.text()
+					.replace('例文帳に追加', '');
+				const en = $(e)
+					.children()
+					.eq(1)
+					.text()
+					.split(/\s\-\s/)[0];
+				jp &&
+					en &&
+					exampleList.push({
+						jp,
+						en
+					});
+			});
+
+			res.send({
+				kanji,
+				hiragana,
+				meaning,
+				exampleList
+			});
+		}
+	);
+});
+
 app.listen(1234, () => console.log('Up & Running...'));
