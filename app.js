@@ -54,12 +54,35 @@ const execEngSearch = word =>
 			// querystring.escape(req.params.word)
 			const $ = cheerio.load(html);
 			const word = $('#h1Query').text();
+			const japaneseDefinitions = $('.content-explanation')
+				.text()
+				.split('、');
+			const exampleList = [];
 
-			resolve({ word });
+			$('.qotC').each((i, e) => {
+				const en = $(e)
+					.children()
+					.eq(0)
+					.text()
+					.replace('例文帳に追加', '');
+				const jp = $(e)
+					.children()
+					.eq(1)
+					.text()
+					.split(/\s\-\s/)[0];
+				jp &&
+					en &&
+					exampleList.push({
+						jp,
+						en
+					});
+			});
+
+			resolve({ word, japaneseDefinitions, exampleList });
 		});
 		// });
 	});
 
-execEngSearch('test').then(res => console.log(res));
+execEngSearch('blast off').then(res => console.log(res));
 
 app.listen(1234, () => console.log('Up & Running...'));
