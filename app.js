@@ -47,43 +47,19 @@ app.get('/search/:word', (req, res) => {
 	);
 });
 
-app.get('/eng-search/:word', (req, res) => {
-	request(
-		`https://ejje.weblio.jp/content/${querystring.escape(req.params.word)}`,
-		(error, body, html) => {
+const execEngSearch = word =>
+	new Promise((resolve, reject) => {
+		// app.get(`/eng-search/${word}`, (req, res) => {
+		request(`https://ejje.weblio.jp/content/${word}`, (error, body, html) => {
+			// querystring.escape(req.params.word)
 			const $ = cheerio.load(html);
 			const word = $('#h1Query').text();
-			const translation = $('.summaryL .ruby').text();
-			const meaning = $('.content-explanation').text();
-			const exampleList = [];
 
-			$('.qotC').each((i, e) => {
-				const jp = $(e)
-					.children()
-					.eq(0)
-					.text()
-					.replace('例文帳に追加', '');
-				const en = $(e)
-					.children()
-					.eq(1)
-					.text()
-					.split(/\s\-\s/)[0];
-				jp &&
-					en &&
-					exampleList.push({
-						jp,
-						en
-					});
-			});
+			resolve({ word });
+		});
+		// });
+	});
 
-			res.send({
-				kanji,
-				hiragana,
-				meaning,
-				exampleList
-			});
-		}
-	);
-});
+execEngSearch('test').then(res => console.log(res));
 
 app.listen(1234, () => console.log('Up & Running...'));
