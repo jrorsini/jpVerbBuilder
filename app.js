@@ -52,8 +52,8 @@ app.get('/eng-search/:word', (req, res) => {
 		`https://ejje.weblio.jp/content/${querystring.escape(req.params.word)}`,
 		(error, body, html) => {
 			const $ = cheerio.load(html);
-			const kanji = $('#h1Query').text();
-			const hiragana = $('.summaryL .ruby').text();
+			const word = $('#h1Query').text();
+			const translation = $('.summaryL .ruby').text();
 			const meaning = $('.content-explanation').text();
 			const exampleList = [];
 
