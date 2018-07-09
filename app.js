@@ -48,10 +48,6 @@ app.get('/search/:word', (req, res) => {
 	searchHandler(req.params.word).then(res => res.send(res));
 });
 
-app.get(`/eng-search/:word}`, (req, res) => {
-	searchHandler(req.params.word).then(res => res.send(res));
-});
-
 searchHandler('食べる').then(res => console.log(res));
 searchHandler('eat').then(res => console.log(res));
 
