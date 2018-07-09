@@ -1,9 +1,11 @@
 import React from 'react';
+import search from '../logic/search_handler';
 import { connect } from 'react-redux';
 import { addVerb, removeVerb } from '../actions/verbs';
 import { NavLink } from 'react-router-dom';
 import { toHiragana } from 'wanakana';
 import { setPreview } from '../actions/wordPreview';
+import { setErrorTxt } from '../actions/errorMessage';
 
 const isEnglish = value => value.match(/[a-z]/gi) !== null;
 
@@ -66,7 +68,23 @@ const VerbItem = props => {
 			<ul className="WordItem__meanings">
 				{props.wordPreview.meanings.map((meaning, meaningId) => (
 					<li key={meaningId}>
-						<span onClick={e => console.log(meaning)}>{meaning}</span>
+						<span
+							onClick={() => {
+								console.log(meaning);
+								search(meaning)
+									.then(res => {
+										props.dispatch(
+											setPreview({
+												...JSON.parse(res)
+											})
+										);
+										props.dispatch(setErrorTxt(null));
+									})
+									.catch(err => props.dispatch(setErrorTxt(err)));
+							}}
+						>
+							{meaning}
+						</span>
 						{meaningId + 1 < props.wordPreview.meanings.length && <b>-</b>}
 					</li>
 				))}
@@ -95,14 +113,4 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps)(VerbItem);
 
 /*
-search(inputValue)
-.then(res => {
-	dispatch(
-		setPreview({
-			...JSON.parse(res)
-		})
-	);
-	dispatch(setErrorTxt(null));
-})
-.catch(err => dispatch(setErrorTxt(err)))
 */
