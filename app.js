@@ -16,7 +16,13 @@ const searchHandler = word =>
 				const reading = $('.ruby').text() || null;
 				const meanings = $('.content-explanation')
 					.text()
-					.split('、');
+					.split('、')
+					.map(meaning => {
+						return (
+							(meaning.match(/\)/, 'gi') && meaning.split(')')[1].trim()) ||
+							meaning
+						);
+					});
 				const examples = [];
 
 				$('.qotC').each((i, e) => {
