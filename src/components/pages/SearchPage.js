@@ -1,5 +1,5 @@
 import React from 'react';
-import VerbItem from '../VerbItem';
+import WordItem from '../WordItem';
 import SearchBar from '../SearchBar';
 import { connect } from 'react-redux';
 
@@ -10,7 +10,7 @@ const SearchPage = ({ word }) => {
 	return (
 		<div className="container">
 			<SearchBar />
-			{word && <VerbItem />}
+			{word && <WordItem />}
 		</div>
 	);
 };

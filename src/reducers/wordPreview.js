@@ -1,5 +1,6 @@
 const initialState = {
 	word: null,
+	reading: null,
 	meanings: null,
 	examples: null
 };

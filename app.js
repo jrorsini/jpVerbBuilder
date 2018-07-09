@@ -13,6 +13,7 @@ const searchHandler = word =>
 			(error, body, html) => {
 				const $ = cheerio.load(html);
 				const word = $('#h1Query').text();
+				const reading = $('.ruby').text() || null;
 				const meanings = $('.content-explanation')
 					.text()
 					.split('、');
@@ -37,7 +38,7 @@ const searchHandler = word =>
 						});
 				});
 
-				resolve({ word, meanings, examples });
+				resolve({ word, reading, meanings, examples });
 			}
 		);
 	});

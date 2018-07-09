@@ -7,14 +7,21 @@ import { toHiragana } from 'wanakana';
 const isEnglish = value => value.match(/[a-z]/gi) !== null;
 
 const VerbItem = props => {
-	console.log(props);
 	const listed = () => {
 		let isThere = false;
-		props.verbs.map(verb => {
-			if (verb.kanji === props.wordPreview.word) isThere = true;
-		});
+		props.words &&
+			props.words.map(verb => {
+				if (word.word === props.wordPreview.word) isThere = true;
+			});
 		return isThere;
 	};
+
+	const wordPreviewHeaderContent = (
+		<div>
+			{props.wordPreview.word}{' '}
+			{props.wordPreview.reading && <span>({props.wordPreview.reading})</span>}
+		</div>
+	);
 	return (
 		<div>
 			<div className="VerbItem__header">
@@ -24,13 +31,11 @@ const VerbItem = props => {
 							className="VerbItem__link"
 							to={`/word/${props.wordPreview.word}`}
 						>
-							{props.wordPreview.word} (<span>
-								{props.wordPreview.hiragana}
-							</span>)
+							{wordPreviewHeaderContent}
 						</NavLink>
 					</h2>
 				) : (
-					<h2>{props.wordPreview.word}</h2>
+					<h2>{wordPreviewHeaderContent}</h2>
 				)}
 				<button
 					className={
@@ -45,6 +50,7 @@ const VerbItem = props => {
 									addVerb({
 										id: 1234,
 										word: props.wordPreview.word,
+										reading: props.wordPreview.reading,
 										meanings: props.wordPreview.meanings,
 										examples: props.wordPreview.examples
 									})
@@ -61,7 +67,7 @@ const VerbItem = props => {
 			</div>
 			<p>
 				{props.wordPreview.meanings.map((meaning, meaningId) => (
-					<span key={meaningId}>{meaning} / </span>
+					<span key={meaningId}>{meaning} | </span>
 				))}
 			</p>
 			<hr />
