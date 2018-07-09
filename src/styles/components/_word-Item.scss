@@ -9,10 +9,11 @@
 }
 
 .WordItem__header span {
-	color: lighten(#000, 40%);
+	color: lighten($red, 20%);
 }
 
 .WordItem__button {
+	border-radius: 2px;
 	padding: $s-size - 0.4rem $m-size;
 }
 
@@ -50,8 +51,12 @@
 	}
 }
 
+.WordItem__example--jp {
+	color: lighten(#000, 20%);
+}
+
 .WordItem__example--jp b {
-	color: darken($red, 12%);
+	color: darken($red, 18%);
 	font-weight: 500;
 }
 

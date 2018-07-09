@@ -17,12 +17,15 @@ const searchHandler = word =>
 				const meanings = $('.content-explanation')
 					.text()
 					.split('、')
-					.map(meaning => {
-						return (
-							(meaning.match(/\)/, 'gi') && meaning.split(')')[1].trim()) ||
-							meaning
-						);
-					});
+					.map(
+						meaning =>
+							(meaning.match(/\)/, 'gi') &&
+								meaning
+									.replace(/\;/gi, ',')
+									.split(')')[1]
+									.trim()) ||
+							meaning.replace(/\;/gi, ',')
+					);
 				const examples = [];
 
 				$('.qotC').each((i, e) => {
@@ -56,6 +59,7 @@ app.get('/search/:word', (req, res) => {
 });
 
 // searchHandler('食べる').then(res => console.log(res));
+// searchHandler('試験').then(res => console.log(res));
 // searchHandler('eat').then(res => console.log(res));
 
 app.listen(1234, () => console.log('Up & Running...'));
