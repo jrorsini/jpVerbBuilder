@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 const SearchPage = ({ word }) => {
 	return (
 		<div className="container">
-			<p>Let's look up for a word!</p>
 			<SearchBar />
 			{word && <VerbItem />}
 		</div>

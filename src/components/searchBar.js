@@ -1,7 +1,7 @@
 import React from 'react';
 import search from '../logic/search_handler';
 import { connect } from 'react-redux';
-import { setPreview } from '../actions/verbPreview';
+import { setPreview } from '../actions/wordPreview';
 import { setErrorTxt } from '../actions/errorMessage';
 import { toHiragana } from 'wanakana';
 
@@ -46,9 +46,9 @@ const searchBar = ({ errorMessage, dispatch }) => {
 	);
 };
 
-const mapStateToProps = ({ verbPreview, errorMessage }) => {
+const mapStateToProps = ({ wordPreview, errorMessage }) => {
 	return {
-		verbPreview,
+		wordPreview,
 		errorMessage
 	};
 };
