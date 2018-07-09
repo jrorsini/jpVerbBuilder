@@ -1,23 +1,23 @@
-.verbItem__header {
+.WordItem__header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 
-.verbItem__header h2 {
+.WordItem__header h2 {
 	margin: 0;
 }
 
-.VerbItem__button {
+.WordItem__button {
 	padding: $s-size - 0.4rem $m-size;
 }
 
-.VerbItem__button--listed {
+.WordItem__button--listed {
 	background: darken($red, 1%);
 	border-bottom-color: darken($red, 16%);
 }
 
-.VerbItem__example {
+.WordItem__example {
 	padding: $s-size 0;
 	justify-content: space-between;
 	display: flex;
@@ -29,19 +29,35 @@
 	}
 }
 
-.VerbItem__example--jp b {
+.WordItem__meanings {
+	padding: 0;
+	list-style: none;
+	li {
+		display: inline-block;
+		b {
+			margin: 0 10px;
+		}
+	}
+	span {
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+.WordItem__example--jp b {
 	color: darken($red, 12%);
 	font-weight: 500;
 }
 
-.VerbItem__example--en {
+.WordItem__example--en {
 	text-align: right;
 }
 
-.VerbItem__example span:last-child {
+.WordItem__example span:last-child {
 }
 
-.VerbItem__link {
+.WordItem__link {
 	text-decoration: none;
 	color: black;
 	&:hover {

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { addVerb, removeVerb } from '../actions/verbs';
 import { NavLink } from 'react-router-dom';
 import { toHiragana } from 'wanakana';
+import { setPreview } from '../actions/wordPreview';
 
 const isEnglish = value => value.match(/[a-z]/gi) !== null;
 
@@ -24,11 +25,11 @@ const VerbItem = props => {
 	);
 	return (
 		<div>
-			<div className="VerbItem__header">
+			<div className="WordItem__header">
 				{listed() ? (
 					<h2>
 						<NavLink
-							className="VerbItem__link"
+							className="WordItem__link"
 							to={`/word/${props.wordPreview.word}`}
 						>
 							{wordPreviewHeaderContent}
@@ -40,19 +41,16 @@ const VerbItem = props => {
 				<button
 					className={
 						listed()
-							? 'VerbItem__button button VerbItem__button--listed'
-							: 'VerbItem__button button'
+							? 'WordItem__button button WordItem__button--listed'
+							: 'WordItem__button button'
 					}
 					onClick={() => {
 						listed(props.verbs, props.wordPreview)
 							? props.dispatch(removeVerb(props.wordPreview.word))
 							: props.dispatch(
 									addVerb({
-										id: 1234,
-										word: props.wordPreview.word,
-										reading: props.wordPreview.reading,
-										meanings: props.wordPreview.meanings,
-										examples: props.wordPreview.examples
+										...props.wordPreview,
+										id: 1234
 									})
 							  );
 					}}
@@ -65,21 +63,24 @@ const VerbItem = props => {
 					{listed() ? "Remove from word's list" : "Add to word's list"}
 				</button>
 			</div>
-			<p>
+			<ul className="WordItem__meanings">
 				{props.wordPreview.meanings.map((meaning, meaningId) => (
-					<span key={meaningId}>{meaning} | </span>
+					<li key={meaningId}>
+						<span onClick={e => console.log(meaning)}>{meaning}</span>
+						<b> | </b>
+					</li>
 				))}
-			</p>
+			</ul>
 			<hr />
 			{props.wordPreview.examples.map((example, exampleId) => {
 				return (
-					<div className="VerbItem__example" key={exampleId}>
-						<span className="VerbItem__example--jp">
+					<div className="WordItem__example" key={exampleId}>
+						<span className="WordItem__example--jp">
 							{example.original.toLowerCase().split(props.wordPreview.word)[0]}
 							<b>{props.wordPreview.word}</b>
 							{example.original.toLowerCase().split(props.wordPreview.word)[1]}
 						</span>
-						<span className="VerbItem__example--en">{example.translated}</span>
+						<span className="WordItem__example--en">{example.translated}</span>
 					</div>
 				);
 			})}
@@ -92,3 +93,16 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(VerbItem);
+
+/*
+search(inputValue)
+.then(res => {
+	dispatch(
+		setPreview({
+			...JSON.parse(res)
+		})
+	);
+	dispatch(setErrorTxt(null));
+})
+.catch(err => dispatch(setErrorTxt(err)))
+*/
