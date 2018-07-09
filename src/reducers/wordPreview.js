@@ -1,14 +1,13 @@
 const initialState = {
-	kanji: null,
-	hiragana: null,
-	meaning: null,
-	exampleList: null
+	word: null,
+	meanings: null,
+	examples: null
 };
 
 export default (state = initialState, action) => {
 	switch (action.type) {
 		case 'FILL_PREVIEW':
-			return action.verb;
+			return action.word;
 			break;
 		default:
 			return state;
