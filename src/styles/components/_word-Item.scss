@@ -8,6 +8,10 @@
 	margin: 0;
 }
 
+.WordItem__header span {
+	color: lighten(#000, 40%);
+}
+
 .WordItem__button {
 	padding: $s-size - 0.4rem $m-size;
 }

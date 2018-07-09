@@ -22,7 +22,7 @@ const VerbItem = props => {
 	const wordPreviewHeaderContent = (
 		<div>
 			{props.wordPreview.word}{' '}
-			{props.wordPreview.reading && <span>({props.wordPreview.reading})</span>}
+			{props.wordPreview.reading && <span>{props.wordPreview.reading}</span>}
 		</div>
 	);
 	return (
