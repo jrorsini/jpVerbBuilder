@@ -6,12 +6,12 @@ import { connect } from 'react-redux';
 /**
 	Search engine looking for verbs.s
  */
-const SearchPage = ({ kanji }) => {
+const SearchPage = ({ word }) => {
 	return (
 		<div className="container">
 			<p>Let's look up for a word!</p>
 			<SearchBar />
-			{kanji && <VerbItem />}
+			{word && <VerbItem />}
 		</div>
 	);
 };

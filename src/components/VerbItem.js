@@ -2,12 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addVerb, removeVerb } from '../actions/verbs';
 import { NavLink } from 'react-router-dom';
+import { toHiragana } from 'wanakana';
+
+const isEnglish = value => value.match(/[a-z]/gi) !== null;
 
 const VerbItem = props => {
 	const listed = () => {
 		let isThere = false;
 		props.verbs.map(verb => {
-			if (verb.kanji === props.verbPreview.kanji) isThere = true;
+			if (verb.kanji === props.verbPreview.word) isThere = true;
 		});
 		return isThere;
 	};
@@ -18,17 +21,15 @@ const VerbItem = props => {
 					<h2>
 						<NavLink
 							className="VerbItem__link"
-							to={`/word/${props.verbPreview.kanji}`}
+							to={`/word/${props.verbPreview.word}`}
 						>
-							{props.verbPreview.kanji} (<span>
+							{props.verbPreview.word} (<span>
 								{props.verbPreview.hiragana}
 							</span>)
 						</NavLink>
 					</h2>
 				) : (
-					<h2>
-						{props.verbPreview.kanji} (<span>{props.verbPreview.hiragana}</span>)
-					</h2>
+					<h2>{props.verbPreview.word}</h2>
 				)}
 				<button
 					className={
@@ -38,14 +39,13 @@ const VerbItem = props => {
 					}
 					onClick={() => {
 						listed(props.verbs, props.verbPreview)
-							? props.dispatch(removeVerb(props.verbPreview.kanji))
+							? props.dispatch(removeVerb(props.verbPreview.word))
 							: props.dispatch(
 									addVerb({
 										id: 1234,
-										kanji: props.verbPreview.kanji,
-										hiragana: props.verbPreview.hiragana,
-										meaning: props.verbPreview.meaning,
-										exampleList: props.verbPreview.exampleList
+										word: props.verbPreview.word,
+										meanings: props.verbPreview.meanings,
+										examples: props.verbPreview.examples
 									})
 							  );
 					}}
@@ -58,17 +58,21 @@ const VerbItem = props => {
 					{listed() ? "Remove from word's list" : "Add to word's list"}
 				</button>
 			</div>
-			<p>{props.verbPreview.meaning.replace(/\、/g, ', ')}</p>
+			<p>
+				{props.verbPreview.meanings.map((meaning, meaningId) => (
+					<span key={meaningId}>{meaning} / </span>
+				))}
+			</p>
 			<hr />
-			{props.verbPreview.exampleList.map((example, exampleId) => {
+			{props.verbPreview.examples.map((example, exampleId) => {
 				return (
 					<div className="VerbItem__example" key={exampleId}>
 						<span className="VerbItem__example--jp">
-							{example.jp.split(props.verbPreview.kanji)[0]}
-							<b>{props.verbPreview.kanji}</b>
-							{example.jp.split(props.verbPreview.kanji)[1]}
+							{example.original.toLowerCase().split(props.verbPreview.word)[0]}
+							<b>{props.verbPreview.word}</b>
+							{example.original.toLowerCase().split(props.verbPreview.word)[1]}
 						</span>
-						<span className="VerbItem__example--en">{example.en}</span>
+						<span className="VerbItem__example--en">{example.translated}</span>
 					</div>
 				);
 			})}

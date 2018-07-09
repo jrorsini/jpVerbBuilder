@@ -45,10 +45,10 @@ const searchHandler = word =>
 app.use(cors());
 
 app.get('/search/:word', (req, res) => {
-	searchHandler(req.params.word).then(res => res.send(res));
+	searchHandler(req.params.word).then(obj => res.send(obj));
 });
 
-searchHandler('食べる').then(res => console.log(res));
-searchHandler('eat').then(res => console.log(res));
+// searchHandler('食べる').then(res => console.log(res));
+// searchHandler('eat').then(res => console.log(res));
 
 app.listen(1234, () => console.log('Up & Running...'));

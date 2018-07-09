@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 import { setPreview } from '../actions/verbPreview';
 import { setErrorTxt } from '../actions/errorMessage';
 import { toHiragana } from 'wanakana';
-import { tokenize, getTokenizer } from 'kuromojin';
-
-getTokenizer({ dicPath: '/dict' });
 
 const searchBar = ({ errorMessage, dispatch }) => {
 	/**
@@ -14,22 +11,18 @@ const searchBar = ({ errorMessage, dispatch }) => {
 	 */
 	const searchVerb = e => {
 		const inputValue = e.target.elements.verbSearchBar.value;
-		inputValue && inputValue.match(/[a-z]/gi) === null
+		inputValue
 			? search(inputValue)
 					.then(res => {
-						tokenize(inputValue).then(results => {
-							const hiraganaReading = toHiragana(results[0].reading);
-							dispatch(
-								setPreview({
-									...JSON.parse(res),
-									hiragana: hiraganaReading
-								})
-							);
-							dispatch(setErrorTxt(null));
-						});
+						dispatch(
+							setPreview({
+								...JSON.parse(res)
+							})
+						);
+						dispatch(setErrorTxt(null));
 					})
 					.catch(err => dispatch(setErrorTxt(err)))
-			: dispatch(setErrorTxt('Your enter input a verb!'));
+			: dispatch(setErrorTxt('You must input something. 入力して頂きませんか'));
 
 		e.target.elements.verbSearchBar.value = '';
 		e.preventDefault();
