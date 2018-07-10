@@ -12,9 +12,10 @@ const isEnglish = value => value.match(/[a-z]/gi) !== null;
 const VerbItem = props => {
 	const listed = () => {
 		let isThere = false;
-		props.words.length > 0 &&
-			props.words.map(word => {
-				if (word.word === props.wordPreview.word) isThere = true;
+		props.words &&
+			props.words.length > 0 &&
+			props.words.map(w => {
+				if (w.word === props.wordPreview.word) isThere = true;
 			});
 		return isThere;
 	};
