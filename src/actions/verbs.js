@@ -3,7 +3,7 @@ export const addWord = word => ({
 	word
 });
 
-export const removeWord = kanji => ({
+export const removeWord = word => ({
 	type: 'REMOVE_WORD',
-	kanji
+	word
 });

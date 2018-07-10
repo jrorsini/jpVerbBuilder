@@ -24,6 +24,6 @@ store.subscribe(() => {
 	console.log(store.getState());
 });
 
-store.dispatch(addWord(verbSample));
-store.dispatch(addWord(verbSampleTwo));
-store.dispatch(removeWord(verbSample.id));
+// store.dispatch(addWord(verbSample));
+// store.dispatch(addWord(verbSampleTwo));
+// store.dispatch(removeWord(verbSample.id));

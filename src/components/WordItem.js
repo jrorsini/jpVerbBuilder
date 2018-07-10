@@ -51,8 +51,7 @@ const VerbItem = props => {
 							? props.dispatch(removeWord(props.wordPreview.word))
 							: props.dispatch(
 									addWord({
-										...props.wordPreview,
-										id: 1234
+										...props.wordPreview
 									})
 							  );
 					}}

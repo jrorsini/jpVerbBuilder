@@ -5,16 +5,16 @@ const initialState =
 
 export default (state = initialState, action) => {
 	switch (action.type) {
-		case 'ADD_VERB':
+		case 'ADD_WORD':
 			let isAlreadyThere = 0;
-			state.map(word => {
-				if (word.word === action.word.word) isAlreadyThere = 1;
+			state.map(w => {
+				if (w.word === action.word.word) isAlreadyThere = 1;
 				return word;
 			});
 			return isAlreadyThere ? state : state.concat(action.verb);
 			break;
-		case 'REMOVE_VERB':
-			return state.filter(word => word.word !== action.word);
+		case 'REMOVE_WORD':
+			return state.filter(w => w.word !== action.word);
 			break;
 		default:
 			return state;
