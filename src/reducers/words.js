@@ -7,11 +7,12 @@ export default (state = initialState, action) => {
 	switch (action.type) {
 		case 'ADD_WORD':
 			let isAlreadyThere = 0;
+			if (state.length === 0) return state.concat(action.word);
 			state.map(w => {
 				if (w.word === action.word.word) isAlreadyThere = 1;
-				return word;
+				return w;
 			});
-			return isAlreadyThere ? state : state.concat(action.verb);
+			return isAlreadyThere ? state : state.concat(action.word);
 			break;
 		case 'REMOVE_WORD':
 			return state.filter(w => w.word !== action.word);

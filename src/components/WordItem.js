@@ -12,11 +12,11 @@ const isEnglish = value => value.match(/[a-z]/gi) !== null;
 const VerbItem = props => {
 	const listed = () => {
 		let isThere = false;
-		props.words &&
-			props.words.length > 0 &&
-			props.words.map(w => {
-				if (w.word === props.wordPreview.word) isThere = true;
-			});
+		if (props.words.length > 0) return isThere;
+		props.words.map(w => {
+			if (w.word === props.wordPreview.word) isThere = true;
+			return w;
+		});
 		return isThere;
 	};
 
