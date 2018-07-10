@@ -1,9 +1,10 @@
 import { createStore } from 'redux';
+import { removeWord } from '../actions/verbs';
 
 const verbSample = {
 	id: '12345',
-	kanji: '食べ�?',
-	hiragana: 'たべ�?',
+	kanji: '食べ�?',
+	hiragana: 'たべ�?',
 	meaning: 'to eat'
 };
 
@@ -23,6 +24,6 @@ store.subscribe(() => {
 	console.log(store.getState());
 });
 
-store.dispatch(addVerb(verbSample));
-store.dispatch(addVerb(verbSampleTwo));
-store.dispatch(removeVerb(verbSample.id));
+store.dispatch(addWord(verbSample));
+store.dispatch(addWord(verbSampleTwo));
+store.dispatch(removeWord(verbSample.id));

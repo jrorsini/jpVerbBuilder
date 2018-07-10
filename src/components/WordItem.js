@@ -1,7 +1,7 @@
 import React from 'react';
 import search from '../logic/search_handler';
 import { connect } from 'react-redux';
-import { addVerb, removeVerb } from '../actions/verbs';
+import { addWord, removeWord } from '../actions/verbs';
 import { NavLink } from 'react-router-dom';
 import { toHiragana } from 'wanakana';
 import { setPreview } from '../actions/wordPreview';
@@ -48,9 +48,9 @@ const VerbItem = props => {
 					}
 					onClick={() => {
 						listed(props.verbs, props.wordPreview)
-							? props.dispatch(removeVerb(props.wordPreview.word))
+							? props.dispatch(removeWord(props.wordPreview.word))
 							: props.dispatch(
-									addVerb({
+									addWord({
 										...props.wordPreview,
 										id: 1234
 									})

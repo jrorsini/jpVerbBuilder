@@ -26,7 +26,7 @@
 	padding: $s-size 0;
 	justify-content: space-between;
 	display: flex;
-	border-bottom: 1px dotted lighten($red, 35%);
+	border-bottom: 1px dotted lighten($red, 30%);
 	transition: 0.2s all ease;
 	&:hover {
 		background: lighten($red, 35%);
@@ -39,6 +39,7 @@
 	list-style: none;
 	li {
 		display: inline-block;
+		margin: 5px 0;
 		b {
 			margin: 0 10px;
 		}

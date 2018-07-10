@@ -1,9 +1,9 @@
-export const addVerb = word => ({
-	type: 'ADD_VERB',
+export const addWord = word => ({
+	type: 'ADD_WORD',
 	word
 });
 
-export const removeVerb = kanji => ({
-	type: 'REMOVE_VERB',
+export const removeWord = kanji => ({
+	type: 'REMOVE_WORD',
 	kanji
 });

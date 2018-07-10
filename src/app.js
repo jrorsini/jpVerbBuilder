@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './components/Header';
 import ListPage from './components/pages/ListPage';
 import SearchPage from './components/pages/SearchPage';
+import VideoPage from './components/pages/VideoPage';
 import WordPracticePage from './components/pages/WordPracticePage';
 import WordPage from './components/pages/WordPage';
 import configureStore from './store/configureStore';
@@ -63,6 +64,7 @@ const App = () => (
 			<Header />
 			<Route exact path="/" component={SearchPage} />
 			<Route path="/list" component={ListPage} />
+			<Route path="/video" component={VideoPage} />
 			<Route path="/word-practice" component={WordPracticePage} />
 			<Route path="/word/:word" component={WordPage} />
 		</div>

@@ -27,6 +27,15 @@ const Header = () => (
 						List
 					</NavLink>
 				</li>
+				<li className="header__item">
+					<NavLink
+						className="header__link"
+						activeClassName="header__link--active"
+						to="/video"
+					>
+						Video
+					</NavLink>
+				</li>
 			</ul>
 		</div>
 	</div>

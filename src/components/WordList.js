@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { removeVerb } from '../actions/verbs';
+import { removeWord } from '../actions/verbs';
 import { setQuestion, setAnswer } from '../actions/flashcard';
 
 /**
@@ -43,7 +43,7 @@ const WordList = props => (
 					</NavLink>
 					<button
 						onClick={e => {
-							props.dispatch(removeVerb(verb.kanji));
+							props.dispatch(removeWord(verb.kanji));
 						}}
 						className="WordList__button button"
 					>
