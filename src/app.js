@@ -65,7 +65,8 @@ const App = () => (
 			<Header />
 			<Route exact path="/" component={SearchPage} />
 			<Route path="/list" component={ListPage} />
-			<Route path="/video" component={VideoPage} />
+			<Route path="/videos" component={VideosPage} />
+			<Route path="/videos/:video-episode" component={VideoPage} />
 			<Route path="/word-practice" component={WordPracticePage} />
 			<Route path="/word/:word" component={WordPage} />
 		</div>
