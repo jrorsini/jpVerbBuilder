@@ -8,7 +8,7 @@ const Video = props => (
 		<ul>
 			{odArr.map(e => (
 				<li>
-					<NavLink to={`/videos/episode-${e}`}>Episode{e}</NavLink>
+					<NavLink to={`/video/${e}`}>Episode {e}</NavLink>
 				</li>
 			))}
 		</ul>

@@ -31,9 +31,9 @@ const Header = () => (
 					<NavLink
 						className="header__link"
 						activeClassName="header__link--active"
-						to="/video"
+						to="/videos"
 					>
-						Video
+						Videos
 					</NavLink>
 				</li>
 			</ul>
