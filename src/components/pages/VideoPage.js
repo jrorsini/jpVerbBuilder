@@ -1,13 +1,15 @@
 import React from 'react';
+import xmljson from '../../logic/xml_json';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
+//xml2json
 const getXML = url => {
 	const x = new XMLHttpRequest();
 	x.open('GET', url, true);
 	x.onreadystatechange = function() {
 		if (x.readyState == 4 && x.status == 200) {
-			console.log(x);
+			console.log(x.responseText);
 		}
 	};
 	x.send(null);
