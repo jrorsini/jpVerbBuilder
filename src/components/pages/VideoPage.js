@@ -26,13 +26,17 @@ const Video = props => {
 	return (
 		<div className="container">
 			<p className="videoPlayer__header">
-				<NavLink to={`/video/${videoId - 1}`}>
-					{'<'} episode {videoId - 1}
-				</NavLink>
+				{videoId > 1 && (
+					<NavLink to={`/video/${videoId - 1}`}>
+						{'<'} episode {videoId - 1}
+					</NavLink>
+				)}
 				episode {videoId}
-				<NavLink to={`/video/${JSON.parse(videoId) + 1}`}>
-					episode {JSON.parse(videoId) + 1} >
-				</NavLink>
+				{videoId < 11 && (
+					<NavLink to={`/video/${JSON.parse(videoId) + 1}`}>
+						episode {JSON.parse(videoId) + 1} >
+					</NavLink>
+				)}
 			</p>
 			<video
 				className="videoPlayer"
