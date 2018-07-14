@@ -27,14 +27,22 @@ const Video = props => {
 		<div className="container">
 			<p className="videoPlayer__header">
 				{videoId > 1 && (
-					<NavLink to={`/video/${videoId - 1}`}>
-						{'<'} episode {videoId - 1}
+					<NavLink
+						to={`/video/${videoId - 1}`}
+						className="videoPlayer__navLink"
+					>
+						<i class="material-icons">chevron_left</i>
+						episode {videoId - 1}
 					</NavLink>
 				)}
 				episode {videoId}
 				{videoId < 11 && (
-					<NavLink to={`/video/${JSON.parse(videoId) + 1}`}>
-						episode {JSON.parse(videoId) + 1} >
+					<NavLink
+						to={`/video/${JSON.parse(videoId) + 1}`}
+						className="videoPlayer__navLink"
+					>
+						episode {JSON.parse(videoId) + 1}
+						<i class="material-icons">chevron_right</i>
 					</NavLink>
 				)}
 			</p>

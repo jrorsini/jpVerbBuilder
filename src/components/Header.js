@@ -15,6 +15,7 @@ const Header = () => (
 						activeClassName="header__link--active"
 						to="/"
 					>
+						<i class="material-icons">home</i>
 						Home
 					</NavLink>
 				</li>
@@ -24,6 +25,7 @@ const Header = () => (
 						activeClassName="header__link--active"
 						to="/list"
 					>
+						<i class="material-icons">list</i>
 						List
 					</NavLink>
 				</li>
@@ -33,6 +35,7 @@ const Header = () => (
 						activeClassName="header__link--active"
 						to="/videos"
 					>
+						<i class="material-icons">videocam</i>
 						Videos
 					</NavLink>
 				</li>
