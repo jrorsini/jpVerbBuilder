@@ -55,8 +55,6 @@ document.addEventListener('keydown', e => {
 });
 
 store.subscribe(() => {
-	console.log(store.getState());
-	console.log(localStorage.getItem('words'));
 	localStorage.setItem('words', JSON.stringify(store.getState().words));
 });
 

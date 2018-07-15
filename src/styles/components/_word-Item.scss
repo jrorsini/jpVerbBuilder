@@ -52,16 +52,16 @@
 	}
 }
 
-.WordItem__example--jp {
+.WordItem__example--original {
 	color: lighten(#000, 20%);
 }
 
-.WordItem__example--jp b {
+.WordItem__example--original b {
 	color: darken($red, 18%);
 	font-weight: 500;
 }
 
-.WordItem__example--en {
+.WordItem__example--translated {
 	text-align: right;
 }
 

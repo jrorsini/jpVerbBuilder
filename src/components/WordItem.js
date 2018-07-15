@@ -92,12 +92,14 @@ const VerbItem = props => {
 			{props.wordPreview.examples.map((example, exampleId) => {
 				return (
 					<div className="WordItem__example" key={exampleId}>
-						<span className="WordItem__example--jp">
+						<span className="WordItem__example--original">
 							{example.original.toLowerCase().split(props.wordPreview.word)[0]}
 							<b>{props.wordPreview.word}</b>
 							{example.original.toLowerCase().split(props.wordPreview.word)[1]}
 						</span>
-						<span className="WordItem__example--en">{example.translated}</span>
+						<span className="WordItem__example--translated">
+							{example.translated}
+						</span>
 					</div>
 				);
 			})}
