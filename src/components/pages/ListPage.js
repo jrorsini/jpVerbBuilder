@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 
 const List = props => (
 	<div className="container">
-		{props.words && <ul>{props.words.map(w => <li>{w.word}</li>)}</ul>}
+		{props.words && (
+			<ul>{props.words.map((w, wId) => <li key={wId}>{w.word}</li>)}</ul>
+		)}
 	</div>
 );
 const mapStateToProps = state => {

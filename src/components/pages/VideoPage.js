@@ -31,7 +31,7 @@ const Video = props => {
 						to={`/video/${videoId - 1}`}
 						className="videoPlayer__navLink"
 					>
-						<i class="material-icons">chevron_left</i>
+						<i className="material-icons">chevron_left</i>
 						episode {videoId - 1}
 					</NavLink>
 				)}
@@ -42,7 +42,7 @@ const Video = props => {
 						className="videoPlayer__navLink"
 					>
 						episode {JSON.parse(videoId) + 1}
-						<i class="material-icons">chevron_right</i>
+						<i className="material-icons">chevron_right</i>
 					</NavLink>
 				)}
 			</p>
