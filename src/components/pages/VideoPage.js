@@ -48,7 +48,7 @@ const Video = props => {
 			</p>
 			<video
 				className="videoPlayer"
-				src={`http://165.227.213.125/orange-days-${videoId}.mp4`}
+				src={`http://165.227.213.125/videos/orange-days-${videoId}.mp4`}
 				controls
 			/>
 		</div>
