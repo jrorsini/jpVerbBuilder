@@ -29,7 +29,7 @@ const Header = () => (
 						List
 					</NavLink>
 				</li>
-				<li className="header__item">
+				{/* <li className="header__item">
 					<NavLink
 						className="header__link"
 						activeClassName="header__link--active"
@@ -38,7 +38,7 @@ const Header = () => (
 						<i className="material-icons">videocam</i>
 						Videos
 					</NavLink>
-				</li>
+				</li> */}
 			</ul>
 		</div>
 	</div>
