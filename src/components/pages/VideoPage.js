@@ -12,8 +12,8 @@ const getXML = url => {
 			const xml = x.responseText;
 			const dom = parseXml(xml);
 			const json = xml2json(dom);
-			console.log(json.slice(31, json.length - 1));
-			console.log(JSON.parse(json.slice(32, json.length - 3)));
+			// console.log(json.slice(31, json.length - 1));
+			// console.log(JSON.parse(json.slice(32, json.length - 3)));
 		}
 	};
 	x.send(null);

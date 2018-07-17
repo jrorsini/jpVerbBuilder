@@ -2,6 +2,7 @@ import React from 'react';
 import search from '../logic/search_handler';
 import { connect } from 'react-redux';
 import { setPreview } from '../actions/wordPreview';
+import { extendBreadcrumb } from '../actions/breadcrumb';
 import { setErrorTxt } from '../actions/errorMessage';
 import { toHiragana } from 'wanakana';
 
@@ -19,6 +20,7 @@ const searchBar = ({ errorMessage, dispatch }) => {
 								...JSON.parse(res)
 							})
 						);
+						dispatch(extendBreadcrumb(inputValue));
 						dispatch(setErrorTxt(null));
 					})
 					.catch(err => dispatch(setErrorTxt(err)))

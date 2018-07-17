@@ -6,17 +6,24 @@ import { connect } from 'react-redux';
 /**
 	Search engine looking for words
  */
-const SearchPage = ({ word }) => {
+const SearchPage = props => {
+	console.log(props);
 	return (
 		<div className="container">
 			<SearchBar />
-			{word && <WordItem />}
+			{props.breadcrumb.length > 0 && (
+				<p>
+					{props.breadcrumb.map(
+						(e, i) =>
+							i === 0 ? <span key={i}>{e}</span> : <span key={i}> > {e}</span>
+					)}
+				</p>
+			)}
+			{props.wordPreview.word && <WordItem />}
 		</div>
 	);
 };
 
-const mapStateToProps = state => {
-	return state.wordPreview;
-};
+const mapStateToProps = state => state;
 
 export default connect(mapStateToProps)(SearchPage);

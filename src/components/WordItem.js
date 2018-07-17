@@ -10,6 +10,7 @@ import { setErrorTxt } from '../actions/errorMessage';
 const isEnglish = value => value.match(/[a-z]/gi) !== null;
 
 const VerbItem = props => {
+	console.log(props.breadcrumb);
 	const listed = () => {
 		let isThere = false;
 		props.words.map(w => {
@@ -18,7 +19,6 @@ const VerbItem = props => {
 		});
 		return isThere;
 	};
-
 	const wordPreviewHeaderContent = (
 		<div>
 			{props.wordPreview.word}{' '}
