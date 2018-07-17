@@ -1,6 +1,9 @@
 import React from 'react';
 import WordItem from '../WordItem';
 import SearchBar from '../SearchBar';
+import search from '../../logic/search_handler';
+import { setPreview } from '../../actions/wordPreview';
+import { setErrorTxt } from '../../actions/errorMessage';
 import { connect } from 'react-redux';
 
 /**
@@ -15,7 +18,28 @@ const SearchPage = props => {
 				<p>
 					{props.breadcrumb.map(
 						(e, i) =>
-							i === 0 ? <span key={i}>{e}</span> : <span key={i}> > {e}</span>
+							i === 0 ? (
+								<span key={i}>{e}</span>
+							) : (
+								<span
+									onClick={() => {
+										search(e)
+											.then(res => {
+												props.dispatch(
+													setPreview({
+														...JSON.parse(res)
+													})
+												);
+												props.dispatch(setErrorTxt(null));
+											})
+											.catch(err => props.dispatch(setErrorTxt(err)));
+									}}
+									key={i}
+								>
+									{' '}
+									> {e}
+								</span>
+							)
 					)}
 				</p>
 			)}
