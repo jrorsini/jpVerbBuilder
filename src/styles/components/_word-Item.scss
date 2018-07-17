@@ -40,8 +40,20 @@
 	li {
 		display: inline-block;
 		margin: 5px 0;
+		span {
+			display: inline-block;
+			margin-left: 5px;
+		}
 		b {
 			margin: 0 10px;
+		}
+	}
+	div {
+		display: inline-block;
+		&:first-child {
+			span {
+				margin-left: 0;
+			}
 		}
 	}
 	span {

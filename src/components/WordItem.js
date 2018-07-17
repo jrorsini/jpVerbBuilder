@@ -24,12 +24,30 @@ const VerbItem = props => {
 		});
 		return isThere;
 	};
+
 	const wordPreviewHeaderContent = (
 		<div>
 			{props.wordPreview.word}{' '}
 			{props.wordPreview.reading && <span>{props.wordPreview.reading}</span>}
 		</div>
 	);
+
+	const searchHandler = e => {
+		search(e)
+			.then(res => {
+				props.dispatch(
+					setPreview({
+						...JSON.parse(res)
+					})
+				);
+				props.dispatch(setErrorTxt(null));
+
+				props.dispatch(extendPanel(e));
+				props.dispatch(setCurrentPanel(e));
+			})
+			.catch(err => props.dispatch(setErrorTxt(err)));
+	};
+
 	return (
 		<div>
 			<div className="WordItem__header">
@@ -72,26 +90,20 @@ const VerbItem = props => {
 			<ul className="WordItem__meanings">
 				{props.wordPreview.meanings.map((meaning, meaningId) => (
 					<li key={meaningId}>
-						<span
-							onClick={() => {
-								console.log(meaning);
-								search(meaning)
-									.then(res => {
-										props.dispatch(
-											setPreview({
-												...JSON.parse(res)
-											})
-										);
-										props.dispatch(setErrorTxt(null));
+						{meaning.split(', ').map((e, i) => (
+							<div>
+								{i !== 0 && ','}
+								<span
+									key={i}
+									onClick={() => {
+										searchHandler(e);
+									}}
+								>
+									{e}
+								</span>
+							</div>
+						))}
 
-										props.dispatch(extendPanel(meaning));
-										props.dispatch(setCurrentPanel(meaning));
-									})
-									.catch(err => props.dispatch(setErrorTxt(err)));
-							}}
-						>
-							{meaning}
-						</span>
 						{meaningId + 1 < props.wordPreview.meanings.length && <b>-</b>}
 					</li>
 				))}

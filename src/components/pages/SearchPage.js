@@ -8,6 +8,7 @@ import SearchBar from '../SearchBar';
 
 // UTILITIES
 import search from '../../logic/search_handler';
+import { tokenize } from 'kuromojin';
 
 // ACTIONS
 import { setCurrentPanel } from '../../actions/breadcrumb';
@@ -31,7 +32,7 @@ const SearchPage = props => {
 			})
 			.catch(err => props.dispatch(setErrorTxt(err)));
 	};
-	console.log(props);
+	console.log(tokenize('検査').then(_token => console.log(_token)));
 	return (
 		<div className="container">
 			<SearchBar />

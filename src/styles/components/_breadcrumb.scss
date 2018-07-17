@@ -8,7 +8,7 @@
 	&__panel {
 		float: left;
 		color: #fff;
-		background: $red;
+		background-color: lighten($red, 8%);
 		padding: $s-size - 0.5rem $s-size - 0.2rem $s-size - 0.5rem $s-size;
 		margin-right: 2px;
 		position: relative;
@@ -37,7 +37,7 @@
 			height: 1px;
 			border-top: 1.5rem transparent solid;
 			border-bottom: 1.5rem transparent solid;
-			border-left: 10px solid $red;
+			border-left: 10px solid lighten($red, 8%);
 			right: -11px;
 			top: 50%;
 			margin-top: -1.5rem;
@@ -45,9 +45,9 @@
 		}
 		&--inactive {
 			cursor: default;
-			background: darken($red, 28%);
+			background: darken($red, 18%);
 			&:after {
-				border-left: 10px solid darken($red, 28%);
+				border-left: 10px solid darken($red, 18%);
 			}
 		}
 		span {
