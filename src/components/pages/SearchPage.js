@@ -1,11 +1,18 @@
+// REACT
 import React from 'react';
+import { connect } from 'react-redux';
+
+// COMPONENTS
 import WordItem from '../WordItem';
 import SearchBar from '../SearchBar';
+
+// UTILITIES
 import search from '../../logic/search_handler';
+
+// ACTIONS
 import { setCurrentPanel } from '../../actions/breadcrumb';
 import { setPreview } from '../../actions/wordPreview';
 import { setErrorTxt } from '../../actions/errorMessage';
-import { connect } from 'react-redux';
 
 /**
 	Search engine looking for words

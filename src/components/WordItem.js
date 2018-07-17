@@ -2,10 +2,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+
 // ACTIONS
 import { addWord, removeWord } from '../actions/verbs';
 import { setPreview } from '../actions/wordPreview';
 import { setErrorTxt } from '../actions/errorMessage';
+
 // UTILITIES
 import { toHiragana } from 'wanakana';
 import search from '../logic/search_handler';

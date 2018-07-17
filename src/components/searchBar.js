@@ -1,10 +1,15 @@
+// REACT
 import React from 'react';
-import search from '../logic/search_handler';
 import { connect } from 'react-redux';
+
+// UTILITIES
+import search from '../logic/search_handler';
+import { toHiragana } from 'wanakana';
+
+// ACTIONS
 import { setPreview } from '../actions/wordPreview';
 import { extendPanel, setCurrentPanel } from '../actions/breadcrumb';
 import { setErrorTxt } from '../actions/errorMessage';
-import { toHiragana } from 'wanakana';
 
 const searchBar = ({ errorMessage, dispatch }) => {
 	/**
@@ -20,7 +25,9 @@ const searchBar = ({ errorMessage, dispatch }) => {
 								...JSON.parse(res)
 							})
 						);
+						// Error handling actions
 						dispatch(setErrorTxt(null));
+						// Breacrumb Handling actions
 						dispatch(extendPanel(inputValue));
 						dispatch(setCurrentPanel(inputValue));
 					})
