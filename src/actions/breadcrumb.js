@@ -1,9 +1,9 @@
 export const extendPanel = load => ({
-	type: 'EXTEND_BC',
+	type: 'EXTEND_PANEL',
 	load
 });
 
 export const setCurrentPanel = load => ({
-	type: 'SET_CURRENT',
+	type: 'SET_CURRENT_PANEL',
 	load
 });

@@ -2,6 +2,7 @@ import React from 'react';
 import WordItem from '../WordItem';
 import SearchBar from '../SearchBar';
 import search from '../../logic/search_handler';
+import { setCurrentPanel } from '../../actions/breadcrumb';
 import { setPreview } from '../../actions/wordPreview';
 import { setErrorTxt } from '../../actions/errorMessage';
 import { connect } from 'react-redux';
@@ -19,6 +20,7 @@ const SearchPage = props => {
 					})
 				);
 				props.dispatch(setErrorTxt(null));
+				props.dispatch(setCurrentPanel(word));
 			})
 			.catch(err => props.dispatch(setErrorTxt(err)));
 	};
@@ -26,11 +28,11 @@ const SearchPage = props => {
 	return (
 		<div className="container">
 			<SearchBar />
-			{props.breadcrumb.length > 0 && (
+			{props.breadcrumb.panels.length > 0 && (
 				<p className="breadcrumb">
-					{props.breadcrumb.map(
+					{props.breadcrumb.panels.map(
 						(e, i) =>
-							i === props.breadcrumb.length - 1 ? (
+							e === props.breadcrumb.current ? (
 								<span key={i} className="breadcrumb__panel">
 									{e}
 								</span>
@@ -40,7 +42,7 @@ const SearchPage = props => {
 									className="breadcrumb__panel breadcrumb__panel--active"
 									onClick={() => breadCrumbClickHandler(e)}
 								>
-									{e} >
+									{e}
 								</span>
 							)
 					)}
