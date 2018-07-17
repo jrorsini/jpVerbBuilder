@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 // ACTIONS
+import { extendPanel, setCurrentPanel } from '../actions/breadcrumb';
 import { addWord, removeWord } from '../actions/verbs';
 import { setPreview } from '../actions/wordPreview';
 import { setErrorTxt } from '../actions/errorMessage';
@@ -15,7 +16,6 @@ import search from '../logic/search_handler';
 const isEnglish = value => value.match(/[a-z]/gi) !== null;
 
 const VerbItem = props => {
-	console.log(props.breadcrumb);
 	const listed = () => {
 		let isThere = false;
 		props.words.map(w => {
@@ -83,6 +83,9 @@ const VerbItem = props => {
 											})
 										);
 										props.dispatch(setErrorTxt(null));
+
+										props.dispatch(extendPanel(meaning));
+										props.dispatch(setCurrentPanel(meaning));
 									})
 									.catch(err => props.dispatch(setErrorTxt(err)));
 							}}
@@ -112,9 +115,7 @@ const VerbItem = props => {
 	);
 };
 
-const mapStateToProps = state => {
-	return state;
-};
+const mapStateToProps = state => state;
 
 export default connect(mapStateToProps)(VerbItem);
 

@@ -1,8 +1,62 @@
-.breadcrumb__panel {
-	&--active {
+.breadcrumb {
+	display: inline-block;
+	list-style: none;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 20px;
+	&__panel {
+		float: left;
+		color: #fff;
+		background: $red;
+		padding: $s-size - 0.5rem $s-size - 0.2rem $s-size - 0.5rem $s-size;
+		margin-right: 2px;
+		position: relative;
 		cursor: pointer;
-		&:hover {
-			text-decoration: underline;
+		border-radius: 2px;
+		margin-bottom: 1.5px;
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			border-top: 1.5rem transparent solid;
+			border-bottom: 1.5rem transparent solid;
+			border-left: 10px solid lighten($red, 38%);
+			right: -13px;
+			top: 50%;
+			margin-top: -1.5rem;
+			z-index: 1;
+		}
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			border-top: 1.5rem transparent solid;
+			border-bottom: 1.5rem transparent solid;
+			border-left: 10px solid $red;
+			right: -11px;
+			top: 50%;
+			margin-top: -1.5rem;
+			z-index: 2;
+		}
+		&--inactive {
+			cursor: default;
+			background: darken($red, 28%);
+			&:after {
+				border-left: 10px solid darken($red, 28%);
+			}
+		}
+		span {
+			padding-left: $s-size - 0.6rem;
+		}
+		&:first-child {
+			span {
+				padding-left: 0;
+			}
 		}
 	}
 }

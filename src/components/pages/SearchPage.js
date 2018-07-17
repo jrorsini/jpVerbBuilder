@@ -36,24 +36,20 @@ const SearchPage = props => {
 		<div className="container">
 			<SearchBar />
 			{props.breadcrumb.panels.length > 0 && (
-				<p className="breadcrumb">
-					{props.breadcrumb.panels.map(
-						(e, i) =>
-							e === props.breadcrumb.current ? (
-								<span key={i} className="breadcrumb__panel">
-									{e}
-								</span>
-							) : (
-								<span
-									key={i}
-									className="breadcrumb__panel breadcrumb__panel--active"
-									onClick={() => breadCrumbClickHandler(e)}
-								>
-									{e}
-								</span>
-							)
-					)}
-				</p>
+				<ul className="breadcrumb">
+					{props.breadcrumb.panels.map((e, i) => (
+						<li
+							key={i}
+							className={`breadcrumb__panel ${e === props.breadcrumb.current &&
+								'breadcrumb__panel--inactive'}`}
+							onClick={() => {
+								e !== props.breadcrumb.current && breadCrumbClickHandler(e);
+							}}
+						>
+							<span>{e}</span>
+						</li>
+					))}
+				</ul>
 			)}
 			{props.wordPreview.word && <WordItem />}
 		</div>
