@@ -35,7 +35,7 @@ const ExampleList = props => {
 			{props.wordPreview.examples.map((example, exampleId) => {
 				return (
 					<li className="exampleList__example" key={exampleId}>
-						<span className="exampleList__example--original">
+						<p className="exampleList__example--original">
 							{isEnglish(example.original) &&
 								example.original.split(' ').map(
 									w =>
@@ -54,10 +54,10 @@ const ExampleList = props => {
 											</span>
 										)
 								)}
-						</span>
-						<span className="exampleList__example--translated">
+						</p>
+						<p className="exampleList__example--translated">
 							{example.translated}
-						</span>
+						</p>
 					</li>
 				);
 			})}

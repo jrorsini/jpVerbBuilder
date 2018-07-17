@@ -16,17 +16,28 @@
 
 .exampleList__example__word {
 	margin-right: 5px;
+	display: inline-block;
+	&:hover {
+		text-decoration: underline;
+		cursor: pointer;
+	}
 }
 
 .exampleList__example__word--highlighted {
 	color: darken($red, 18%);
 	font-weight: bold;
+	&:hover {
+		text-decoration: none;
+		cursor: default;
+	}
 }
 
 .exampleList__example--original {
+	margin: 0;
 	color: lighten(#000, 20%);
 }
 
 .exampleList__example--translated {
+	margin: 0;
 	text-align: right;
 }
