@@ -32,7 +32,7 @@ const SearchPage = props => {
 			})
 			.catch(err => props.dispatch(setErrorTxt(err)));
 	};
-	console.log(tokenize('検査').then(_token => console.log(_token)));
+	// console.log(tokenize('検査').then(_token => console.log(_token)));
 	return (
 		<div className="container">
 			<SearchBar />

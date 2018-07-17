@@ -25,6 +25,7 @@ const searchBar = ({ errorMessage, dispatch }) => {
 								...JSON.parse(res)
 							})
 						);
+						console.log(JSON.parse(res));
 						// Error handling actions
 						dispatch(setErrorTxt(null));
 						// Breacrumb Handling actions
