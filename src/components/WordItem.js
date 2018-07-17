@@ -1,11 +1,14 @@
+// REACT
 import React from 'react';
-import search from '../logic/search_handler';
 import { connect } from 'react-redux';
-import { addWord, removeWord } from '../actions/verbs';
 import { NavLink } from 'react-router-dom';
-import { toHiragana } from 'wanakana';
+// ACTIONS
+import { addWord, removeWord } from '../actions/verbs';
 import { setPreview } from '../actions/wordPreview';
 import { setErrorTxt } from '../actions/errorMessage';
+// UTILITIES
+import { toHiragana } from 'wanakana';
+import search from '../logic/search_handler';
 
 const isEnglish = value => value.match(/[a-z]/gi) !== null;
 

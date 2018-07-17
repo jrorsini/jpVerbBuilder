@@ -10,34 +10,37 @@ import { connect } from 'react-redux';
 	Search engine looking for words
  */
 const SearchPage = props => {
+	const breadCrumbClickHandler = word => {
+		search(word)
+			.then(res => {
+				props.dispatch(
+					setPreview({
+						...JSON.parse(res)
+					})
+				);
+				props.dispatch(setErrorTxt(null));
+			})
+			.catch(err => props.dispatch(setErrorTxt(err)));
+	};
 	console.log(props);
 	return (
 		<div className="container">
 			<SearchBar />
 			{props.breadcrumb.length > 0 && (
-				<p>
+				<p className="breadcrumb">
 					{props.breadcrumb.map(
 						(e, i) =>
-							i === 0 ? (
-								<span key={i}>{e}</span>
+							i === props.breadcrumb.length - 1 ? (
+								<span key={i} className="breadcrumb__panel">
+									{e}
+								</span>
 							) : (
 								<span
-									onClick={() => {
-										search(e)
-											.then(res => {
-												props.dispatch(
-													setPreview({
-														...JSON.parse(res)
-													})
-												);
-												props.dispatch(setErrorTxt(null));
-											})
-											.catch(err => props.dispatch(setErrorTxt(err)));
-									}}
 									key={i}
+									className="breadcrumb__panel breadcrumb__panel--active"
+									onClick={() => breadCrumbClickHandler(e)}
 								>
-									{' '}
-									> {e}
+									{e} >
 								</span>
 							)
 					)}

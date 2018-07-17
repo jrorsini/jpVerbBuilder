@@ -2,7 +2,7 @@ import React from 'react';
 import search from '../logic/search_handler';
 import { connect } from 'react-redux';
 import { setPreview } from '../actions/wordPreview';
-import { extendBreadcrumb } from '../actions/breadcrumb';
+import { extendPanel, setCurrentPanel } from '../actions/breadcrumb';
 import { setErrorTxt } from '../actions/errorMessage';
 import { toHiragana } from 'wanakana';
 

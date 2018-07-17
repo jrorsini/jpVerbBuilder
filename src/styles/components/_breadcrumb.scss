@@ -1,0 +1,8 @@
+.breadcrumb__panel {
+	&--active {
+		cursor: pointer;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
