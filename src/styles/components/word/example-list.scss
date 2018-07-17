@@ -1,0 +1,32 @@
+.exampleList {
+	padding: 0;
+}
+
+.exampleList__example {
+	padding: $s-size 0;
+	justify-content: space-between;
+	display: flex;
+	border-bottom: 1px dotted lighten($red, 30%);
+	transition: 0.2s all ease;
+	&:hover {
+		background: lighten($red, 35%);
+		padding: $s-size;
+	}
+}
+
+.exampleList__example__word {
+	margin-right: 5px;
+}
+
+.exampleList__example__word--highlighted {
+	color: darken($red, 18%);
+	font-weight: bold;
+}
+
+.exampleList__example--original {
+	color: lighten(#000, 20%);
+}
+
+.exampleList__example--translated {
+	text-align: right;
+}

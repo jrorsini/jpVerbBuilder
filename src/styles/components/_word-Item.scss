@@ -1,3 +1,5 @@
+@import './word/example-list';
+
 .WordItem__header {
 	display: flex;
 	justify-content: space-between;
@@ -20,18 +22,6 @@
 .WordItem__button--listed {
 	background: darken($red, 1%);
 	border-bottom-color: darken($red, 16%);
-}
-
-.WordItem__example {
-	padding: $s-size 0;
-	justify-content: space-between;
-	display: flex;
-	border-bottom: 1px dotted lighten($red, 30%);
-	transition: 0.2s all ease;
-	&:hover {
-		background: lighten($red, 35%);
-		padding: $s-size;
-	}
 }
 
 .WordItem__meanings {
@@ -62,22 +52,6 @@
 			text-decoration: underline;
 		}
 	}
-}
-
-.WordItem__example--original {
-	color: lighten(#000, 20%);
-}
-
-.WordItem__example--original b {
-	color: darken($red, 18%);
-	font-weight: 500;
-}
-
-.WordItem__example--translated {
-	text-align: right;
-}
-
-.WordItem__example span:last-child {
 }
 
 .WordItem__link {

@@ -9,22 +9,43 @@ import { addWord, removeWord } from '../actions/verbs';
 import { setPreview } from '../actions/wordPreview';
 import { setErrorTxt } from '../actions/errorMessage';
 
+// SUB-COMPONENT
+import ExampleList from '../components/WordItem/exampleList';
+
 // UTILITIES
 import { toHiragana } from 'wanakana';
 import search from '../logic/search_handler';
 
+// FUNCTIONS
 const isEnglish = value => value.match(/[a-z]/gi) !== null;
 
-const VerbItem = props => {
-	const listed = () => {
-		let isThere = false;
-		props.words.map(w => {
-			if (w.word === props.wordPreview.word) isThere = true;
-			return w;
-		});
-		return isThere;
-	};
+const listed = props => {
+	let isThere = false;
+	props.words.map(w => {
+		if (w.word === props.wordPreview.word) isThere = true;
+		return w;
+	});
+	return isThere;
+};
 
+const searchHandler = (e, props) => {
+	search(e)
+		.then(res => {
+			props.dispatch(
+				setPreview({
+					...JSON.parse(res)
+				})
+			);
+			props.dispatch(setErrorTxt(null));
+
+			props.dispatch(extendPanel(e));
+			props.dispatch(setCurrentPanel(e));
+		})
+		.catch(err => props.dispatch(setErrorTxt(err)));
+};
+
+// COMPONENT
+const VerbItem = props => {
 	const wordPreviewHeaderContent = (
 		<div>
 			{props.wordPreview.word}{' '}
@@ -32,26 +53,10 @@ const VerbItem = props => {
 		</div>
 	);
 
-	const searchHandler = e => {
-		search(e)
-			.then(res => {
-				props.dispatch(
-					setPreview({
-						...JSON.parse(res)
-					})
-				);
-				props.dispatch(setErrorTxt(null));
-
-				props.dispatch(extendPanel(e));
-				props.dispatch(setCurrentPanel(e));
-			})
-			.catch(err => props.dispatch(setErrorTxt(err)));
-	};
-
 	return (
 		<div>
 			<div className="WordItem__header">
-				{listed() ? (
+				{listed(props) ? (
 					<h2>
 						<NavLink
 							className="WordItem__link"
@@ -65,12 +70,12 @@ const VerbItem = props => {
 				)}
 				<button
 					className={
-						listed()
+						listed(props)
 							? 'WordItem__button button WordItem__button--listed'
 							: 'WordItem__button button'
 					}
 					onClick={() => {
-						listed(props.verbs, props.wordPreview)
+						listed(props)
 							? props.dispatch(removeWord(props.wordPreview.word))
 							: props.dispatch(
 									addWord({
@@ -79,12 +84,12 @@ const VerbItem = props => {
 							  );
 					}}
 				>
-					{listed() ? (
+					{listed(props) ? (
 						<i className="material-icons">delete</i>
 					) : (
 						<i className="material-icons">save</i>
 					)}
-					{listed() ? "Remove from word's list" : "Add to word's list"}
+					{listed(props) ? "Remove from word's list" : "Add to word's list"}
 				</button>
 			</div>
 			<ul className="WordItem__meanings">
@@ -96,7 +101,7 @@ const VerbItem = props => {
 								<span
 									key={i}
 									onClick={() => {
-										searchHandler(e);
+										searchHandler(e, props);
 									}}
 								>
 									{e}
@@ -109,20 +114,7 @@ const VerbItem = props => {
 				))}
 			</ul>
 			<hr />
-			{props.wordPreview.examples.map((example, exampleId) => {
-				return (
-					<div className="WordItem__example" key={exampleId}>
-						<span className="WordItem__example--original">
-							{example.original.toLowerCase().split(props.wordPreview.word)[0]}
-							<b>{props.wordPreview.word}</b>
-							{example.original.toLowerCase().split(props.wordPreview.word)[1]}
-						</span>
-						<span className="WordItem__example--translated">
-							{example.translated}
-						</span>
-					</div>
-				);
-			})}
+			<ExampleList />
 		</div>
 	);
 };
