@@ -10,7 +10,13 @@ import { setErrorTxt } from '../../actions/errorMessage';
 
 // UTILITIES
 import search from '../../logic/search_handler';
-import { tokenize } from 'kuromojin';
+import { tokenize, getTokenizer } from 'kuromojin';
+
+getTokenizer({ dicPath: '/dict' });
+
+tokenize('ご飯を食べました。').then(res => {
+	console.log(res);
+});
 
 const isEnglish = value => value.match(/[a-z]/gi) !== null;
 
@@ -30,65 +36,60 @@ const searchHandler = (e, props) => {
 		.catch(err => props.dispatch(setErrorTxt(err)));
 };
 
-const ExampleList = props => {
-	return (
-		<ul className="exampleList">
-			{props.wordPreview.examples.map((example, exampleId) => {
-				console.log(example);
-				return (
-					<li className="exampleList__example" key={exampleId}>
-						<p className="exampleList__example--original">
-							{isEnglish(example.original)
-								? example.original
-										.replace(/\./, '')
-										.split(' ')
-										.map((w, i) => (
-											<span
-												className={`exampleList__example__word ${w ===
-													props.wordPreview.word &&
-													'exampleList__example__word--highlighted'}`}
-												onClick={() => {
-													w !== props.wordPreview.word &&
-														searchHandler(w, props);
-												}}
-												key={i}
-											>
-												{w}
-											</span>
-										))
-								: example.original}
-						</p>
-						<p className="exampleList__example--translated">
-							{isEnglish(example.translated)
-								? example.translated
-										.replace(/\./, '')
-										.split(' ')
-										.map((w, i) => (
-											<span
-												className="exampleList__example__word"
-												onClick={() => {
-													searchHandler(w, props);
-												}}
-												key={i}
-											>
-												{w}
-											</span>
-										))
-								: example.translated}
-						</p>
-					</li>
-				);
-			})}
-		</ul>
-	);
-};
+const ExampleList = props => (
+	<ul className="exampleList">
+		{props.wordPreview.examples.map((example, exampleId) => {
+			console.log(example);
+			return (
+				<li className="exampleList__example" key={exampleId}>
+					<p className="exampleList__example--original">
+						{isEnglish(example.original)
+							? example.original
+									.replace(/\./, '')
+									.split(' ')
+									.map((w, i) => (
+										<span
+											className={`exampleList__example__word ${w ===
+												props.wordPreview.word &&
+												'exampleList__example__word--highlighted'}`}
+											onClick={() => {
+												w !== props.wordPreview.word && searchHandler(w, props);
+											}}
+											key={i}
+										>
+											{w}
+										</span>
+									))
+							: example.original}
+					</p>
+					<p className="exampleList__example--translated">
+						{isEnglish(example.translated)
+							? example.translated
+									.replace(/\./, '')
+									.split(' ')
+									.map((w, i) => (
+										<span
+											className="exampleList__example__word"
+											onClick={() => {
+												searchHandler(w, props);
+											}}
+											key={i}
+										>
+											{w}
+										</span>
+									))
+							: example.translated}
+					</p>
+				</li>
+			);
+		})}
+	</ul>
+);
 
 const mapStateToProps = state => state;
 
 export default connect(mapStateToProps)(ExampleList);
 
 /*
-tokenize(example.original).then(res => {
-										return res.map((e, i) => <span>{e.surface_form}</span>);
-								  })
+
 */
