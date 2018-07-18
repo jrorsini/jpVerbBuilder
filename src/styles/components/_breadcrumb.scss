@@ -45,9 +45,9 @@
 		}
 		&--inactive {
 			cursor: default;
-			background: darken($red, 18%);
+			background: darken($red, 15%);
 			&:after {
-				border-left: 10px solid darken($red, 18%);
+				border-left: 10px solid darken($red, 15%);
 			}
 		}
 		span {
