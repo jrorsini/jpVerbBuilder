@@ -25,7 +25,6 @@ const searchBar = ({ errorMessage, dispatch }) => {
 								...JSON.parse(res)
 							})
 						);
-						console.log(JSON.parse(res));
 						// Error handling actions
 						dispatch(setErrorTxt(null));
 						// Breacrumb Handling actions
@@ -41,6 +40,7 @@ const searchBar = ({ errorMessage, dispatch }) => {
 
 	return (
 		<form onSubmit={searchVerb}>
+			<span>{errorMessage}</span>
 			<p className="searchBar__container">
 				<input
 					name="verbSearchBar"
@@ -52,7 +52,6 @@ const searchBar = ({ errorMessage, dispatch }) => {
 					<i className="material-icons">search</i>Search
 				</button>
 			</p>
-			<span>{errorMessage}</span>
 		</form>
 	);
 };

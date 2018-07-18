@@ -96,10 +96,9 @@ const VerbItem = props => {
 				{props.wordPreview.meanings.map((meaning, meaningId) => (
 					<li key={meaningId}>
 						{meaning.split(', ').map((e, i) => (
-							<div>
+							<div key={i}>
 								{i !== 0 && ','}
 								<span
-									key={i}
 									onClick={() => {
 										searchHandler(e, props);
 									}}
@@ -108,7 +107,6 @@ const VerbItem = props => {
 								</span>
 							</div>
 						))}
-
 						{meaningId + 1 < props.wordPreview.meanings.length && <b>-</b>}
 					</li>
 				))}
