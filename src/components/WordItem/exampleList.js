@@ -34,6 +34,7 @@ const ExampleList = props => {
 	return (
 		<ul className="exampleList">
 			{props.wordPreview.examples.map((example, exampleId) => {
+				console.log(example);
 				return (
 					<li className="exampleList__example" key={exampleId}>
 						<p className="exampleList__example--original">
@@ -58,7 +59,23 @@ const ExampleList = props => {
 								: example.original}
 						</p>
 						<p className="exampleList__example--translated">
-							{example.translated}
+							{isEnglish(example.translated) &&
+								example.translated
+									.replace(/\./, '')
+									.split(' ')
+									.map((w, i) => (
+										<span
+											className={`exampleList__example__word ${w ===
+												props.wordPreview.word &&
+												'exampleList__example__word--highlighted'}`}
+											onClick={() => {
+												w !== props.wordPreview.word && searchHandler(w, props);
+											}}
+											key={i}
+										>
+											{w}
+										</span>
+									))}
 						</p>
 					</li>
 				);
