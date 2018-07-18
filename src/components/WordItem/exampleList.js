@@ -10,6 +10,7 @@ import { setErrorTxt } from '../../actions/errorMessage';
 
 // UTILITIES
 import search from '../../logic/search_handler';
+import { tokenize } from 'kuromojin';
 
 const isEnglish = value => value.match(/[a-z]/gi) !== null;
 
@@ -36,24 +37,25 @@ const ExampleList = props => {
 				return (
 					<li className="exampleList__example" key={exampleId}>
 						<p className="exampleList__example--original">
-							{isEnglish(example.original) &&
-								example.original.split(' ').map(
-									w =>
-										w === props.wordPreview.word ? (
-											<b className="exampleList__example__word exampleList__example__word--highlighted">
-												{w}
-											</b>
-										) : (
+							{isEnglish(example.original)
+								? example.original
+										.replace(/\./, '')
+										.split(' ')
+										.map((w, i) => (
 											<span
-												className="exampleList__example__word"
+												className={`exampleList__example__word ${w ===
+													props.wordPreview.word &&
+													'exampleList__example__word--highlighted'}`}
 												onClick={() => {
-													searchHandler(w, props);
+													w !== props.wordPreview.word &&
+														searchHandler(w, props);
 												}}
+												key={i}
 											>
 												{w}
 											</span>
-										)
-								)}
+										))
+								: example.original}
 						</p>
 						<p className="exampleList__example--translated">
 							{example.translated}
@@ -68,3 +70,9 @@ const ExampleList = props => {
 const mapStateToProps = state => state;
 
 export default connect(mapStateToProps)(ExampleList);
+
+/*
+tokenize(example.original).then(res => {
+										return res.map((e, i) => <span>{e.surface_form}</span>);
+								  })
+*/
