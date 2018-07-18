@@ -59,23 +59,22 @@ const ExampleList = props => {
 								: example.original}
 						</p>
 						<p className="exampleList__example--translated">
-							{isEnglish(example.translated) &&
-								example.translated
-									.replace(/\./, '')
-									.split(' ')
-									.map((w, i) => (
-										<span
-											className={`exampleList__example__word ${w ===
-												props.wordPreview.word &&
-												'exampleList__example__word--highlighted'}`}
-											onClick={() => {
-												w !== props.wordPreview.word && searchHandler(w, props);
-											}}
-											key={i}
-										>
-											{w}
-										</span>
-									))}
+							{isEnglish(example.translated)
+								? example.translated
+										.replace(/\./, '')
+										.split(' ')
+										.map((w, i) => (
+											<span
+												className="exampleList__example__word"
+												onClick={() => {
+													searchHandler(w, props);
+												}}
+												key={i}
+											>
+												{w}
+											</span>
+										))
+								: example.translated}
 						</p>
 					</li>
 				);
