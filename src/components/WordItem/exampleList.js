@@ -16,23 +16,25 @@ getTokenizer({ dicPath: '/dict' });
 
 const isEnglish = txt => txt.match(/[^a-z/\s/\.\[\]\,\-]/gi) === null;
 
-const searchHandler = (e, props) => {
-	search(e)
-		.then(res => {
-			props.dispatch(
-				setPreview({
-					...JSON.parse(res)
-				})
-			);
-			props.dispatch(setErrorTxt(null));
-
-			props.dispatch(extendPanel(e));
-			props.dispatch(setCurrentPanel(e));
-		})
-		.catch(err => props.dispatch(setErrorTxt(err)));
-};
-
 class ExampleList extends React.Component {
+	searchHandler(e) {
+		const dispatch = this.props.dispatch;
+		console.log('object');
+		search(e)
+			.then(res => {
+				dispatch(
+					setPreview({
+						...JSON.parse(res)
+					})
+				);
+				dispatch(setErrorTxt(null));
+
+				dispatch(extendPanel(e));
+				dispatch(setCurrentPanel(e));
+			})
+			.catch(err => dispatch(setErrorTxt(err)));
+	}
+
 	sentenceTokenizerHandler(example, exampleId, type) {
 		const props = this.props;
 		typeof example === 'string' &&
@@ -79,14 +81,27 @@ class ExampleList extends React.Component {
 														'exampleList__example__word--highlighted'}`}
 													onClick={() => {
 														w !== this.props.wordPreview.word &&
-															searchHandler(w, props);
+															this.searchHandler(w);
 													}}
 													key={i}
 												>
 													{w}
 												</span>
 											))
-									: example.original}
+									: typeof example.original === 'string'
+										? example.original
+										: example.original.map((e, i) => (
+												<span
+													className="exampleList__example__kanji"
+													key={i}
+													onClick={() => {
+														e.surface_form !== this.props.wordPreview.word &&
+															this.searchHandler(e.surface_form);
+													}}
+												>
+													{e.surface_form}
+												</span>
+										  ))}}
 							</p>
 							<p className="exampleList__example--translated">
 								{typeof example.translated === 'string' &&
@@ -98,7 +113,8 @@ class ExampleList extends React.Component {
 												<span
 													className="exampleList__example__word"
 													onClick={() => {
-														searchHandler(w, props);
+														w !== this.props.wordPreview.word &&
+															this.searchHandler(w);
 													}}
 													key={i}
 												>
@@ -108,7 +124,14 @@ class ExampleList extends React.Component {
 									: typeof example.translated === 'string'
 										? example.translated
 										: example.translated.map((e, i) => (
-												<span className="exampleList__example__kanji" key={i}>
+												<span
+													className="exampleList__example__kanji"
+													key={i}
+													onClick={() => {
+														e.surface_form !== this.props.wordPreview.word &&
+															this.searchHandler(e.surface_form);
+													}}
+												>
 													{e.surface_form}
 												</span>
 										  ))}
