@@ -23,6 +23,15 @@
 	}
 }
 
+.exampleList__example__kanji {
+	margin-right: 2px;
+	display: inline-block;
+	&:hover {
+		text-decoration: underline;
+		cursor: pointer;
+	}
+}
+
 .exampleList__example__word--highlighted {
 	color: darken($red, 18%);
 	font-weight: bold;

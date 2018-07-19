@@ -108,7 +108,9 @@ class ExampleList extends React.Component {
 									: typeof example.translated === 'string'
 										? example.translated
 										: example.translated.map((e, i) => (
-												<span key={i}>{e.surface_form}</span>
+												<span className="exampleList__example__kanji" key={i}>
+													{e.surface_form}
+												</span>
 										  ))}
 							</p>
 						</li>
