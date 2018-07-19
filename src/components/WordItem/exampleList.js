@@ -38,11 +38,14 @@ const ExampleList = props => {
 	//'私の名前はジャンです。'
 
 	props.wordPreview.examples.map((example, exampleId) => {
+		console.log(
+			typeof example.translated === 'string' && !isEnglish(example.translated)
+		);
 		typeof example.translated === 'string' &&
+			!isEnglish(example.translated) &&
 			tokenize(example.translated).then(res => {
 				let examples = props.wordPreview.examples;
 				examples[exampleId].translated = res;
-				console.log(res);
 				props.dispatch(setPreview({ ...props.wordPreview, examples }));
 			});
 	});
