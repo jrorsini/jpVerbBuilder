@@ -14,7 +14,7 @@ const findWord = (wordToFind, wordsList) => {
 	Search engine looking for verbs.s
  */
 const WordPage = props => {
-	const word = findWord(props.match.params.word, props.verbs);
+	const word = findWord(props.match.params.word, props.words);
 	return (
 		<div className="container">
 			<NavLink to="/list">Back to list</NavLink>
