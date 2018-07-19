@@ -20,15 +20,11 @@ class ExampleList extends React.Component {
 	searchHandler(e) {
 		const dispatch = this.props.dispatch;
 		console.log('object');
+		dispatch(setPreview());
 		search(e)
 			.then(res => {
-				dispatch(
-					setPreview({
-						...JSON.parse(res)
-					})
-				);
+				dispatch(setPreview({ ...JSON.parse(res) }));
 				dispatch(setErrorTxt(null));
-
 				dispatch(extendPanel(e));
 				dispatch(setCurrentPanel(e));
 			})
@@ -50,13 +46,12 @@ class ExampleList extends React.Component {
 						{w}
 					</span>
 			  ))
-			: typeof ex === 'string'
-				? ex
-				: ex.map((e, i) => (
+			: typeof ex !== 'string'
+				? ex.map((e, i) => (
 						<span
-							className={`exampleList__example__word ${e.surface_form ===
+							className={`exampleList__example__kanji ${e.surface_form ===
 								p.wordPreview.word &&
-								'exampleList__example__word--highlighted'}`}
+								'exampleList__example__kanji--highlighted'}`}
 							key={i}
 							onClick={() => {
 								e.surface_form !== p.wordPreview.word &&
@@ -65,7 +60,8 @@ class ExampleList extends React.Component {
 						>
 							{e.surface_form}
 						</span>
-				  ));
+				  ))
+				: ex;
 	}
 
 	sentenceTokenizerHandler(example, exampleId, type) {

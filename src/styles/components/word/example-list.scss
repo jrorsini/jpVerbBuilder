@@ -23,6 +23,15 @@
 	}
 }
 
+.exampleList__example__word--highlighted {
+	color: darken($red, 18%);
+	font-weight: bold;
+	&:hover {
+		text-decoration: none;
+		cursor: default;
+	}
+}
+
 .exampleList__example__kanji {
 	margin-right: 2px;
 	display: inline-block;
@@ -32,9 +41,8 @@
 	}
 }
 
-.exampleList__example__word--highlighted {
+.exampleList__example__kanji--highlighted {
 	color: darken($red, 18%);
-	font-weight: bold;
 	&:hover {
 		text-decoration: none;
 		cursor: default;

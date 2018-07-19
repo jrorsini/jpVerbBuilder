@@ -17,25 +17,12 @@ const searchBar = ({ errorMessage, dispatch }) => {
 	 */
 	const searchVerb = e => {
 		const inputValue = e.target.elements.verbSearchBar.value;
-		dispatch(
-			setPreview({
-				word: null,
-				reading: null,
-				meanings: null,
-				examples: null
-			})
-		);
+		dispatch(setPreview());
 		inputValue
 			? search(inputValue)
 					.then(res => {
-						dispatch(
-							setPreview({
-								...JSON.parse(res)
-							})
-						);
-						// Error handling actions
+						dispatch(setPreview({ ...JSON.parse(res) }));
 						dispatch(setErrorTxt(null));
-						// Breacrumb Handling actions
 						dispatch(extendPanel(inputValue));
 						dispatch(setCurrentPanel(inputValue));
 					})
