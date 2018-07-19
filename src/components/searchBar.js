@@ -17,6 +17,14 @@ const searchBar = ({ errorMessage, dispatch }) => {
 	 */
 	const searchVerb = e => {
 		const inputValue = e.target.elements.verbSearchBar.value;
+		dispatch(
+			setPreview({
+				word: null,
+				reading: null,
+				meanings: null,
+				examples: null
+			})
+		);
 		inputValue
 			? search(inputValue)
 					.then(res => {
