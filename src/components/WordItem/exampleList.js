@@ -34,20 +34,23 @@ const searchHandler = (e, props) => {
 		.catch(err => props.dispatch(setErrorTxt(err)));
 };
 
+const sentenceTokenizerHandler = (example, exampleId, type, props) => {
+	typeof example === 'string' &&
+		!isEnglish(example) &&
+		tokenize(example).then(res => {
+			let examples = props.wordPreview.examples;
+			examples[exampleId][type] = res;
+			props.dispatch(setPreview({ ...props.wordPreview, examples }));
+		});
+};
+
 const ExampleList = props => {
 	//'私の名前はジャンです。'
 
-	props.wordPreview.examples.map((example, exampleId) => {
-		console.log(
-			typeof example.translated === 'string' && !isEnglish(example.translated)
-		);
-		typeof example.translated === 'string' &&
-			!isEnglish(example.translated) &&
-			tokenize(example.translated).then(res => {
-				let examples = props.wordPreview.examples;
-				examples[exampleId].translated = res;
-				props.dispatch(setPreview({ ...props.wordPreview, examples }));
-			});
+	props.wordPreview.examples.map((ex, exId) => {
+		console.log(typeof ex.translated === 'string' && !isEnglish(ex.translated));
+		sentenceTokenizerHandler(ex.original, exId, 'original', props);
+		sentenceTokenizerHandler(ex.translated, exId, 'translated', props);
 	});
 
 	return (
@@ -56,7 +59,8 @@ const ExampleList = props => {
 				return (
 					<li className="exampleList__example" key={exampleId}>
 						<p className="exampleList__example--original">
-							{isEnglish(example.original)
+							{typeof example.original === 'string' &&
+							isEnglish(example.original)
 								? example.original
 										.replace(/\./, '')
 										.split(' ')
