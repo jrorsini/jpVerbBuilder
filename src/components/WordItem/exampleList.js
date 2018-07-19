@@ -14,7 +14,7 @@ import { tokenize, getTokenizer } from 'kuromojin';
 
 getTokenizer({ dicPath: '/dict' });
 
-const isEnglish = txt => txt.match(/[^a-z/\s/\./\,]/gi) === null;
+const isEnglish = txt => txt.match(/[^a-z/\s/\./\,/\-]/gi) === null;
 
 const searchHandler = (e, props) => {
 	search(e)
@@ -34,17 +34,23 @@ const searchHandler = (e, props) => {
 
 class ExampleList extends React.Component {
 	sentenceTokenizerHandler(example, exampleId, type) {
+		const props = this.props;
 		typeof example === 'string' &&
 			!isEnglish(example) &&
 			tokenize(example).then(res => {
-				let examples = this.props.wordPreview.examples;
+				let examples = props.wordPreview.examples;
 				examples[exampleId][type] = res;
-				props.dispatch(setPreview({ ...this.props.wordPreview, examples }));
+				try {
+					// props.dispatch(setPreview({ ...props.wordPreview, examples }));
+				} catch (error) {
+					console.log(error);
+				}
 			});
 	}
 
 	//'私の名前はジャンです。'
 	componentDidMount() {
+		console.log(this.props.wordPreview.examples);
 		this.props.wordPreview.examples.map((ex, exId) => {
 			console.log(
 				typeof ex.translated === 'string' && !isEnglish(ex.translated)
