@@ -14,7 +14,7 @@ import { tokenize, getTokenizer } from 'kuromojin';
 
 getTokenizer({ dicPath: '/dict' });
 
-const isEnglish = txt => txt.match(/[^a-z/\s/\./\,/\-]/gi) === null;
+const isEnglish = txt => txt.match(/[^a-z/\s/\.\[\]\,\-]/gi) === null;
 
 const searchHandler = (e, props) => {
 	search(e)
@@ -41,7 +41,7 @@ class ExampleList extends React.Component {
 				let examples = props.wordPreview.examples;
 				examples[exampleId][type] = res;
 				try {
-					// props.dispatch(setPreview({ ...props.wordPreview, examples }));
+					props.dispatch(setPreview({ ...props.wordPreview, examples }));
 				} catch (error) {
 					console.log(error);
 				}
@@ -55,7 +55,7 @@ class ExampleList extends React.Component {
 			console.log(
 				typeof ex.translated === 'string' && !isEnglish(ex.translated)
 			);
-			this.sentenceTokenizerHandler(ex.original, exId, 'original');
+			// this.sentenceTokenizerHandler(ex.original, exId, 'original');
 			this.sentenceTokenizerHandler(ex.translated, exId, 'translated');
 		});
 	}
