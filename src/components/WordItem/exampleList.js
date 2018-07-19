@@ -14,7 +14,9 @@ import { tokenize, getTokenizer } from 'kuromojin';
 
 getTokenizer({ dicPath: '/dict' });
 
-const isEnglish = value => value.match(/[a-z]/gi) !== null;
+const isEnglish = txt => txt.match(/[^a-z/\s/\./\,]/gi) === null;
+
+// console.log(isEnglish('私の名前はジャンです。'));
 
 const searchHandler = (e, props) => {
 	search(e)
@@ -34,23 +36,17 @@ const searchHandler = (e, props) => {
 
 const ExampleList = props => {
 	//'私の名前はジャンです。'
-	tokenize(props.wordPreview.examples[0].translated).then(res => {
-		let examples = props.wordPreview.examples;
-		examples[0].translated = res;
-		console.log(props.wordPreview.examples);
-		// res.map(e => console.log(e.surface_form));
-		props.dispatch(setPreview({ ...props.wordPreview, examples }));
+
+	props.wordPreview.examples.map((example, exampleId) => {
+		typeof example.translated === 'string' &&
+			tokenize(example.translated).then(res => {
+				let examples = props.wordPreview.examples;
+				examples[exampleId].translated = res;
+				console.log(res);
+				props.dispatch(setPreview({ ...props.wordPreview, examples }));
+			});
 	});
-	// typeof props.wordPreview.examples[0].translated === 'string' &&
-	// tokenize(props.wordPreview.examples[0].translated).then(res => {
-	// 	console.log(res);
-	// 	props.dispatch(
-	// 		setPreview({
-	// 			...props.wordPreview,
-	// 			examples: props.wordPreview.examples
-	// 		})
-	// 	);
-	// });
+
 	return (
 		<ul className="exampleList">
 			{props.wordPreview.examples.map((example, exampleId) => {
