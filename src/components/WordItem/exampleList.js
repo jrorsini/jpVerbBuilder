@@ -35,6 +35,39 @@ class ExampleList extends React.Component {
 			.catch(err => dispatch(setErrorTxt(err)));
 	}
 
+	sentenceRenderingHandler(ex = ex.replace(/\./, '')) {
+		const p = this.props;
+		return typeof ex === 'string' && isEnglish(ex)
+			? ex.split(' ').map((w, i) => (
+					<span
+						className={`exampleList__example__word ${w === p.wordPreview.word &&
+							'exampleList__example__word--highlighted'}`}
+						onClick={() => {
+							w !== p.wordPreview.word && this.searchHandler(w);
+						}}
+						key={i}
+					>
+						{w}
+					</span>
+			  ))
+			: typeof ex === 'string'
+				? ex
+				: ex.map((e, i) => (
+						<span
+							className={`exampleList__example__word ${e.surface_form ===
+								p.wordPreview.word &&
+								'exampleList__example__word--highlighted'}`}
+							key={i}
+							onClick={() => {
+								e.surface_form !== p.wordPreview.word &&
+									this.searchHandler(e.surface_form);
+							}}
+						>
+							{e.surface_form}
+						</span>
+				  ));
+	}
+
 	sentenceTokenizerHandler(example, exampleId, type) {
 		const props = this.props;
 		typeof example === 'string' &&
@@ -50,14 +83,10 @@ class ExampleList extends React.Component {
 			});
 	}
 
-	//'私の名前はジャンです。'
 	componentDidMount() {
 		console.log(this.props.wordPreview.examples);
 		this.props.wordPreview.examples.map((ex, exId) => {
-			console.log(
-				typeof ex.translated === 'string' && !isEnglish(ex.translated)
-			);
-			// this.sentenceTokenizerHandler(ex.original, exId, 'original');
+			this.sentenceTokenizerHandler(ex.original, exId, 'original');
 			this.sentenceTokenizerHandler(ex.translated, exId, 'translated');
 		});
 	}
@@ -69,72 +98,10 @@ class ExampleList extends React.Component {
 					return (
 						<li className="exampleList__example" key={exampleId}>
 							<p className="exampleList__example--original">
-								{typeof example.original === 'string' &&
-								isEnglish(example.original)
-									? example.original
-											.replace(/\./, '')
-											.split(' ')
-											.map((w, i) => (
-												<span
-													className={`exampleList__example__word ${w ===
-														this.props.wordPreview.word &&
-														'exampleList__example__word--highlighted'}`}
-													onClick={() => {
-														w !== this.props.wordPreview.word &&
-															this.searchHandler(w);
-													}}
-													key={i}
-												>
-													{w}
-												</span>
-											))
-									: typeof example.original === 'string'
-										? example.original
-										: example.original.map((e, i) => (
-												<span
-													className="exampleList__example__kanji"
-													key={i}
-													onClick={() => {
-														e.surface_form !== this.props.wordPreview.word &&
-															this.searchHandler(e.surface_form);
-													}}
-												>
-													{e.surface_form}
-												</span>
-										  ))}}
+								{this.sentenceRenderingHandler(example.original)}
 							</p>
 							<p className="exampleList__example--translated">
-								{typeof example.translated === 'string' &&
-								isEnglish(example.translated)
-									? example.translated
-											.replace(/\./, '')
-											.split(' ')
-											.map((w, i) => (
-												<span
-													className="exampleList__example__word"
-													onClick={() => {
-														w !== this.props.wordPreview.word &&
-															this.searchHandler(w);
-													}}
-													key={i}
-												>
-													{w}
-												</span>
-											))
-									: typeof example.translated === 'string'
-										? example.translated
-										: example.translated.map((e, i) => (
-												<span
-													className="exampleList__example__kanji"
-													key={i}
-													onClick={() => {
-														e.surface_form !== this.props.wordPreview.word &&
-															this.searchHandler(e.surface_form);
-													}}
-												>
-													{e.surface_form}
-												</span>
-										  ))}
+								{this.sentenceRenderingHandler(example.translated)}
 							</p>
 						</li>
 					);
