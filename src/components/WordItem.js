@@ -31,15 +31,10 @@ const listed = props => {
 const searchHandler = (e, props) => {
 	search(e)
 		.then(res => {
-			props.dispatch(
-				setPreview({
-					...JSON.parse(res)
-				})
-			);
+			props.dispatch(setPreview({ ...JSON.parse(res) }));
+			props.dispatch(setCurrentPanel({ ...JSON.parse(res) }));
+			props.dispatch(extendPanel({ ...JSON.parse(res) }));
 			props.dispatch(setErrorTxt(null));
-
-			props.dispatch(extendPanel(e));
-			props.dispatch(setCurrentPanel(e));
 		})
 		.catch(err => props.dispatch(setErrorTxt(err)));
 };
