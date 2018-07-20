@@ -3,8 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // ACTIONS
-
-// ACTIONS
 import { setCurrentPanel } from '../actions/breadcrumb';
 import { setPreview } from '../actions/wordPreview';
 import { setErrorTxt } from '../actions/errorMessage';
