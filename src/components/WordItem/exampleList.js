@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 // ACTIONS
 import { extendPanel, setCurrentPanel } from '../../actions/breadcrumb';
-import { addWord, removeWord } from '../../actions/verbs';
 import { setPreview } from '../../actions/wordPreview';
 import { setErrorTxt } from '../../actions/errorMessage';
 
@@ -19,14 +18,13 @@ const isEnglish = txt => txt.match(/[^a-z/\s/\.\[\]\,\-]/gi) === null;
 class ExampleList extends React.Component {
 	searchHandler(e) {
 		const dispatch = this.props.dispatch;
-		console.log('object');
 		dispatch(setPreview());
 		search(e)
 			.then(res => {
 				dispatch(setPreview({ ...JSON.parse(res) }));
-				dispatch(setErrorTxt(null));
-				dispatch(extendPanel(e));
+				dispatch(extendPanel({ ...JSON.parse(res) }));
 				dispatch(setCurrentPanel(e));
+				dispatch(setErrorTxt(null));
 			})
 			.catch(err => dispatch(setErrorTxt(err)));
 	}
@@ -80,7 +78,6 @@ class ExampleList extends React.Component {
 	}
 
 	componentDidMount() {
-		console.log(this.props.wordPreview.examples);
 		this.props.wordPreview.examples.map((ex, exId) => {
 			this.sentenceTokenizerHandler(ex.original, exId, 'original');
 			this.sentenceTokenizerHandler(ex.translated, exId, 'translated');
@@ -110,7 +107,3 @@ class ExampleList extends React.Component {
 const mapStateToProps = state => state;
 
 export default connect(mapStateToProps)(ExampleList);
-
-/*
-
-*/

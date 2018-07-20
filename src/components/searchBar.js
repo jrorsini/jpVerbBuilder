@@ -22,9 +22,9 @@ const searchBar = ({ errorMessage, dispatch }) => {
 			? search(inputValue)
 					.then(res => {
 						dispatch(setPreview({ ...JSON.parse(res) }));
+						dispatch(setCurrentPanel({ ...JSON.parse(res) }));
+						dispatch(extendPanel({ ...JSON.parse(res) }));
 						dispatch(setErrorTxt(null));
-						dispatch(extendPanel(inputValue));
-						dispatch(setCurrentPanel(inputValue));
 					})
 					.catch(err => dispatch(setErrorTxt(err)))
 			: dispatch(setErrorTxt('You must input something. 入力して頂きませんか'));

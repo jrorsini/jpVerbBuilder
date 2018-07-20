@@ -17,7 +17,7 @@ import { toHiragana } from 'wanakana';
 import search from '../logic/search_handler';
 
 // FUNCTIONS
-const isEnglish = value => value.match(/[a-z]/gi) !== null;
+const isEnglish = txt => txt.match(/[^a-z/\s/\.\[\]\,\-]/gi) === null;
 
 const listed = props => {
 	let isThere = false;

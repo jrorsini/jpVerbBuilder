@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 // COMPONENTS
 import WordItem from '../WordItem';
 import SearchBar from '../SearchBar';
+import BreadCrumb from '../BreadCrumb';
 
 // UTILITIES
 import search from '../../logic/search_handler';
@@ -19,39 +20,10 @@ import { setErrorTxt } from '../../actions/errorMessage';
 	Search engine looking for words
  */
 const SearchPage = props => {
-	const breadCrumbClickHandler = word => {
-		search(word)
-			.then(res => {
-				props.dispatch(
-					setPreview({
-						...JSON.parse(res)
-					})
-				);
-				props.dispatch(setErrorTxt(null));
-				props.dispatch(setCurrentPanel(word));
-			})
-			.catch(err => props.dispatch(setErrorTxt(err)));
-	};
-	// console.log(tokenize('検査').then(_token => console.log(_token)));
 	return (
 		<div className="container">
 			<SearchBar />
-			{props.breadcrumb.panels.length > 0 && (
-				<ul className="breadcrumb">
-					{props.breadcrumb.panels.map((e, i) => (
-						<li
-							key={i}
-							className={`breadcrumb__panel ${e === props.breadcrumb.current &&
-								'breadcrumb__panel--inactive'}`}
-							onClick={() => {
-								e !== props.breadcrumb.current && breadCrumbClickHandler(e);
-							}}
-						>
-							<span>{e}</span>
-						</li>
-					))}
-				</ul>
-			)}
+			{props.breadcrumb.panels.length > 0 && <BreadCrumb />}
 			{props.wordPreview.word && <WordItem />}
 		</div>
 	);
