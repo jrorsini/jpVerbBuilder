@@ -18,6 +18,7 @@
 		"cors": "^2.8.4",
 		"css-loader": "^0.28.11",
 		"express": "^4.16.3",
+		"jest": "^23.4.1",
 		"kuromojin": "^1.4.0",
 		"material-ui": "^0.20.1",
 		"node-sass": "^4.9.0",
@@ -39,6 +40,7 @@
 		"webpack-dev-server": "^3.1.4"
 	},
 	"scripts": {
-		"dev": "concurrently \"webpack-dev-server\" \"node app.js --watch\""
+		"dev": "concurrently \"webpack-dev-server\" \"node app.js --watch\"",
+		"test": "jest"
 	}
 }
