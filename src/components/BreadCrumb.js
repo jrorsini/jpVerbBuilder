@@ -5,24 +5,24 @@ import { connect } from 'react-redux';
 // ACTIONS
 
 // ACTIONS
-import { setCurrentPanel } from '../../actions/breadcrumb';
-import { setPreview } from '../../actions/wordPreview';
-import { setErrorTxt } from '../../actions/errorMessage';
+import { setCurrentPanel } from '../actions/breadcrumb';
+import { setPreview } from '../actions/wordPreview';
+import { setErrorTxt } from '../actions/errorMessage';
 
 // UTILITIES
-import search from '../../logic/search_handler';
+import search from '../logic/search_handler';
 import { tokenize, getTokenizer } from 'kuromojin';
 
 const BreadCrumb = props => {
 	const breadCrumbClickHandler = word => {
 		const dispatch = props.dispatch;
-		search(word)
-			.then(res => {
-				dispatch(setPreview({ ...JSON.parse(res) }));
-				dispatch(setCurrentPanel({ ...JSON.parse(res) }));
+		props.breadcrumb.panels.map(e => {
+			if (e.word === word) {
+				dispatch(setPreview(e));
+				dispatch(setCurrentPanel(e));
 				dispatch(setErrorTxt(null));
-			})
-			.catch(err => dispatch(setErrorTxt(err)));
+			}
+		});
 	};
 
 	return (
@@ -34,7 +34,8 @@ const BreadCrumb = props => {
 						className={`breadcrumb__panel ${e.word ===
 							props.breadcrumb.current.word && 'breadcrumb__panel--inactive'}`}
 						onClick={() => {
-							e !== props.breadcrumb.current.word &&
+							props.breadcrumb.panels.length > 1 &&
+								e !== props.breadcrumb.current.word &&
 								breadCrumbClickHandler(e.word);
 						}}
 					>
