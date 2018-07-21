@@ -58,6 +58,7 @@ const VerbItem = props => {
 							to={`/word/${props.wordPreview.word}`}
 						>
 							{wordPreviewHeaderContent}
+							{/* <i className="material-icons">bookmark</i> */}
 						</NavLink>
 					</h2>
 				) : (

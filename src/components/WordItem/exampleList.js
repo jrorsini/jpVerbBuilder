@@ -13,42 +13,70 @@ import { tokenize, getTokenizer } from 'kuromojin';
 
 getTokenizer({ dicPath: '/dict' });
 
-const isEnglish = txt => txt.match(/[^a-z/\s/\.\[\]\,\-]/gi) === null;
+const isEnglish = txt =>
+	txt.match(
+		/[^a-z/\s/(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|\"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)]/gi
+	) === null;
+
+const replacer = match => {
+	return match.trim() !== '' ? ` ${match} ` : ' ';
+};
 
 class ExampleList extends React.Component {
 	searchHandler(e) {
+		console.log(e);
+		const word = e;
 		const dispatch = this.props.dispatch;
+		let isInBreadCrumb = false;
 		dispatch(setPreview());
-		search(e)
-			.then(res => {
-				dispatch(setPreview({ ...JSON.parse(res) }));
-				dispatch(extendPanel({ ...JSON.parse(res) }));
-				dispatch(setCurrentPanel(e));
+		this.props.breadcrumb.panels.map(e => {
+			if (e.word === word) isInBreadCrumb = e;
+		});
+		if (word) {
+			if (isInBreadCrumb !== false) {
+				dispatch(setPreview(isInBreadCrumb));
+				dispatch(setCurrentPanel(isInBreadCrumb));
 				dispatch(setErrorTxt(null));
-			})
-			.catch(err => dispatch(setErrorTxt(err)));
+			} else {
+				search(word)
+					.then(res => {
+						dispatch(setPreview({ ...JSON.parse(res) }));
+						dispatch(setCurrentPanel({ ...JSON.parse(res) }));
+						dispatch(extendPanel({ ...JSON.parse(res) }));
+						dispatch(setErrorTxt(null));
+					})
+					.catch(err => dispatch(setErrorTxt(err)));
+			}
+		} else {
+			dispatch(setErrorTxt('You must input something. 入力して頂きませんか'));
+		}
 	}
 
 	sentenceRenderingHandler(ex = ex.replace(/\./, '')) {
 		const p = this.props;
+		console.log(ex);
 		return typeof ex === 'string' && isEnglish(ex)
-			? ex.split(' ').map((w, i) => (
-					<span
-						className={`exampleList__example__word ${w === p.wordPreview.word &&
-							'exampleList__example__word--highlighted'}`}
-						onClick={() => {
-							w !== p.wordPreview.word && this.searchHandler(w);
-						}}
-						key={i}
-					>
-						{w}
-					</span>
-			  ))
+			? ex
+					.replace(/[^a-zA-Z0-9&$]/gi, replacer)
+					.split(/\s/gi)
+					.map((w, i) => (
+						<span
+							className={`exampleList__example__word ${w.toLowerCase() ===
+								p.wordPreview.word.toLowerCase() &&
+								'exampleList__example__word--highlighted'}`}
+							onClick={() => {
+								w !== p.wordPreview.word && this.searchHandler(w);
+							}}
+							key={i}
+						>
+							{w}
+						</span>
+					))
 			: typeof ex !== 'string'
 				? ex.map((e, i) => (
 						<span
-							className={`exampleList__example__kanji ${e.surface_form ===
-								p.wordPreview.word &&
+							className={`exampleList__example__kanji ${e.surface_form.toLowerCase() ===
+								p.wordPreview.word.toLowerCase() &&
 								'exampleList__example__kanji--highlighted'}`}
 							key={i}
 							onClick={() => {
