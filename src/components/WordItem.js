@@ -46,7 +46,16 @@ const VerbItem = props => {
 			<i className="material-icons">
 				{listed(props) ? 'bookmark' : 'bookmark_border'}
 			</i>
-			{props.wordPreview.word}{' '}
+			{listed(props) ? (
+				<NavLink
+					className="WordItem__link"
+					to={`/word/${props.wordPreview.word}`}
+				>
+					{props.wordPreview.word}
+				</NavLink>
+			) : (
+				props.wordPreview.word
+			)}{' '}
 			{props.wordPreview.reading && <span>{props.wordPreview.reading}</span>}
 		</div>
 	);
@@ -54,18 +63,7 @@ const VerbItem = props => {
 	return (
 		<div>
 			<div className="WordItem__header">
-				{listed(props) ? (
-					<h2>
-						<NavLink
-							className="WordItem__link"
-							to={`/word/${props.wordPreview.word}`}
-						>
-							{wordPreviewHeaderContent}
-						</NavLink>
-					</h2>
-				) : (
-					<h2>{wordPreviewHeaderContent}</h2>
-				)}
+				<h2>{wordPreviewHeaderContent}</h2>
 				<button
 					className={
 						listed(props)
