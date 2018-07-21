@@ -43,6 +43,9 @@ const searchHandler = (e, props) => {
 const VerbItem = props => {
 	const wordPreviewHeaderContent = (
 		<div>
+			<i className="material-icons">
+				{listed(props) ? 'bookmark' : 'bookmark_border'}
+			</i>
 			{props.wordPreview.word}{' '}
 			{props.wordPreview.reading && <span>{props.wordPreview.reading}</span>}
 		</div>
@@ -58,7 +61,6 @@ const VerbItem = props => {
 							to={`/word/${props.wordPreview.word}`}
 						>
 							{wordPreviewHeaderContent}
-							{/* <i className="material-icons">bookmark</i> */}
 						</NavLink>
 					</h2>
 				) : (
@@ -83,9 +85,9 @@ const VerbItem = props => {
 					{listed(props) ? (
 						<i className="material-icons">delete</i>
 					) : (
-						<i className="material-icons">save</i>
+						<i className="material-icons">add</i>
 					)}
-					{listed(props) ? "Remove from word's list" : "Add to word's list"}
+					{listed(props) ? 'Remove from WordBook' : 'Add to WordBook'}
 				</button>
 			</div>
 			<ul className="WordItem__meanings">

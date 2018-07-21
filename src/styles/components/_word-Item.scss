@@ -10,6 +10,17 @@
 	margin: 0;
 }
 
+.WordItem__header h2 div {
+	display: flex;
+	align-items: center;
+}
+
+.WordItem__header h2 i {
+	color: lighten($red, 10%);
+	font-size: $m-size + 0.5rem;
+	margin-right: 0.5rem;
+}
+
 .WordItem__header span {
 	color: lighten($red, 20%);
 }
@@ -19,10 +30,10 @@
 	padding: $s-size - 0.4rem $m-size;
 }
 
-.WordItem__button--listed {
-	background: darken($red, 15%);
-	border-bottom-color: darken($red, 30%);
-}
+// .WordItem__button--listed {
+// 	background: darken($red, 15%);
+// 	border-bottom-color: darken($red, 30%);
+// }
 
 .WordItem__meanings {
 	padding: 0;

@@ -15,8 +15,8 @@ const Header = () => (
 						activeClassName="header__link--active"
 						to="/"
 					>
-						<i className="material-icons">home</i>
-						Home
+						<i className="material-icons">search</i>
+						Search
 					</NavLink>
 				</li>
 				<li className="header__item">
@@ -25,8 +25,8 @@ const Header = () => (
 						activeClassName="header__link--active"
 						to="/list"
 					>
-						<i className="material-icons">list</i>
-						List
+						<i className="material-icons">book</i>
+						WordBook
 					</NavLink>
 				</li>
 				{/* <li className="header__item">

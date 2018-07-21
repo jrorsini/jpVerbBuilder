@@ -18,7 +18,6 @@ export default (state = initialState, action) => {
 
 			break;
 		case 'SET_CURRENT_PANEL':
-			// console.log(action.load);
 			return { ...state, current: action.load };
 			break;
 		default:
