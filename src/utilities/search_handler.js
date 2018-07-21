@@ -25,11 +25,12 @@ export const searchHandler = (event, props) => {
 			: event;
 
 	let isInBreadCrumb = false;
-	dispatch(setCurrentPanel());
+	// console.log(isInBreadCrumb);
+
+	// dispatch(setCurrentPanel());
 	props.breadcrumb.panels.map(e => {
 		if (e.word === word) isInBreadCrumb = e;
 	});
-	console.log(isInBreadCrumb);
 	if (word) {
 		if (isInBreadCrumb !== false) {
 			dispatch(setCurrentPanel(isInBreadCrumb));
