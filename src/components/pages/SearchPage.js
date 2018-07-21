@@ -8,7 +8,7 @@ import SearchBar from '../SearchBar';
 import BreadCrumb from '../BreadCrumb';
 
 // UTILITIES
-import search from '../../logic/search_handler';
+import search from '../../utilities/search_handler';
 import { tokenize } from 'kuromojin';
 
 // ACTIONS

@@ -1,11 +1,4 @@
-const isEnglish = txt =>
-	txt.match(
-		/[^a-z/\s/(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|\"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)]/gi
-	) === null;
-
-const replacer = match => {
-	return match.trim() !== '' ? ` ${match}` : ' ';
-};
+import { isEnglish, engTokenize } from '../../src/utilities/eng_tokenizer';
 
 test('It should say the sentence is written in English', () => {
 	expect(isEnglish('Well, well!')).toBe(true);
@@ -19,5 +12,3 @@ test('It should say the sentence is written in Japanese', () => {
 	expect(isEnglish('俺の名前はジャン.')).toBe(false);
 	expect(isEnglish('「miptest（mip検査）」とも呼ばれる。')).toBe(false);
 });
-
-console.log('Well, well!'.replace(/[^a-zA-Z0-9&$]/gi, replacer));

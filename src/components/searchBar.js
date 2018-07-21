@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // UTILITIES
-import search from '../logic/search_handler';
+import search from '../utilities/search_handler';
 import { toHiragana } from 'wanakana';
 
 // ACTIONS

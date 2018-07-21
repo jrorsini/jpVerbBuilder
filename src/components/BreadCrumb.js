@@ -8,7 +8,7 @@ import { setPreview } from '../actions/wordPreview';
 import { setErrorTxt } from '../actions/errorMessage';
 
 // UTILITIES
-import search from '../logic/search_handler';
+import search from '../utilities/search_handler';
 import { tokenize, getTokenizer } from 'kuromojin';
 
 const BreadCrumb = props => {

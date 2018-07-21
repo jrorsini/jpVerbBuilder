@@ -8,19 +8,11 @@ import { setPreview } from '../../actions/wordPreview';
 import { setErrorTxt } from '../../actions/errorMessage';
 
 // UTILITIES
-import search from '../../logic/search_handler';
+import search from '../../utilities/search_handler';
+import { isEnglish, engTokenize } from '../../utilities/eng_tokenizer';
 import { tokenize, getTokenizer } from 'kuromojin';
 
 getTokenizer({ dicPath: '/dict' });
-
-const isEnglish = txt =>
-	txt.match(
-		/[^a-z/\s/(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|\"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)]/gi
-	) === null;
-
-const replacer = match => {
-	return match.trim() !== '' ? ` ${match} ` : ' ';
-};
 
 class ExampleList extends React.Component {
 	searchHandler(e) {
@@ -56,8 +48,7 @@ class ExampleList extends React.Component {
 		const p = this.props;
 		console.log(ex);
 		return typeof ex === 'string' && isEnglish(ex)
-			? ex
-					.replace(/[^a-zA-Z0-9&$]/gi, replacer)
+			? engTokenize(ex)
 					.split(/\s/gi)
 					.map((w, i) => (
 						<span

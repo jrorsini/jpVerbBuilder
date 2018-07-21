@@ -14,7 +14,7 @@ import ExampleList from '../components/WordItem/exampleList';
 
 // UTILITIES
 import { toHiragana } from 'wanakana';
-import search from '../logic/search_handler';
+import search from '../utilities/search_handler';
 
 // FUNCTIONS
 const isEnglish = txt => txt.match(/[^a-z/\s/\.\[\]\,\-]/gi) === null;

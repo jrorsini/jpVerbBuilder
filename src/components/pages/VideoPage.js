@@ -1,5 +1,5 @@
 import React from 'react';
-import { xml2json, parseXml } from '../../logic/xml_json';
+import { xml2json, parseXml } from '../../utilities/xml_json';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
