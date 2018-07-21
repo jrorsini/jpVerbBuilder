@@ -3,51 +3,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // UTILITIES
-import search from '../utilities/search_handler';
+import { searchHandler } from '../utilities/search_handler';
 import { toHiragana } from 'wanakana';
 
-// ACTIONS
-import { setPreview } from '../actions/wordPreview';
-import { extendPanel, setCurrentPanel } from '../actions/breadcrumb';
-import { setErrorTxt } from '../actions/errorMessage';
-
 const searchBar = props => {
-	/**
-		SearchVerb function that fetches data from one verb (taken as an argument)
-	 */
-	const searchVerb = e => {
-		const word = e.target.elements.verbSearchBar.value;
-		const dispatch = props.dispatch;
-		let isInBreadCrumb = false;
-		dispatch(setPreview());
-		props.breadcrumb.panels.map(e => {
-			if (e.word === word) isInBreadCrumb = e;
-		});
-		if (word) {
-			if (isInBreadCrumb !== false) {
-				dispatch(setPreview(isInBreadCrumb));
-				dispatch(setCurrentPanel(isInBreadCrumb));
-				dispatch(setErrorTxt(null));
-			} else {
-				search(word)
-					.then(res => {
-						dispatch(setPreview({ ...JSON.parse(res) }));
-						dispatch(setCurrentPanel({ ...JSON.parse(res) }));
-						dispatch(extendPanel({ ...JSON.parse(res) }));
-						dispatch(setErrorTxt(null));
-					})
-					.catch(err => dispatch(setErrorTxt(err)));
-			}
-		} else {
-			dispatch(setErrorTxt('You must input something. 入力して頂きませんか'));
-		}
-
-		e.target.elements.verbSearchBar.value = '';
-		e.preventDefault();
-	};
-
 	return (
-		<form onSubmit={searchVerb}>
+		<form
+			onSubmit={e => {
+				searchHandler(e, props);
+				e.preventDefault();
+			}}
+		>
 			<span>{props.errorMessage}</span>
 			<p className="searchBar__container">
 				<input

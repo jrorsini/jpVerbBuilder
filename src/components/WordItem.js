@@ -4,17 +4,14 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 // ACTIONS
-import { extendPanel, setCurrentPanel } from '../actions/breadcrumb';
 import { addWord, removeWord } from '../actions/verbs';
-import { setPreview } from '../actions/wordPreview';
-import { setErrorTxt } from '../actions/errorMessage';
 
 // SUB-COMPONENT
 import ExampleList from '../components/WordItem/exampleList';
 
 // UTILITIES
 import { toHiragana } from 'wanakana';
-import search from '../utilities/search_handler';
+import { searchHandler } from '../utilities/search_handler';
 
 // FUNCTIONS
 const isEnglish = txt => txt.match(/[^a-z/\s/\.\[\]\,\-]/gi) === null;
@@ -22,21 +19,10 @@ const isEnglish = txt => txt.match(/[^a-z/\s/\.\[\]\,\-]/gi) === null;
 const listed = props => {
 	let isThere = false;
 	props.words.map(w => {
-		if (w.word === props.wordPreview.word) isThere = true;
+		if (w.word === props.breadcrumb.current.word) isThere = true;
 		return w;
 	});
 	return isThere;
-};
-
-const searchHandler = (e, props) => {
-	search(e)
-		.then(res => {
-			props.dispatch(setPreview({ ...JSON.parse(res) }));
-			props.dispatch(setCurrentPanel({ ...JSON.parse(res) }));
-			props.dispatch(extendPanel({ ...JSON.parse(res) }));
-			props.dispatch(setErrorTxt(null));
-		})
-		.catch(err => props.dispatch(setErrorTxt(err)));
 };
 
 // COMPONENT
@@ -49,14 +35,16 @@ const VerbItem = props => {
 			{listed(props) ? (
 				<NavLink
 					className="WordItem__link"
-					to={`/word/${props.wordPreview.word}`}
+					to={`/word/${props.breadcrumb.current.word}`}
 				>
-					{props.wordPreview.word}
+					{props.breadcrumb.current.word}
 				</NavLink>
 			) : (
-				props.wordPreview.word
+				props.breadcrumb.current.word
 			)}{' '}
-			{props.wordPreview.reading && <span>{props.wordPreview.reading}</span>}
+			{props.breadcrumb.current.reading && (
+				<span>{props.breadcrumb.current.reading}</span>
+			)}
 		</div>
 	);
 
@@ -72,10 +60,10 @@ const VerbItem = props => {
 					}
 					onClick={() => {
 						listed(props)
-							? props.dispatch(removeWord(props.wordPreview.word))
+							? props.dispatch(removeWord(props.breadcrumb.current.word))
 							: props.dispatch(
 									addWord({
-										...props.wordPreview
+										...props.breadcrumb.current
 									})
 							  );
 					}}
@@ -89,7 +77,7 @@ const VerbItem = props => {
 				</button>
 			</div>
 			<ul className="WordItem__meanings">
-				{props.wordPreview.meanings.map((meaning, meaningId) => (
+				{props.breadcrumb.current.meanings.map((meaning, meaningId) => (
 					<li key={meaningId}>
 						{meaning.split(', ').map((e, i) => (
 							<div key={i}>
@@ -103,7 +91,9 @@ const VerbItem = props => {
 								</span>
 							</div>
 						))}
-						{meaningId + 1 < props.wordPreview.meanings.length && <b>-</b>}
+						{meaningId + 1 < props.breadcrumb.current.meanings.length && (
+							<b>-</b>
+						)}
 					</li>
 				))}
 			</ul>

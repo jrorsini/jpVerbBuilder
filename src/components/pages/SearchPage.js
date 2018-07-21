@@ -13,7 +13,6 @@ import { tokenize } from 'kuromojin';
 
 // ACTIONS
 import { setCurrentPanel } from '../../actions/breadcrumb';
-import { setPreview } from '../../actions/wordPreview';
 import { setErrorTxt } from '../../actions/errorMessage';
 
 /**
@@ -24,7 +23,7 @@ const SearchPage = props => {
 		<div className="container">
 			<SearchBar />
 			{props.breadcrumb.panels.length > 0 && <BreadCrumb />}
-			{props.wordPreview.word && <WordItem />}
+			{props.breadcrumb.current && <WordItem />}
 		</div>
 	);
 };
