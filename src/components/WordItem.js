@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 import { addWord, removeWord } from '../actions/verbs';
 
 // SUB-COMPONENT
-import ExampleList from '../components/WordItem/exampleList';
+import WordExamplesList from '../components/WordItem/WordExamplesList';
 
 // UTILITIES
 import { toHiragana } from 'wanakana';
@@ -26,7 +26,11 @@ const listed = props => {
 };
 
 // COMPONENT
-const VerbItem = props => {
+const WordItem = props => {
+	props.breadcrumb.current.word !== null &&
+		props.breadcrumb.current.reading === null &&
+		console.log('No reading for this word');
+
 	const wordPreviewHeaderContent = (
 		<div>
 			<i
@@ -109,14 +113,14 @@ const VerbItem = props => {
 				))}
 			</ul>
 			<hr />
-			<ExampleList />
+			<WordExamplesList />
 		</div>
 	);
 };
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(VerbItem);
+export default connect(mapStateToProps)(WordItem);
 
 /*
 */
