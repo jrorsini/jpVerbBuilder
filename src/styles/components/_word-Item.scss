@@ -16,7 +16,6 @@
 }
 
 .WordItem__header h2 i {
-	color: lighten($mainColor, 10%);
 	font-size: $m-size + 0.5rem;
 	margin-right: 0.5rem;
 }
@@ -75,5 +74,6 @@
 }
 
 .WordItem__bookmark {
+	color: #fff;
 	cursor: pointer;
 }

@@ -1,5 +1,5 @@
 .header {
-	background-color: lighten($mainColor, 8%);
+	background-color: #fff;
 	color: #fff;
 	// padding: $m-size 0;
 	position: fixed;
@@ -19,6 +19,9 @@
 
 .header__title {
 	margin: 0;
+	background: -webkit-linear-gradient(#38ef7d, #11998e);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 .header__list {
@@ -39,6 +42,10 @@
 	text-decoration: none;
 	font-weight: 100;
 	font-size: $m-size + 0.4rem;
+
+	background: -webkit-linear-gradient(#38ef7d, #11998e);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 	i {
 		margin-right: 5px;
 		font-size: $m-size + 0.2rem;

@@ -9,7 +9,7 @@
 	border-bottom: 1px dotted lighten($mainColor, 30%);
 	transition: 0.2s all ease;
 	&:hover {
-		background: lighten($mainColor, 35%);
+		background: rgba(255, 255, 255, 0.4);
 		padding: $s-size;
 	}
 }
@@ -24,8 +24,7 @@
 }
 
 .exampleList__example__word--highlighted {
-	color: darken($mainColor, 18%);
-	font-weight: bold;
+	color: rgba(255, 255, 255, 0.9);
 	&:hover {
 		text-decoration: none;
 		cursor: default;
@@ -42,7 +41,7 @@
 }
 
 .exampleList__example__kanji--highlighted {
-	color: darken($mainColor, 18%);
+	color: rgba(255, 255, 255, 0.9);
 	&:hover {
 		text-decoration: none;
 		cursor: default;

@@ -17,9 +17,9 @@
 
 //Button
 .button {
-	background: lighten($mainColor, 8%);
+	background: #fff; //lighten($mainColor, 8%);
 	border: none;
-	border-bottom: 0.3rem solid darken($mainColor, 15%);
+	// border-bottom: 0.3rem solid darken($mainColor, 15%);
 	color: #fff;
 	font-weight: 500;
 	padding: $s-size;

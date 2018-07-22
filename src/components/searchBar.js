@@ -23,7 +23,10 @@ const searchBar = props => {
 					onChange={() => {}}
 				/>
 				<button className="searchBar__button button">
-					<i className="material-icons">search</i>Search
+					<p>
+						<i className="material-icons">search</i>
+						<span>Search</span>
+					</p>
 				</button>
 			</p>
 		</form>
