@@ -5,17 +5,20 @@ import { NavLink } from 'react-router-dom';
 
 // ACTIONS
 import { addWord, removeWord } from '../actions/verbs';
+import { setCurrentPanel } from '../actions/breadcrumb';
 
 // SUB-COMPONENT
 import WordExamplesList from '../components/WordItem/WordExamplesList';
 
 // UTILITIES
 import { toHiragana } from 'wanakana';
+import { isEnglish, engTokenize } from '../utilities/eng_tokenizer';
 import { searchHandler } from '../utilities/search_handler';
+import { tokenize, getTokenizer } from 'kuromojin';
+
+getTokenizer({ dicPath: '/dict' });
 
 // FUNCTIONS
-const isEnglish = txt => txt.match(/[^a-z/\s/\.\[\]\,\-]/gi) === null;
-
 const listed = props => {
 	let isThere = false;
 	props.words.map(w => {
@@ -28,8 +31,15 @@ const listed = props => {
 // COMPONENT
 const WordItem = props => {
 	props.breadcrumb.current.word !== null &&
+		!isEnglish(props.breadcrumb.current.word) &&
 		props.breadcrumb.current.reading === null &&
-		console.log('No reading for this word');
+		tokenize(props.breadcrumb.current.word).then(res => {
+			let reading = '';
+			res.map(e => {
+				reading += toHiragana(e.reading);
+			});
+			props.dispatch(setCurrentPanel({ ...props.breadcrumb.current, reading }));
+		});
 
 	const wordPreviewHeaderContent = (
 		<div>
