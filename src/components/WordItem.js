@@ -29,7 +29,18 @@ const listed = props => {
 const VerbItem = props => {
 	const wordPreviewHeaderContent = (
 		<div>
-			<i className="material-icons">
+			<i
+				className="material-icons WordItem__bookmark"
+				onClick={() => {
+					listed(props)
+						? props.dispatch(removeWord(props.breadcrumb.current.word))
+						: props.dispatch(
+								addWord({
+									...props.breadcrumb.current
+								})
+						  );
+				}}
+			>
 				{listed(props) ? 'bookmark' : 'bookmark_border'}
 			</i>
 			{listed(props) ? (
