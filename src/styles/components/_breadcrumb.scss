@@ -8,7 +8,7 @@
 	&__panel {
 		float: left;
 		color: #fff;
-		background-color: lighten($red, 8%);
+		background-color: lighten($mainColor, 8%);
 		padding: $s-size - 0.5rem $s-size - 0.2rem $s-size - 0.5rem $s-size;
 		margin-right: 2px;
 		position: relative;
@@ -23,7 +23,7 @@
 			height: 1px;
 			border-top: 1.5rem transparent solid;
 			border-bottom: 1.5rem transparent solid;
-			border-left: 10px solid lighten($red, 38%);
+			border-left: 10px solid lighten($mainColor, 38%);
 			right: -13px;
 			top: 50%;
 			margin-top: -1.5rem;
@@ -37,7 +37,7 @@
 			height: 1px;
 			border-top: 1.5rem transparent solid;
 			border-bottom: 1.5rem transparent solid;
-			border-left: 10px solid lighten($red, 8%);
+			border-left: 10px solid lighten($mainColor, 8%);
 			right: -11px;
 			top: 50%;
 			margin-top: -1.5rem;
@@ -45,9 +45,9 @@
 		}
 		&--inactive {
 			cursor: default;
-			background: darken($red, 15%);
+			background: darken($mainColor, 15%);
 			&:after {
-				border-left: 10px solid darken($red, 15%);
+				border-left: 10px solid darken($mainColor, 15%);
 			}
 		}
 		span {

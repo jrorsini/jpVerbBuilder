@@ -6,10 +6,10 @@
 	padding: $s-size 0;
 	justify-content: space-between;
 	display: flex;
-	border-bottom: 1px dotted lighten($red, 30%);
+	border-bottom: 1px dotted lighten($mainColor, 30%);
 	transition: 0.2s all ease;
 	&:hover {
-		background: lighten($red, 35%);
+		background: lighten($mainColor, 35%);
 		padding: $s-size;
 	}
 }
@@ -24,7 +24,7 @@
 }
 
 .exampleList__example__word--highlighted {
-	color: darken($red, 18%);
+	color: darken($mainColor, 18%);
 	font-weight: bold;
 	&:hover {
 		text-decoration: none;
@@ -42,7 +42,7 @@
 }
 
 .exampleList__example__kanji--highlighted {
-	color: darken($red, 18%);
+	color: darken($mainColor, 18%);
 	&:hover {
 		text-decoration: none;
 		cursor: default;

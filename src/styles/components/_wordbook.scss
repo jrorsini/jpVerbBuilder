@@ -1,3 +1,11 @@
 .wordBook__info {
 	text-align: center;
 }
+
+.wordBook__info__link {
+	color: lighten($mainColor, 8%);
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
+}

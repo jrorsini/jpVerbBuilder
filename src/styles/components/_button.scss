@@ -1,8 +1,8 @@
 // Big button
 .big-button {
-	background: lighten($red, 8%);
+	background: lighten($mainColor, 8%);
 	border: none;
-	border-bottom: 0.6rem solid darken($red, 15%);
+	border-bottom: 0.6rem solid darken($mainColor, 15%);
 	color: #fff;
 	margin-bottom: $s-size;
 	font-weight: bold;
@@ -17,9 +17,9 @@
 
 //Button
 .button {
-	background: lighten($red, 8%);
+	background: lighten($mainColor, 8%);
 	border: none;
-	border-bottom: 0.3rem solid darken($red, 15%);
+	border-bottom: 0.3rem solid darken($mainColor, 15%);
 	color: #fff;
 	font-weight: 500;
 	padding: $s-size;
