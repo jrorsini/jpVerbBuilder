@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 // UTILITIES
 import { searchHandler } from '../utilities/search_handler';
 import { tokenize, getTokenizer } from 'kuromojin';
+import { capString } from '../utilities/eng_tokenizer';
 
 const BreadCrumb = props => (
 	<ul className="breadcrumb">
@@ -20,7 +21,7 @@ const BreadCrumb = props => (
 							searchHandler(e.word, props);
 					}}
 				>
-					<span>{e.word}</span>
+					<span>{capString(e.word)}</span>
 				</li>
 			);
 		})}

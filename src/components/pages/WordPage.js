@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 const findWord = (wordToFind, wordsList) => {
 	let foundWord;
 	wordsList.map(word => {
-		if (word.kanji === wordToFind) foundWord = word;
+		if (word.word === wordToFind) foundWord = word;
 	});
 	return foundWord;
 };
@@ -19,22 +19,8 @@ const WordPage = props => {
 		<div className="container">
 			<NavLink to="/list">Back to list</NavLink>
 			<p>
-				{word.kanji}（{word.hiragana}）
+				{word.word} {word.reading}
 			</p>
-			<p>{word.meaning.replace(/\、/g, ', ')}</p>
-			<hr />
-			{word.exampleList.map((example, exampleId) => {
-				return (
-					<div className="VerbItem__example" key={exampleId}>
-						<span className="VerbItem__example--jp">
-							{example.jp.split(word.kanji)[0]}
-							<b>{word.kanji}</b>
-							{example.jp.split(word.kanji)[1]}
-						</span>
-						<span className="VerbItem__example--en">{example.en}</span>
-					</div>
-				);
-			})}
 		</div>
 	);
 };

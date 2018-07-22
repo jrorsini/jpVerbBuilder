@@ -9,3 +9,6 @@ export const isEnglish = txt =>
 
 export const engTokenize = sentence =>
 	sentence.replace(/[^a-zA-Z0-9&$]/gi, replacer);
+
+export const capString = s =>
+	s.charAt(0).toUpperCase() + s.toLowerCase().slice(1);

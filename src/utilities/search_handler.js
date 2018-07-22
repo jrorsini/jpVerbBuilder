@@ -23,11 +23,8 @@ export const searchHandler = (event, props) => {
 		typeof event !== 'string'
 			? event.target.elements.verbSearchBar.value
 			: event;
-
 	let isInBreadCrumb = false;
-	// console.log(isInBreadCrumb);
 
-	// dispatch(setCurrentPanel());
 	props.breadcrumb.panels.map(e => {
 		if (e.word === word) isInBreadCrumb = e;
 	});
@@ -38,9 +35,13 @@ export const searchHandler = (event, props) => {
 		} else {
 			search(word)
 				.then(res => {
-					dispatch(setCurrentPanel({ ...JSON.parse(res) }));
-					dispatch(extendPanel({ ...JSON.parse(res) }));
-					dispatch(setErrorTxt(null));
+					if (JSON.parse(res).word !== '') {
+						dispatch(setCurrentPanel({ ...JSON.parse(res) }));
+						dispatch(extendPanel({ ...JSON.parse(res) }));
+						dispatch(setErrorTxt(null));
+					} else {
+						dispatch(setErrorTxt(`Apologies,  ${word} could not be found`));
+					}
 				})
 				.catch(err => dispatch(setErrorTxt(err)));
 		}

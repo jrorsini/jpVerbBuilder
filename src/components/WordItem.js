@@ -12,7 +12,7 @@ import WordExamplesList from '../components/WordItem/WordExamplesList';
 
 // UTILITIES
 import { toHiragana } from 'wanakana';
-import { isEnglish, engTokenize } from '../utilities/eng_tokenizer';
+import { isEnglish, engTokenize, capString } from '../utilities/eng_tokenizer';
 import { searchHandler } from '../utilities/search_handler';
 import { tokenize, getTokenizer } from 'kuromojin';
 
@@ -62,10 +62,10 @@ const WordItem = props => {
 					className="WordItem__link"
 					to={`/word/${props.breadcrumb.current.word}`}
 				>
-					{props.breadcrumb.current.word}
+					{capString(props.breadcrumb.current.word)}
 				</NavLink>
 			) : (
-				props.breadcrumb.current.word
+				capString(props.breadcrumb.current.word)
 			)}{' '}
 			{props.breadcrumb.current.reading && (
 				<span>{props.breadcrumb.current.reading}</span>
