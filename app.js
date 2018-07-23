@@ -53,9 +53,10 @@ const searchHandler = word =>
 					word,
 					reading,
 					meanings,
-					examples: examples
-						.filter(e => e.original.length < 40)
-						.map(e => ({ original: capString(e), translated: capString(e) }))
+					examples: examples.filter(e => e.original.length < 40).map(e => ({
+						original: capString(e.original),
+						translated: capString(e.translated)
+					}))
 				});
 			}
 		);

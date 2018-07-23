@@ -7,8 +7,11 @@ import { setCurrentPanel } from '../../actions/breadcrumb';
 
 // UTILITIES
 import { searchHandler } from '../../utilities/search_handler';
-import { isEnglish, engTokenize } from '../../utilities/eng_tokenizer';
-import { capString } from '../../utilities/eng_tokenizer';
+import {
+	isEnglish,
+	engTokenize,
+	capString
+} from '../../utilities/eng_tokenizer';
 
 import { tokenize } from 'kuromojin';
 

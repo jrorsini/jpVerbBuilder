@@ -112,7 +112,7 @@ const WordItem = props => {
 										searchHandler(e, props);
 									}}
 								>
-									{e}
+									{capString(e)}
 								</span>
 							</div>
 						))}
