@@ -78,25 +78,35 @@ class ExampleList extends React.Component {
 	// 	});
 	// }
 
-	tokenized(example) {}
+	tokenized(example, exampleId, type) {
+		const ex = example;
+		if (typeof ex === 'string') {
+			if (isEnglish(ex)) {
+				return ex;
+			} else {
+				console.log(ex);
+				console.log(this.props.breadcrumb.current.examples);
+				this.sentenceTokenizerHandler(ex, exampleId, type);
+				return ex;
+			}
+		}
+	}
 
 	render() {
 		return (
 			<ul className="exampleList">
-				{this.props.breadcrumb.current.examples
-					.filter(e => e.original.length < 40)
-					.map((example, exampleId) => (
-						<li className="exampleList__example" key={exampleId}>
-							<p className="exampleList__example--original">
-								{capString(example.original)}
-								{/* {this.sentenceRenderingHandler(example.original)} */}
-							</p>
-							<p className="exampleList__example--translated">
-								{capString(example.translated)}
-								{/* {this.sentenceRenderingHandler(example.translated)} */}
-							</p>
-						</li>
-					))}
+				{this.props.breadcrumb.current.examples.map((example, exampleId) => (
+					<li className="exampleList__example" key={exampleId}>
+						<p className="exampleList__example--original">
+							{example.original}
+							{/* {this.sentenceRenderingHandler(example.original)} */}
+						</p>
+						<p className="exampleList__example--translated">
+							{example.translated}
+							{/* {this.sentenceRenderingHandler(example.translated)} */}
+						</p>
+					</li>
+				))}
 			</ul>
 		);
 	}

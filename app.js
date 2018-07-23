@@ -47,7 +47,12 @@ const searchHandler = word =>
 						});
 				});
 
-				resolve({ word, reading, meanings, examples });
+				resolve({
+					word,
+					reading,
+					meanings,
+					examples: examples.filter(e => e.original.length < 40)
+				});
 			}
 		);
 	});
