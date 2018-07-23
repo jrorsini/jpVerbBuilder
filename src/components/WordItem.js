@@ -14,9 +14,7 @@ import WordExamplesList from '../components/WordItem/WordExamplesList';
 import { toHiragana } from 'wanakana';
 import { isEnglish, engTokenize, capString } from '../utilities/eng_tokenizer';
 import { searchHandler } from '../utilities/search_handler';
-import { tokenize, getTokenizer } from 'kuromojin';
-
-getTokenizer({ dicPath: '/dict' });
+import { tokenize } from 'kuromojin';
 
 // FUNCTIONS
 const listed = props => {

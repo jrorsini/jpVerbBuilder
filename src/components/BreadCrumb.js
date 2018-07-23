@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 // UTILITIES
 import { searchHandler } from '../utilities/search_handler';
-import { tokenize, getTokenizer } from 'kuromojin';
 import { capString } from '../utilities/eng_tokenizer';
 
 const BreadCrumb = props => (

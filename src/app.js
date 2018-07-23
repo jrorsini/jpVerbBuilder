@@ -15,11 +15,6 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import 'normalize.css/normalize.css';
 import './styles/style.scss';
 
-getTokenizer({ dicPath: '/dict' }).then(res => {
-	kuromojiTokenizer = tokenize;
-	kuromojiTokenizer('食べる').then(res => console.log(res));
-});
-
 const store = configureStore();
 
 /**
@@ -61,6 +56,8 @@ store.subscribe(() => {
 	localStorage.setItem('words', JSON.stringify(store.getState().words));
 });
 
+console.log(store);
+
 const App = () => (
 	<Router>
 		<div>
@@ -75,9 +72,11 @@ const App = () => (
 	</Router>
 );
 
-render(
-	<Provider store={store}>
-		<App />
-	</Provider>,
-	document.getElementById('root')
-);
+getTokenizer({ dicPath: '/dict' }).then(res => {
+	render(
+		<Provider store={store}>
+			<App />
+		</Provider>,
+		document.getElementById('root')
+	);
+});

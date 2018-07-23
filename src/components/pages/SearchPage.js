@@ -18,6 +18,7 @@ import { setErrorTxt } from '../../actions/errorMessage';
 /**
 	Search engine looking for words
  */
+
 const SearchPage = props => {
 	return (
 		<div className="container">

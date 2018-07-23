@@ -8,9 +8,7 @@ import { setCurrentPanel } from '../../actions/breadcrumb';
 // UTILITIES
 import { searchHandler } from '../../utilities/search_handler';
 import { isEnglish, engTokenize } from '../../utilities/eng_tokenizer';
-import { tokenize, getTokenizer } from 'kuromojin';
-
-getTokenizer({ dicPath: '/dict' });
+import { tokenize } from 'kuromojin';
 
 class ExampleList extends React.Component {
 	sentenceRenderingHandler(ex = ex.replace(/\./, '')) {
