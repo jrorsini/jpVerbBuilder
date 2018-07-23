@@ -6,6 +6,8 @@ const fs = require('fs');
 const request = require('request');
 const cheerio = require('cheerio');
 
+const capString = s => s.charAt(0).toUpperCase() + s.toLowerCase().slice(1);
+
 const searchHandler = word =>
 	new Promise((resolve, reject) => {
 		request(
@@ -51,7 +53,9 @@ const searchHandler = word =>
 					word,
 					reading,
 					meanings,
-					examples: examples.filter(e => e.original.length < 40)
+					examples: examples
+						.filter(e => e.original.length < 40)
+						.map(e => ({ original: capString(e), translated: capString(e) }))
 				});
 			}
 		);
