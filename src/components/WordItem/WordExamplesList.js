@@ -74,8 +74,12 @@ class ExampleList extends React.Component {
 	render() {
 		return (
 			<ul className="exampleList">
-				{this.props.breadcrumb.current.examples.map((example, exampleId) => {
-					return (
+				{this.props.breadcrumb.current.examples
+					.filter(e => {
+						console.log(e.original, e.original.length);
+						return e.original.length < 40;
+					})
+					.map((example, exampleId) => (
 						<li className="exampleList__example" key={exampleId}>
 							<p className="exampleList__example--original">
 								{this.sentenceRenderingHandler(example.original)}
@@ -84,8 +88,7 @@ class ExampleList extends React.Component {
 								{this.sentenceRenderingHandler(example.translated)}
 							</p>
 						</li>
-					);
-				})}
+					))}
 			</ul>
 		);
 	}
