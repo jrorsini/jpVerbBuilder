@@ -18,9 +18,11 @@ class ExampleList extends React.Component {
 					.split(/\s/gi)
 					.map((w, i) => (
 						<span
-							className={`exampleList__example__word ${w.toLowerCase() ===
-								p.breadcrumb.current.word.toLowerCase() &&
-								'exampleList__example__word--highlighted'}`}
+							className={`exampleList__example__word ${
+								w.toLowerCase() === p.breadcrumb.current.word.toLowerCase()
+									? 'exampleList__example__word--highlighted'
+									: ''
+							}`}
 							onClick={() =>
 								w !== p.breadcrumb.current.word && searchHandler(w, p)
 							}
@@ -32,9 +34,12 @@ class ExampleList extends React.Component {
 			: typeof ex !== 'string'
 				? ex.map((e, i) => (
 						<span
-							className={`exampleList__example__kanji ${e.surface_form.toLowerCase() ===
-								p.breadcrumb.current.word.toLowerCase() &&
-								'exampleList__example__kanji--highlighted'}`}
+							className={`exampleList__example__kanji ${
+								e.surface_form.toLowerCase() ===
+								p.breadcrumb.current.word.toLowerCase()
+									? 'exampleList__example__kanji--highlighted'
+									: ''
+							}`}
 							key={i}
 							onClick={() =>
 								e.surface_form !== p.breadcrumb.current.word &&
