@@ -28,7 +28,7 @@ class ExampleList extends React.Component {
 							}
 							key={i}
 						>
-							{w}
+							{w.toLowerCase()}
 						</span>
 					))
 			: typeof ex !== 'string'
@@ -69,28 +69,27 @@ class ExampleList extends React.Component {
 			});
 	}
 
-	componentDidMount() {
-		this.props.breadcrumb.current.examples.map((ex, exId) => {
-			this.sentenceTokenizerHandler(ex.original, exId, 'original');
-			this.sentenceTokenizerHandler(ex.translated, exId, 'translated');
-		});
-	}
+	// componentDidMount() {
+	// 	this.props.breadcrumb.current.examples.map((ex, exId) => {
+	// 		this.sentenceTokenizerHandler(ex.original, exId, 'original');
+	// 		this.sentenceTokenizerHandler(ex.translated, exId, 'translated');
+	// 	});
+	// }
 
 	render() {
 		return (
 			<ul className="exampleList">
 				{this.props.breadcrumb.current.examples
-					.filter(e => {
-						if (typeof e.original === 'string') return e.original.length < 40;
-						if (typeof e.original === 'array') return e.original.length < 25;
-					})
+					.filter(e => e.original.length < 40)
 					.map((example, exampleId) => (
 						<li className="exampleList__example" key={exampleId}>
 							<p className="exampleList__example--original">
-								{this.sentenceRenderingHandler(example.original)}
+								{example.original.toLowerCase()}
+								{/* {this.sentenceRenderingHandler(example.original)} */}
 							</p>
 							<p className="exampleList__example--translated">
-								{this.sentenceRenderingHandler(example.translated)}
+								{example.translated.toLowerCase()}
+								{/* {this.sentenceRenderingHandler(example.translated)} */}
 							</p>
 						</li>
 					))}
