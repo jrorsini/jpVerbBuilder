@@ -7,7 +7,7 @@
 	margin-bottom: 20px;
 	&__panel {
 		float: left;
-		background-color: #fff;
+		background-color: rgba(255, 255, 255, 0.8);
 		padding: $s-size - 0.5rem $s-size - 0.2rem $s-size - 0.5rem $s-size;
 		margin-right: 2px;
 		position: relative;
@@ -36,17 +36,17 @@
 			height: 1px;
 			border-top: 1.5rem transparent solid;
 			border-bottom: 1.5rem transparent solid;
-			border-left: 10px solid #fff;
+			border-left: 10px solid rgba(255, 255, 255, 0.8);
 			right: -11px;
 			top: 50%;
 			margin-top: -1.5rem;
 			z-index: 2;
 		}
 		&--inactive {
+			background-color: #fff;
 			cursor: default;
-			background: rgba(255, 255, 255, 0.8);
 			&:after {
-				border-left: 10px solid rgba(255, 255, 255, 0.8);
+				border-left: 10px solid #fff;
 			}
 		}
 		span {
