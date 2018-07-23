@@ -8,6 +8,8 @@ import { setCurrentPanel } from '../../actions/breadcrumb';
 // UTILITIES
 import { searchHandler } from '../../utilities/search_handler';
 import { isEnglish, engTokenize } from '../../utilities/eng_tokenizer';
+import { capString } from '../../utilities/eng_tokenizer';
+
 import { tokenize } from 'kuromojin';
 
 class ExampleList extends React.Component {
@@ -76,6 +78,8 @@ class ExampleList extends React.Component {
 	// 	});
 	// }
 
+	tokenized(example) {}
+
 	render() {
 		return (
 			<ul className="exampleList">
@@ -84,11 +88,11 @@ class ExampleList extends React.Component {
 					.map((example, exampleId) => (
 						<li className="exampleList__example" key={exampleId}>
 							<p className="exampleList__example--original">
-								{example.original.toLowerCase()}
+								{capString(example.original)}
 								{/* {this.sentenceRenderingHandler(example.original)} */}
 							</p>
 							<p className="exampleList__example--translated">
-								{example.translated.toLowerCase()}
+								{capString(example.translated)}
 								{/* {this.sentenceRenderingHandler(example.translated)} */}
 							</p>
 						</li>
