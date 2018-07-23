@@ -7,8 +7,7 @@
 	margin-bottom: 20px;
 	&__panel {
 		float: left;
-		color: #fff;
-		background-color: lighten($mainColor, 8%);
+		background-color: #fff;
 		padding: $s-size - 0.5rem $s-size - 0.2rem $s-size - 0.5rem $s-size;
 		margin-right: 2px;
 		position: relative;
@@ -23,7 +22,7 @@
 			height: 1px;
 			border-top: 1.5rem transparent solid;
 			border-bottom: 1.5rem transparent solid;
-			border-left: 10px solid lighten($mainColor, 38%);
+			border-left: 10px solid #6ed883;
 			right: -13px;
 			top: 50%;
 			margin-top: -1.5rem;
@@ -37,7 +36,7 @@
 			height: 1px;
 			border-top: 1.5rem transparent solid;
 			border-bottom: 1.5rem transparent solid;
-			border-left: 10px solid lighten($mainColor, 8%);
+			border-left: 10px solid #fff;
 			right: -11px;
 			top: 50%;
 			margin-top: -1.5rem;
@@ -45,13 +44,16 @@
 		}
 		&--inactive {
 			cursor: default;
-			background: darken($mainColor, 15%);
+			background: rgba(255, 255, 255, 0.8);
 			&:after {
-				border-left: 10px solid darken($mainColor, 15%);
+				border-left: 10px solid rgba(255, 255, 255, 0.8);
 			}
 		}
 		span {
 			padding-left: $s-size - 0.6rem;
+			background: -webkit-linear-gradient(#38ef7d, #11998e);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
 		}
 		&:first-child {
 			span {
