@@ -5,6 +5,15 @@ const app = express();
 const fs = require('fs');
 const request = require('request');
 const cheerio = require('cheerio');
+const kuromoji = require('kuromoji');
+
+kuromoji
+	.builder({ dicPath: 'node_modules/kuromoji/dict/' })
+	.build(function(err, tokenizer) {
+		// tokenizer is ready
+		var path = tokenizer.tokenize('すもももももももものうち');
+		console.log(path);
+	});
 
 const capString = s => s.charAt(0).toUpperCase() + s.toLowerCase().slice(1);
 
@@ -69,7 +78,7 @@ app.get('/search/:word', (req, res) => {
 });
 
 // searchHandler('食べる').then(res => console.log(res));
-// searchHandler('試験').then(res => console.log(res));
+searchHandler('試験').then(res => console.log(res));
 // searchHandler('eat').then(res => console.log(res));
 
 app.listen(1234, () => console.log('Up & Running...'));
