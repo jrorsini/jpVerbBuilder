@@ -25,7 +25,7 @@ const Header = () => (
 						activeClassName="header__link--active"
 						to="/list"
 					>
-						<i className="material-icons">book</i>
+						<i className="material-icons">filter_list</i>
 						WordBook
 					</NavLink>
 				</li>
