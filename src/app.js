@@ -15,7 +15,10 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import 'normalize.css/normalize.css';
 import './styles/style.scss';
 
-getTokenizer({ dicPath: '/dict' });
+getTokenizer({ dicPath: '/dict' }).then(res => {
+	kuromojiTokenizer = tokenize;
+	kuromojiTokenizer('食べる').then(res => console.log(res));
+});
 
 const store = configureStore();
 
