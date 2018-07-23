@@ -76,8 +76,8 @@ class ExampleList extends React.Component {
 			<ul className="exampleList">
 				{this.props.breadcrumb.current.examples
 					.filter(e => {
-						console.log(e.original, e.original.length);
-						return e.original.length < 40;
+						if (typeof e.original === 'string') return e.original.length < 40;
+						if (typeof e.original === 'array') return e.original.length < 25;
 					})
 					.map((example, exampleId) => (
 						<li className="exampleList__example" key={exampleId}>
