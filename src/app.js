@@ -56,8 +56,6 @@ store.subscribe(() => {
 	localStorage.setItem('words', JSON.stringify(store.getState().words));
 });
 
-console.log(store);
-
 const App = () => (
 	<Router>
 		<div>
@@ -72,11 +70,11 @@ const App = () => (
 	</Router>
 );
 
-getTokenizer({ dicPath: '/dict' }).then(res => {
-	render(
-		<Provider store={store}>
-			<App />
-		</Provider>,
-		document.getElementById('root')
-	);
-});
+getTokenizer({ dicPath: '/dict' });
+
+render(
+	<Provider store={store}>
+		<App />
+	</Provider>,
+	document.getElementById('root')
+);
