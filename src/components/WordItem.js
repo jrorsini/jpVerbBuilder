@@ -93,12 +93,14 @@ const WordItem = props => {
 							  );
 					}}
 				>
-					{listed(props) ? (
-						<i className="material-icons">delete</i>
-					) : (
-						<i className="material-icons">add</i>
-					)}
-					{listed(props) ? 'Remove from WordBook' : 'Add to WordBook'}
+					<span>
+						{listed(props) ? (
+							<i className="material-icons">delete</i>
+						) : (
+							<i className="material-icons">add</i>
+						)}
+						{listed(props) ? 'Remove from WordBook' : 'Add to WordBook'}
+					</span>
 				</button>
 			</div>
 			<ul className="WordItem__meanings">

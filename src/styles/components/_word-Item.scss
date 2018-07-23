@@ -30,6 +30,14 @@
 	padding: $s-size - 0.4rem $m-size;
 }
 
+.WordItem__button span {
+	display: flex;
+	align-items: center;
+	background: -webkit-linear-gradient(#38ef7d, #11998e);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
 // .WordItem__button--listed {
 // 	background: darken($mainColor, 15%);
 // 	border-bottom-color: darken($mainColor, 30%);
