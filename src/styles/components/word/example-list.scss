@@ -8,6 +8,7 @@
 	display: flex;
 	border-bottom: 1px dotted lighten($mainColor, 30%);
 	transition: 0.2s all ease;
+	font-size: $m-size + 0.2rem;
 	&:hover {
 		background: rgba(255, 255, 255, 0.4);
 		padding: $s-size;
@@ -17,8 +18,9 @@
 .exampleList__example__word {
 	margin-right: 5px;
 	display: inline-block;
+	transition: 0.1s all ease;
 	&:hover {
-		text-decoration: underline;
+		color: #fff;
 		cursor: pointer;
 	}
 }
@@ -34,8 +36,9 @@
 .exampleList__example__kanji {
 	margin-right: 2px;
 	display: inline-block;
+	transition: 0.1s all ease;
 	&:hover {
-		text-decoration: underline;
+		color: #fff;
 		cursor: pointer;
 	}
 }

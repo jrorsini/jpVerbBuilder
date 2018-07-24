@@ -16,8 +16,6 @@ import {
 import { tokenize } from 'kuromojin';
 
 const ExampleList = props => {
-	console.log(props.breadcrumb.current.examples);
-
 	const englishTokenizedExample = ex =>
 		ex.map((w, i) => (
 			<span

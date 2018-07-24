@@ -79,7 +79,7 @@ const searchHandler = word =>
 						reading,
 						meanings,
 						examples: examples
-							.filter(e => e.original.length < 40)
+							// .filter(e => e.original.length < 40)
 							.map((e, i) => ({
 								original: isEnglish(word)
 									? engTokenize(capString(e.original))
