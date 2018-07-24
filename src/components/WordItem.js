@@ -123,7 +123,11 @@ const WordItem = props => {
 				))}
 			</ul>
 			<hr />
-			<WordExamplesList />
+			{props.breadcrumb.current.examples.length > 0 ? (
+				<WordExamplesList />
+			) : (
+				<p>No examples found for this word...</p>
+			)}
 		</div>
 	);
 };
