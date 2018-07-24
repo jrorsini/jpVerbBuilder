@@ -7,15 +7,27 @@ const request = require('request');
 const cheerio = require('cheerio');
 const kuromoji = require('kuromoji');
 
+const replacer = match => {
+	return match.trim() !== '' ? ` ${match} ` : ' ';
+};
+
+const isEnglish = txt =>
+	txt.match(
+		/[^a-z/\s/(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|\"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)]/gi
+	) === null;
+
+const engTokenize = sentence =>
+	sentence.replace(/[^a-zA-Z0-9&$]/gi, replacer).split(/\s/gi);
+
+const capString = s => s.charAt(0).toUpperCase() + s.toLowerCase().slice(1);
+
+let _tokenizer = null;
+
 kuromoji
 	.builder({ dicPath: 'node_modules/kuromoji/dict/' })
 	.build(function(err, tokenizer) {
-		// tokenizer is ready
-		var path = tokenizer.tokenize('すもももももももものうち');
-		console.log(path);
+		_tokenizer = tokenizer;
 	});
-
-const capString = s => s.charAt(0).toUpperCase() + s.toLowerCase().slice(1);
 
 const searchHandler = word =>
 	new Promise((resolve, reject) => {
@@ -23,7 +35,9 @@ const searchHandler = word =>
 			`https://ejje.weblio.jp/content/${querystring.escape(word)}`,
 			(error, body, html) => {
 				const $ = cheerio.load(html);
-				const word = $('#h1Query').text();
+				const word = $('#h1Query').text()
+					? capString($('#h1Query').text())
+					: $('#h1Query').text();
 				const reading = $('.ruby').text() || null;
 				const meanings = $('.content-explanation')
 					.text()
@@ -63,8 +77,12 @@ const searchHandler = word =>
 					reading,
 					meanings,
 					examples: examples.filter(e => e.original.length < 40).map(e => ({
-						original: capString(e.original),
-						translated: capString(e.translated)
+						original: isEnglish(word)
+							? engTokenize(capString(e.original))
+							: e.original,
+						translated: !isEnglish(word)
+							? engTokenize(capString(e.translated))
+							: e.translated
 					}))
 				});
 			}
@@ -77,8 +95,8 @@ app.get('/search/:word', (req, res) => {
 	searchHandler(req.params.word).then(obj => res.send(obj));
 });
 
-// searchHandler('食べる').then(res => console.log(res));
+searchHandler('食べる').then(res => console.log(res));
 searchHandler('試験').then(res => console.log(res));
-// searchHandler('eat').then(res => console.log(res));
+searchHandler('eat').then(res => console.log(res));
 
 app.listen(1234, () => console.log('Up & Running...'));
