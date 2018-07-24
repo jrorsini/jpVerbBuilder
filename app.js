@@ -21,7 +21,7 @@ const engTokenize = sentence =>
 
 const capString = s => s.charAt(0).toUpperCase() + s.toLowerCase().slice(1);
 
-let _tokenizer = null;
+let _tokenizer;
 
 const searchHandler = word =>
 	new Promise((resolve, reject) => {
@@ -29,6 +29,7 @@ const searchHandler = word =>
 			`https://ejje.weblio.jp/content/${querystring.escape(word)}`,
 			(error, body, html) => {
 				const $ = cheerio.load(html);
+				const pArr = [];
 				const word = $('#h1Query').text()
 					? capString($('#h1Query').text())
 					: $('#h1Query').text();
@@ -66,18 +67,28 @@ const searchHandler = word =>
 						});
 				});
 
-				resolve({
-					word,
-					reading,
-					meanings,
-					examples: examples.filter(e => e.original.length < 40).map(e => ({
-						original: isEnglish(word)
-							? engTokenize(capString(e.original))
-							: e.original,
-						translated: !isEnglish(word)
-							? engTokenize(capString(e.translated))
-							: e.translated
-					}))
+				examples.map(e => {
+					isEnglish(e.original)
+						? pArr.push(_tokenizer.tokenize(e.original))
+						: pArr.push(_tokenizer.tokenize(e.translated));
+				});
+
+				Promise.all(pArr).then(arr => {
+					resolve({
+						word,
+						reading,
+						meanings,
+						examples: examples
+							.filter(e => e.original.length < 40)
+							.map((e, i) => ({
+								original: isEnglish(word)
+									? engTokenize(capString(e.original))
+									: arr[i],
+								translated: !isEnglish(word)
+									? engTokenize(capString(e.translated))
+									: arr[i]
+							}))
+					});
 				});
 			}
 		);
@@ -93,9 +104,9 @@ kuromoji
 	.builder({ dicPath: 'node_modules/kuromoji/dict/' })
 	.build(function(err, tokenizer) {
 		_tokenizer = tokenizer;
+		// searchHandler('食べる').then(res => console.log(res));
+		// searchHandler('試験').then(res => console.log(res));
+		searchHandler('eat').then(res => console.log(res));
 	});
-// searchHandler('食べる').then(res => console.log(res));
-// searchHandler('試験').then(res => console.log(res));
-// searchHandler('eat').then(res => console.log(res));
 
 app.listen(1234, () => console.log('Up & Running...'));
