@@ -106,7 +106,7 @@ kuromoji
 		_tokenizer = tokenizer;
 		// searchHandler('食べる').then(res => console.log(res));
 		// searchHandler('試験').then(res => console.log(res));
-		searchHandler('eat').then(res => console.log(res));
+		// searchHandler('eat').then(res => console.log(res));
 	});
 
 app.listen(1234, () => console.log('Up & Running...'));

@@ -16,83 +16,42 @@ import {
 import { tokenize } from 'kuromojin';
 
 class ExampleList extends React.Component {
-	sentenceRenderingHandler(ex = ex.replace(/\./, '')) {
-		const p = this.props;
-		return typeof ex === 'string' && isEnglish(ex)
-			? engTokenize(ex)
-					.split(/\s/gi)
-					.map((w, i) => (
-						<span
-							className={`exampleList__example__word ${
-								w.toLowerCase() === p.breadcrumb.current.word.toLowerCase()
-									? 'exampleList__example__word--highlighted'
-									: ''
-							}`}
-							onClick={() =>
-								w !== p.breadcrumb.current.word && searchHandler(w, p)
-							}
-							key={i}
-						>
-							{w.toLowerCase()}
-						</span>
-					))
-			: typeof ex !== 'string'
-				? ex.map((e, i) => (
-						<span
-							className={`exampleList__example__kanji ${
-								e.surface_form.toLowerCase() ===
-								p.breadcrumb.current.word.toLowerCase()
-									? 'exampleList__example__kanji--highlighted'
-									: ''
-							}`}
-							key={i}
-							onClick={() =>
-								e.surface_form !== p.breadcrumb.current.word &&
-								searchHandler(e.surface_form, p)
-							}
-						>
-							{e.surface_form}
-						</span>
-				  ))
-				: ex;
-	}
-
-	sentenceTokenizerHandler(example, exampleId, type) {
-		const props = this.props;
-		typeof example === 'string' &&
-			!isEnglish(example) &&
-			tokenize(example).then(res => {
-				let examples = props.breadcrumb.current.examples;
-				examples[exampleId][type] = res;
-				try {
-					props.dispatch(
-						setCurrentPanel({ ...props.breadcrumb.current, examples })
-					);
-				} catch (error) {
-					console.log(error);
+	japaneseTokenizedExample(ex) {
+		return ex.map((e, i) => (
+			<span
+				className={`exampleList__example__kanji ${
+					e.surface_form.toLowerCase() ===
+					this.props.breadcrumb.current.word.toLowerCase()
+						? 'exampleList__example__kanji--highlighted'
+						: ''
+				}`}
+				key={i}
+				onClick={() =>
+					e.surface_form !== this.props.breadcrumb.current.word &&
+					searchHandler(e.surface_form, p)
 				}
-			});
+			>
+				{e.surface_form}
+			</span>
+		));
 	}
 
-	// componentDidMount() {
-	// 	this.props.breadcrumb.current.examples.map((ex, exId) => {
-	// 		this.sentenceTokenizerHandler(ex.original, exId, 'original');
-	// 		this.sentenceTokenizerHandler(ex.translated, exId, 'translated');
-	// 	});
-	// }
-
-	tokenized(example, exampleId, type) {
-		const ex = example;
-		if (typeof ex === 'string') {
-			if (isEnglish(ex)) {
-				return ex;
-			} else {
-				console.log(ex);
-				console.log(this.props.breadcrumb.current.examples);
-				this.sentenceTokenizerHandler(ex, exampleId, type);
-				return ex;
-			}
-		}
+	englishTokenizedExample(ex) {
+		return ex.map((w, i) => (
+			<span
+				className={`exampleList__example__word ${
+					w.toLowerCase() === this.props.breadcrumb.current.word.toLowerCase()
+						? 'exampleList__example__word--highlighted'
+						: ''
+				}`}
+				onClick={() =>
+					w !== this.props.breadcrumb.current.word && searchHandler(w, p)
+				}
+				key={i}
+			>
+				{w.toLowerCase()}
+			</span>
+		));
 	}
 
 	render() {
@@ -101,11 +60,12 @@ class ExampleList extends React.Component {
 				{this.props.breadcrumb.current.examples.map((example, exampleId) => (
 					<li className="exampleList__example" key={exampleId}>
 						<p className="exampleList__example--original">
-							{example.original}
+							{isEnglish(this.props.breadcrumb.current.word)
+								? englishTokenizedExample(example)
+								: japaneseTokenizedExample(example)}
 							{/* {this.sentenceRenderingHandler(example.original)} */}
 						</p>
 						<p className="exampleList__example--translated">
-							{example.translated}
 							{/* {this.sentenceRenderingHandler(example.translated)} */}
 						</p>
 					</li>
