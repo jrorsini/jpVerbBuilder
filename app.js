@@ -23,12 +23,6 @@ const capString = s => s.charAt(0).toUpperCase() + s.toLowerCase().slice(1);
 
 let _tokenizer = null;
 
-kuromoji
-	.builder({ dicPath: 'node_modules/kuromoji/dict/' })
-	.build(function(err, tokenizer) {
-		_tokenizer = tokenizer;
-	});
-
 const searchHandler = word =>
 	new Promise((resolve, reject) => {
 		request(
@@ -95,8 +89,13 @@ app.get('/search/:word', (req, res) => {
 	searchHandler(req.params.word).then(obj => res.send(obj));
 });
 
-searchHandler('食べる').then(res => console.log(res));
-searchHandler('試験').then(res => console.log(res));
-searchHandler('eat').then(res => console.log(res));
+kuromoji
+	.builder({ dicPath: 'node_modules/kuromoji/dict/' })
+	.build(function(err, tokenizer) {
+		_tokenizer = tokenizer;
+	});
+// searchHandler('食べる').then(res => console.log(res));
+// searchHandler('試験').then(res => console.log(res));
+// searchHandler('eat').then(res => console.log(res));
 
 app.listen(1234, () => console.log('Up & Running...'));
