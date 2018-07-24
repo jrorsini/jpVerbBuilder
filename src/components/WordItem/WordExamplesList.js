@@ -27,7 +27,7 @@ const ExampleList = props => {
 						: ''
 				}`}
 				onClick={() =>
-					w !== props.breadcrumb.current.word && searchHandler(w, p)
+					w !== props.breadcrumb.current.word && searchHandler(w, props)
 				}
 				key={i}
 			>
@@ -47,7 +47,7 @@ const ExampleList = props => {
 				key={i}
 				onClick={() =>
 					e.surface_form !== props.breadcrumb.current.word &&
-					searchHandler(e.surface_form, p)
+					searchHandler(e.surface_form, props)
 				}
 			>
 				{e.surface_form}
