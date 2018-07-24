@@ -15,65 +15,64 @@ import {
 
 import { tokenize } from 'kuromojin';
 
-class ExampleList extends React.Component {
-	japaneseTokenizedExample(ex) {
-		return ex.map((e, i) => (
-			<span
-				className={`exampleList__example__kanji ${
-					e.surface_form.toLowerCase() ===
-					this.props.breadcrumb.current.word.toLowerCase()
-						? 'exampleList__example__kanji--highlighted'
-						: ''
-				}`}
-				key={i}
-				onClick={() =>
-					e.surface_form !== this.props.breadcrumb.current.word &&
-					searchHandler(e.surface_form, p)
-				}
-			>
-				{e.surface_form}
-			</span>
-		));
-	}
+const ExampleList = props => {
+	console.log(props.breadcrumb.current.examples);
 
-	englishTokenizedExample(ex) {
-		return ex.map((w, i) => (
+	const englishTokenizedExample = ex =>
+		ex.map((w, i) => (
 			<span
 				className={`exampleList__example__word ${
-					w.toLowerCase() === this.props.breadcrumb.current.word.toLowerCase()
+					w.toLowerCase() === props.breadcrumb.current.word.toLowerCase()
 						? 'exampleList__example__word--highlighted'
 						: ''
 				}`}
 				onClick={() =>
-					w !== this.props.breadcrumb.current.word && searchHandler(w, p)
+					w !== props.breadcrumb.current.word && searchHandler(w, p)
 				}
 				key={i}
 			>
 				{w.toLowerCase()}
 			</span>
 		));
-	}
 
-	render() {
-		return (
-			<ul className="exampleList">
-				{this.props.breadcrumb.current.examples.map((example, exampleId) => (
-					<li className="exampleList__example" key={exampleId}>
-						<p className="exampleList__example--original">
-							{isEnglish(this.props.breadcrumb.current.word)
-								? englishTokenizedExample(example)
-								: japaneseTokenizedExample(example)}
-							{/* {this.sentenceRenderingHandler(example.original)} */}
-						</p>
-						<p className="exampleList__example--translated">
-							{/* {this.sentenceRenderingHandler(example.translated)} */}
-						</p>
-					</li>
-				))}
-			</ul>
-		);
-	}
-}
+	const japaneseTokenizedExample = ex =>
+		ex.map((e, i) => (
+			<span
+				className={`exampleList__example__kanji ${
+					e.surface_form.toLowerCase() ===
+					props.breadcrumb.current.word.toLowerCase()
+						? 'exampleList__example__kanji--highlighted'
+						: ''
+				}`}
+				key={i}
+				onClick={() =>
+					e.surface_form !== props.breadcrumb.current.word &&
+					searchHandler(e.surface_form, p)
+				}
+			>
+				{e.surface_form}
+			</span>
+		));
+
+	return (
+		<ul className="exampleList">
+			{props.breadcrumb.current.examples.map((example, exampleId) => (
+				<li className="exampleList__example" key={exampleId}>
+					<p className="exampleList__example--original">
+						{isEnglish(props.breadcrumb.current.word)
+							? englishTokenizedExample(example.original)
+							: japaneseTokenizedExample(example.original)}
+					</p>
+					<p className="exampleList__example--translated">
+						{!isEnglish(props.breadcrumb.current.word)
+							? englishTokenizedExample(example.translated)
+							: japaneseTokenizedExample(example.translated)}
+					</p>
+				</li>
+			))}
+		</ul>
+	);
+};
 
 const mapStateToProps = state => state;
 

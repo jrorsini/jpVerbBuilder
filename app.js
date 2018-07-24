@@ -69,8 +69,8 @@ const searchHandler = word =>
 
 				examples.map(e => {
 					isEnglish(e.original)
-						? pArr.push(_tokenizer.tokenize(e.original))
-						: pArr.push(_tokenizer.tokenize(e.translated));
+						? pArr.push(_tokenizer.tokenize(e.translated))
+						: pArr.push(_tokenizer.tokenize(e.original));
 				});
 
 				Promise.all(pArr).then(arr => {
