@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import WordItem from '../WordItem';
 
 const findWord = (wordToFind, wordsList) => {
 	let foundWord;
@@ -18,9 +19,7 @@ const WordPage = props => {
 	return (
 		<div className="container">
 			<NavLink to="/list">Back to list</NavLink>
-			<p>
-				{word.word} {word.reading}
-			</p>
+			<WordItem word={word} page="word" />
 		</div>
 	);
 };

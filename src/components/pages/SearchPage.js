@@ -24,7 +24,9 @@ const SearchPage = props => {
 		<div className="container">
 			<SearchBar />
 			{props.breadcrumb.panels.length > 0 && <BreadCrumb />}
-			{props.breadcrumb.current && <WordItem />}
+			{props.breadcrumb.current && (
+				<WordItem word={props.breadcrumb.current} page="search" />
+			)}
 		</div>
 	);
 };

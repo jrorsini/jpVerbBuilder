@@ -20,7 +20,7 @@ import { tokenize } from 'kuromojin';
 const listed = props => {
 	let isThere = false;
 	props.words.map(w => {
-		if (w.word === props.breadcrumb.current.word) isThere = true;
+		if (w.word === props.word.word) isThere = true;
 		return w;
 	});
 	return isThere;
@@ -28,46 +28,45 @@ const listed = props => {
 
 // COMPONENT
 const WordItem = props => {
-	props.breadcrumb.current.word !== null &&
-		!isEnglish(props.breadcrumb.current.word) &&
-		props.breadcrumb.current.reading === null &&
-		tokenize(props.breadcrumb.current.word).then(res => {
+	const word = props.word;
+
+	word.word !== null &&
+		!isEnglish(word.word) &&
+		word.reading === null &&
+		tokenize(word.word).then(res => {
 			let reading = '';
 			res.map(e => {
 				reading += toHiragana(e.reading);
 			});
-			props.dispatch(setCurrentPanel({ ...props.breadcrumb.current, reading }));
+			props.dispatch(setCurrentPanel({ ...word, reading }));
 		});
 
 	const wordPreviewHeaderContent = (
 		<div>
-			<i
-				className="material-icons WordItem__bookmark"
-				onClick={() => {
-					listed(props)
-						? props.dispatch(removeWord(props.breadcrumb.current.word))
-						: props.dispatch(
-								addWord({
-									...props.breadcrumb.current
-								})
-						  );
-				}}
-			>
-				{listed(props) ? 'bookmark' : 'bookmark_border'}
-			</i>
-			{listed(props) ? (
-				<NavLink
-					className="WordItem__link"
-					to={`/word/${props.breadcrumb.current.word}`}
+			{props.page === 'search' && (
+				<i
+					className="material-icons WordItem__bookmark"
+					onClick={() => {
+						listed(props)
+							? props.dispatch(removeWord(word.word))
+							: props.dispatch(
+									addWord({
+										...word
+									})
+							  );
+					}}
 				>
-					{capString(props.breadcrumb.current.word)}
+					{listed(props) ? 'bookmark' : 'bookmark_border'}
+				</i>
+			)}
+			{listed(props) ? (
+				<NavLink className="WordItem__link" to={`/word/${word.word}`}>
+					{capString(word.word)}
 				</NavLink>
 			) : (
-				capString(props.breadcrumb.current.word)
+				capString(word.word)
 			)}{' '}
-			{props.breadcrumb.current.reading && (
-				<span>{props.breadcrumb.current.reading}</span>
-			)}
+			{word.reading && <span>{word.reading}</span>}
 		</div>
 	);
 
@@ -75,34 +74,36 @@ const WordItem = props => {
 		<div>
 			<div className="WordItem__header">
 				<h2>{wordPreviewHeaderContent}</h2>
-				<button
-					className={
-						listed(props)
-							? 'WordItem__button button WordItem__button--listed'
-							: 'WordItem__button button'
-					}
-					onClick={() => {
-						listed(props)
-							? props.dispatch(removeWord(props.breadcrumb.current.word))
-							: props.dispatch(
-									addWord({
-										...props.breadcrumb.current
-									})
-							  );
-					}}
-				>
-					<span>
-						{listed(props) ? (
-							<i className="material-icons">delete</i>
-						) : (
-							<i className="material-icons">add</i>
-						)}
-						{listed(props) ? 'Remove from WordBook' : 'Add to WordBook'}
-					</span>
-				</button>
+				{props.page === 'search' && (
+					<button
+						className={
+							listed(props)
+								? 'WordItem__button button WordItem__button--listed'
+								: 'WordItem__button button'
+						}
+						onClick={() => {
+							listed(props)
+								? props.dispatch(removeWord(word.word))
+								: props.dispatch(
+										addWord({
+											...word
+										})
+								  );
+						}}
+					>
+						<span>
+							{listed(props) ? (
+								<i className="material-icons">delete</i>
+							) : (
+								<i className="material-icons">add</i>
+							)}
+							{listed(props) ? 'Remove from WordBook' : 'Add to WordBook'}
+						</span>
+					</button>
+				)}
 			</div>
 			<ul className="WordItem__meanings">
-				{props.breadcrumb.current.meanings.map((meaning, meaningId) => (
+				{word.meanings.map((meaning, meaningId) => (
 					<li key={meaningId}>
 						{meaning.split(', ').map((e, i) => (
 							<div key={i}>
@@ -116,15 +117,13 @@ const WordItem = props => {
 								</span>
 							</div>
 						))}
-						{meaningId + 1 < props.breadcrumb.current.meanings.length && (
-							<b>-</b>
-						)}
+						{meaningId + 1 < word.meanings.length && <b>-</b>}
 					</li>
 				))}
 			</ul>
 			<hr />
-			{props.breadcrumb.current.examples.length > 0 ? (
-				<WordExamplesList />
+			{word.examples.length > 0 ? (
+				<WordExamplesList word={word} />
 			) : (
 				<p>No examples found for this word...</p>
 			)}
@@ -135,6 +134,3 @@ const WordItem = props => {
 const mapStateToProps = state => state;
 
 export default connect(mapStateToProps)(WordItem);
-
-/*
-*/

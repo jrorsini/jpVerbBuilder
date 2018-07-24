@@ -16,17 +16,16 @@ import {
 import { tokenize } from 'kuromojin';
 
 const ExampleList = props => {
+	const word = props.word;
 	const englishTokenizedExample = ex =>
 		ex.map((w, i) => (
 			<span
 				className={`exampleList__example__word ${
-					w.toLowerCase() === props.breadcrumb.current.word.toLowerCase()
+					w.toLowerCase() === word.word.toLowerCase()
 						? 'exampleList__example__word--highlighted'
 						: ''
 				}`}
-				onClick={() =>
-					w !== props.breadcrumb.current.word && searchHandler(w, props)
-				}
+				onClick={() => w !== word.word && searchHandler(w, props)}
 				key={i}
 			>
 				{w.toLowerCase()}
@@ -37,15 +36,13 @@ const ExampleList = props => {
 		ex.map((e, i) => (
 			<span
 				className={`exampleList__example__kanji ${
-					e.surface_form.toLowerCase() ===
-					props.breadcrumb.current.word.toLowerCase()
+					e.surface_form.toLowerCase() === word.word.toLowerCase()
 						? 'exampleList__example__kanji--highlighted'
 						: ''
 				}`}
 				key={i}
 				onClick={() =>
-					e.surface_form !== props.breadcrumb.current.word &&
-					searchHandler(e.surface_form, props)
+					e.surface_form !== word.word && searchHandler(e.surface_form, props)
 				}
 			>
 				{e.surface_form}
@@ -54,15 +51,15 @@ const ExampleList = props => {
 
 	return (
 		<ul className="exampleList">
-			{props.breadcrumb.current.examples.map((example, exampleId) => (
+			{word.examples.map((example, exampleId) => (
 				<li className="exampleList__example" key={exampleId}>
 					<p className="exampleList__example--original">
-						{isEnglish(props.breadcrumb.current.word)
+						{isEnglish(word.word)
 							? englishTokenizedExample(example.original)
 							: japaneseTokenizedExample(example.original)}
 					</p>
 					<p className="exampleList__example--translated">
-						{!isEnglish(props.breadcrumb.current.word)
+						{!isEnglish(word.word)
 							? englishTokenizedExample(example.translated)
 							: japaneseTokenizedExample(example.translated)}
 					</p>
