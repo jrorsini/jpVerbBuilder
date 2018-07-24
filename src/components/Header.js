@@ -13,7 +13,7 @@ const Header = () => (
 						exact={true}
 						className="header__link"
 						activeClassName="header__link--active"
-						to="/"
+						to="/search"
 					>
 						<i className="material-icons">search</i>
 						Search
@@ -23,7 +23,7 @@ const Header = () => (
 					<NavLink
 						className="header__link"
 						activeClassName="header__link--active"
-						to="/list"
+						to="/wordbook"
 					>
 						<i className="material-icons">filter_list</i>
 						WordBook

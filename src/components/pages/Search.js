@@ -19,7 +19,7 @@ import { setErrorTxt } from '../../actions/errorMessage';
 	Search engine looking for words
  */
 
-const SearchPage = props => {
+const Search = props => {
 	return (
 		<div className="container">
 			<SearchBar />
@@ -33,4 +33,4 @@ const SearchPage = props => {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(SearchPage);
+export default connect(mapStateToProps)(Search);

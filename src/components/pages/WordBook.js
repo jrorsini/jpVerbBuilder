@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 import { removeWord } from '../../actions/verbs';
 
-const List = props => (
+const WordBook = props => (
 	<div className="container">
 		{props.words.length > 0 ? (
 			<ul>
@@ -32,4 +32,4 @@ const mapStateToProps = state => {
 	return state;
 };
 
-export default connect(mapStateToProps)(List);
+export default connect(mapStateToProps)(WordBook);

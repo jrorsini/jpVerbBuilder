@@ -1,11 +1,11 @@
 import React from 'react';
 import Header from './components/Header';
-import ListPage from './components/pages/ListPage';
-import SearchPage from './components/pages/SearchPage';
+import WordBook from './components/pages/WordBook';
+import Search from './components/pages/Search';
 import VideosPage from './components/pages/VideosPage';
 import VideoPage from './components/pages/VideoPage';
 import WordPracticePage from './components/pages/WordPracticePage';
-import WordPage from './components/pages/WordPage';
+import WordDetails from './components/pages/WordDetails';
 import configureStore from './store/configureStore';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
@@ -60,11 +60,11 @@ const App = () => (
 	<Router>
 		<div>
 			<Header />
-			<Route exact path="/" component={SearchPage} />
-			<Route path="/list" component={ListPage} />
+			<Route exact path="/search" component={Search} />
+			<Route path="/wordbook" component={WordBook} />
 			<Route path="/videos" component={VideosPage} />
 			<Route path="/word-practice" component={WordPracticePage} />
-			<Route path="/word/:word" component={WordPage} />
+			<Route path="/word/:word" component={WordDetails} />
 			<Route path="/video/:video" component={VideoPage} />
 		</div>
 	</Router>
