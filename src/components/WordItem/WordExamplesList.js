@@ -37,13 +37,13 @@ const ExampleList = props => {
 	const japaneseTokenizedExample = ex =>
 		ex.map((e, i) => (
 			<span
-				className={`exampleList__example__kanji ${
+				className={`exampleList__example__jap ${
 					e.surface_form.toLowerCase() === word.word.toLowerCase()
-						? 'exampleList__example__kanji--highlighted'
+						? 'exampleList__example__word--highlighted'
 						: ''
 				} ${
 					isKatakana(e.surface_form)
-						? 'exampleList__example__kanji--katakana'
+						? 'exampleList__example__word--katakana'
 						: ''
 				}`}
 				key={i}

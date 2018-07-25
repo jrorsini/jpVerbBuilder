@@ -33,7 +33,7 @@
 	}
 }
 
-.exampleList__example__kanji {
+.exampleList__example__jap {
 	margin-right: 2px;
 	display: inline-block;
 	transition: 0.1s all ease;
@@ -43,11 +43,11 @@
 	}
 }
 
-.exampleList__example__kanji--katakana {
+.exampleList__example__word--katakana {
 	font-weight: bold;
 }
 
-.exampleList__example__kanji--highlighted {
+.exampleList__example__jap--highlighted {
 	color: rgba(255, 255, 255, 0.9);
 	&:hover {
 		text-decoration: none;
