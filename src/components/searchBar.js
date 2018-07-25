@@ -10,14 +10,17 @@ const searchBar = props => {
 	return (
 		<form
 			onSubmit={e => {
-				searchHandler(e, props);
+				const regex = new RegExp('[-=!"~}{`]', 'g');
+				const input = e.target.elements.wordSearchBar.value;
+				console.log(input.match(regex));
+				input.match(regex) === null && searchHandler(e, props);
 				e.preventDefault();
 			}}
 		>
 			<span>{props.errorMessage}</span>
 			<p className="searchBar__container">
 				<input
-					name="verbSearchBar"
+					name="wordSearchBar"
 					className="searchBar__bar"
 					autoComplete="off"
 					onChange={() => {}}

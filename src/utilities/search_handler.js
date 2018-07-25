@@ -22,7 +22,7 @@ export const searchHandler = (event, props) => {
 	const dispatch = props.dispatch;
 	const word =
 		typeof event !== 'string'
-			? event.target.elements.verbSearchBar.value
+			? event.target.elements.wordSearchBar.value
 			: event;
 	let isInBreadCrumb = false;
 
@@ -34,7 +34,6 @@ export const searchHandler = (event, props) => {
 			dispatch(setCurrentPanel(isInBreadCrumb));
 			dispatch(setErrorTxt(null));
 		} else {
-			console.log('show loader');
 			dispatch(showLoading());
 			search(word)
 				.then(res => {
@@ -54,5 +53,5 @@ export const searchHandler = (event, props) => {
 		dispatch(setErrorTxt('You must input something. 入力して頂きませんか'));
 	}
 
-	document.getElementsByName('verbSearchBar')[0].value = '';
+	document.getElementsByName('wordSearchBar')[0].value = '';
 };

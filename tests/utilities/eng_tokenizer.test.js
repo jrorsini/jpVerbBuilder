@@ -1,4 +1,9 @@
 import { isEnglish, engTokenize } from '../../src/utilities/eng_tokenizer';
+const containSpecialChar = s => {
+	const regex = new RegExp('[-=!}{@`~|><=#?^_]', 'g');
+	// "#$%&'()*+,./:;?[\]`|~
+	return s.match(regex) === null ? false : true;
+};
 
 test('It should say the sentence is written in English', () => {
 	expect(isEnglish('Well, well!')).toBe(true);
@@ -11,4 +16,30 @@ test('It should say the sentence is written in Japanese', () => {
 	expect(isEnglish('俺の名前はtJean。')).toBe(false);
 	expect(isEnglish('俺の名前はジャン.')).toBe(false);
 	expect(isEnglish('「miptest（mip検査）」とも呼ばれる。')).toBe(false);
+});
+
+test('It should say that some special characters are being inputed', () => {
+	expect(containSpecialChar('-')).toBe(true);
+	expect(containSpecialChar('=')).toBe(true);
+	expect(containSpecialChar('!')).toBe(true);
+	expect(containSpecialChar('}')).toBe(true);
+	expect(containSpecialChar('{')).toBe(true);
+	expect(containSpecialChar('|')).toBe(true);
+	expect(containSpecialChar('~')).toBe(true);
+	expect(containSpecialChar('>')).toBe(true);
+	expect(containSpecialChar('<')).toBe(true);
+	expect(containSpecialChar('=')).toBe(true);
+	expect(containSpecialChar('@')).toBe(true);
+	expect(containSpecialChar('#')).toBe(true);
+	expect(containSpecialChar('?')).toBe(true);
+	expect(containSpecialChar('^')).toBe(true);
+	expect(containSpecialChar('_')).toBe(true);
+	expect(containSpecialChar('`')).toBe(true);
+	expect(containSpecialChar('_')).toBe(true);
+	expect(containSpecialChar('_')).toBe(true);
+	expect(containSpecialChar('_')).toBe(true);
+	expect(containSpecialChar('_')).toBe(true);
+	expect(containSpecialChar('_')).toBe(true);
+
+	expect(containSpecialChar('test')).toBe(false);
 });
