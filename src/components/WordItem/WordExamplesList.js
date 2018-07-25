@@ -66,11 +66,11 @@ const ExampleList = props => {
 						speechPart[e.pos] === 'verb' ||
 						speechPart[e.pos] === 'noun' ||
 						speechPart[e.pos] === 'adjective'
-							? 'exampleList__example__jap'
+							? 'exampleList__example__jap '
 							: ''
 					}${
-						e.surface_form.toLowerCase() === word.word.toLowerCase()
-							? 'exampleList__example__jap--highlighted'
+						e.surface_form === word.word
+							? 'exampleList__example__jap--highlighted '
 							: ''
 					}${
 						isKatakana(e.surface_form)
