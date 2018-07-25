@@ -2,6 +2,7 @@
 import { extendPanel, setCurrentPanel } from '../actions/breadcrumb';
 import { setErrorTxt } from '../actions/errorMessage';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
+import { containSpecialChar } from './eng_tokenizer';
 
 const search = word =>
 	new Promise((resolve, reject) => {
@@ -30,24 +31,28 @@ export const searchHandler = (event, props) => {
 		if (e.word.toLowerCase() === word.toLowerCase()) isInBreadCrumb = e;
 	});
 	if (word) {
-		if (isInBreadCrumb !== false) {
-			dispatch(setCurrentPanel(isInBreadCrumb));
-			dispatch(setErrorTxt(null));
+		if (containSpecialChar(word)) {
+			dispatch(setErrorTxt('Your search contained unvalid characters'));
 		} else {
-			dispatch(showLoading());
-			search(word)
-				.then(res => {
-					if (JSON.parse(res).word !== '') {
-						dispatch(setCurrentPanel({ ...JSON.parse(res) }));
-						dispatch(extendPanel({ ...JSON.parse(res) }));
-						dispatch(setErrorTxt(null));
-						dispatch(hideLoading());
-					} else {
-						dispatch(setErrorTxt(`Apologies,  ${word} could not be found`));
-						dispatch(hideLoading());
-					}
-				})
-				.catch(err => dispatch(setErrorTxt(err)));
+			if (isInBreadCrumb !== false) {
+				dispatch(setCurrentPanel(isInBreadCrumb));
+				dispatch(setErrorTxt(null));
+			} else {
+				dispatch(showLoading());
+				search(word)
+					.then(res => {
+						if (JSON.parse(res).word !== '') {
+							dispatch(setCurrentPanel({ ...JSON.parse(res) }));
+							dispatch(extendPanel({ ...JSON.parse(res) }));
+							dispatch(setErrorTxt(null));
+							dispatch(hideLoading());
+						} else {
+							dispatch(setErrorTxt(`Apologies,  ${word} could not be found`));
+							dispatch(hideLoading());
+						}
+					})
+					.catch(err => dispatch(setErrorTxt(err)));
+			}
 		}
 	} else {
 		dispatch(setErrorTxt('You must input something. 入力して頂きませんか'));

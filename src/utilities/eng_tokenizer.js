@@ -2,6 +2,11 @@ const replacer = match => {
 	return match.trim() !== '' ? ` ${match} ` : ' ';
 };
 
+export const containSpecialChar = s => {
+	const regex = new RegExp('["\'-=!}{@`?~|/><=#?^_*+,.\\]\\[:;#$%&)(]', 'g');
+	return s.match(regex) === null ? false : true;
+};
+
 export const isEnglish = txt =>
 	txt.match(
 		/[^a-z/\s/(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|\"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)]/gi

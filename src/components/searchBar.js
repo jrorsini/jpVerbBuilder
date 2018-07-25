@@ -10,10 +10,7 @@ const searchBar = props => {
 	return (
 		<form
 			onSubmit={e => {
-				const regex = new RegExp('[-=!"~}{`]', 'g');
-				const input = e.target.elements.wordSearchBar.value;
-				console.log(input.match(regex));
-				input.match(regex) === null && searchHandler(e, props);
+				searchHandler(e, props);
 				e.preventDefault();
 			}}
 		>
