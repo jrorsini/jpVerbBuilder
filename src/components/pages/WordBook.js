@@ -21,7 +21,7 @@ const WordBook = props => (
 		) : (
 			<p className="wordBook__info">
 				No words in your bookmark. To look for a word go to the{' '}
-				<NavLink to="/" className="wordBook__info__link">
+				<NavLink to="/search" className="wordBook__info__link">
 					search
 				</NavLink>
 			</p>
