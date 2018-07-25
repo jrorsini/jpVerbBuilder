@@ -1,4 +1,8 @@
-import { isEnglish, engTokenize } from '../../src/utilities/eng_tokenizer';
+import {
+	isEnglish,
+	engTokenize,
+	containSpecialChar
+} from '../../src/utilities/eng_tokenizer';
 
 test('It should say the sentence is written in English', () => {
 	expect(isEnglish('Well, well!')).toBe(true);

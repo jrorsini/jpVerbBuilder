@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 // ACTIONS
 import { setCurrentPanel } from '../../actions/breadcrumb';
 
+import { isKatakana } from 'wanakana';
+
 // UTILITIES
 import { searchHandler } from '../../utilities/search_handler';
 import {
@@ -38,6 +40,10 @@ const ExampleList = props => {
 				className={`exampleList__example__kanji ${
 					e.surface_form.toLowerCase() === word.word.toLowerCase()
 						? 'exampleList__example__kanji--highlighted'
+						: ''
+				} ${
+					isKatakana(e.surface_form)
+						? 'exampleList__example__kanji--katakana'
 						: ''
 				}`}
 				key={i}

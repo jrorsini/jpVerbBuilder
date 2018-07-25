@@ -43,6 +43,10 @@
 	}
 }
 
+.exampleList__example__kanji--katakana {
+	font-weight: bold;
+}
+
 .exampleList__example__kanji--highlighted {
 	color: rgba(255, 255, 255, 0.9);
 	&:hover {
