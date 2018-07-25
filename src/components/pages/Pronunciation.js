@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { toKatakana } from 'wanakana';
 import { setHiragana } from '../../actions/pronunciation';
 
 const hiraganaString =
@@ -16,7 +17,7 @@ const Pronunciation = props => {
 		started = true;
 		const int = setInterval(() => {
 			console.log(hiraganaString[iterator]);
-			props.dispatch(setHiragana(hiraganaString[iterator]));
+			props.dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
 			iterator++;
 			if (iterator > 25) {
 				console.log('object');
