@@ -35,25 +35,27 @@ const ExampleList = props => {
 		));
 
 	const japaneseTokenizedExample = ex =>
-		ex.map((e, i) => (
-			<span
-				className={`exampleList__example__jap ${
-					e.surface_form.toLowerCase() === word.word.toLowerCase()
-						? 'exampleList__example__word--highlighted'
-						: ''
-				} ${
-					isKatakana(e.surface_form)
-						? 'exampleList__example__word--katakana'
-						: ''
-				}`}
-				key={i}
-				onClick={() =>
-					e.surface_form !== word.word && searchHandler(e.surface_form, props)
-				}
-			>
-				{e.surface_form}
-			</span>
-		));
+		ex.map((e, i) => {
+			return (
+				<span
+					className={` ${
+						e.surface_form.toLowerCase() === word.word.toLowerCase()
+							? 'exampleList__example__jap--highlighted'
+							: ''
+					} ${
+						isKatakana(e.surface_form)
+							? 'exampleList__example__jap--katakana'
+							: ''
+					}`}
+					key={i}
+					onClick={() =>
+						e.surface_form !== word.word && searchHandler(e.surface_form, props)
+					}
+				>
+					{e.surface_form}
+				</span>
+			);
+		});
 
 	return (
 		<ul className="exampleList">
