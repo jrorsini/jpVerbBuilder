@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { removeWord } from '../../actions/verbs';
+import { setHiragana } from '../../actions/pronunciation';
 
-const hiraganaString = 'あいうえおいうえおあうえおあ';
+const hiraganaString =
+	'あいうえおいうえおあうえおあいえおあいうおあいうえ-かきくけこ-きくけこか-くけこかき-けこかきく-こかきくけ';
 // かきくけこ;
 // さしすせそ;
 // たちつてと;
@@ -11,12 +12,13 @@ const hiraganaString = 'あいうえおいうえおあうえおあ';
 const Pronunciation = props => {
 	let started = false;
 	const start = () => {
-		let iterator = 1;
+		let iterator = 0;
 		started = true;
 		const int = setInterval(() => {
 			console.log(hiraganaString[iterator]);
+			props.dispatch(setHiragana(hiraganaString[iterator]));
 			iterator++;
-			if (iterator > 11) {
+			if (iterator > 25) {
 				console.log('object');
 				started = false;
 				clearInterval(int);
@@ -32,12 +34,17 @@ const Pronunciation = props => {
 			</p>
 			<button
 				onClick={() => {
+					!started && start();
 					started = true;
-					started && start();
 				}}
 			>
 				start
 			</button>
+			{props.pronunciation.current ? (
+				<p>{props.pronunciation.current}</p>
+			) : (
+				<p>あ</p>
+			)}
 		</div>
 	);
 };
