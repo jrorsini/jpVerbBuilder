@@ -5,6 +5,7 @@ import Search from './components/pages/Search';
 import VideosPage from './components/pages/VideosPage';
 import VideoPage from './components/pages/VideoPage';
 import WordPracticePage from './components/pages/WordPracticePage';
+import Pronunciation from './components/pages/Pronunciation';
 import WordDetails from './components/pages/WordDetails';
 import configureStore from './store/configureStore';
 import LoadingBar from 'react-redux-loading-bar';
@@ -64,6 +65,7 @@ const App = () => (
 			<Route exact path="/search" component={Search} />
 			<Route path="/wordbook" component={WordBook} />
 			<Route path="/videos" component={VideosPage} />
+			<Route path="/practice/pronunciation" component={Pronunciation} />
 			<Route path="/word-practice" component={WordPracticePage} />
 			<Route path="/word/:word" component={WordDetails} />
 			<Route path="/video/:video" component={VideoPage} />

@@ -15,6 +15,17 @@ const Header = () => (
 						exact={true}
 						className="header__link"
 						activeClassName="header__link--active"
+						to="/practice/pronunciation"
+					>
+						<i className="material-icons">record_voice_over</i>
+						Pronunciation
+					</NavLink>
+				</li>
+				<li className="header__item">
+					<NavLink
+						exact={true}
+						className="header__link"
+						activeClassName="header__link--active"
 						to="/search"
 					>
 						<i className="material-icons">search</i>
