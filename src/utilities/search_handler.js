@@ -27,13 +27,14 @@ export const searchHandler = (event, props) => {
 	let isInBreadCrumb = false;
 
 	props.breadcrumb.panels.map(e => {
-		if (e.word === word) isInBreadCrumb = e;
+		if (e.word.toLowerCase() === word.toLowerCase()) isInBreadCrumb = e;
 	});
 	if (word) {
 		if (isInBreadCrumb !== false) {
 			dispatch(setCurrentPanel(isInBreadCrumb));
 			dispatch(setErrorTxt(null));
 		} else {
+			console.log('show loader');
 			dispatch(showLoading());
 			search(word)
 				.then(res => {
