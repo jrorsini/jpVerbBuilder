@@ -3,14 +3,19 @@ import { connect } from 'react-redux';
 
 import { removeWord } from '../../actions/verbs';
 
-let count = 0;
 const Pronunciation = props => {
-	while (count < 11) {
-		setTimeout(() => {
-			count++;
+	const stared = (() => {
+		let count = 0;
+		const int = setInterval(() => {
 			console.log(count);
-		}, 1000);
-	}
+			count++;
+			if (count > 11) {
+				console.log('object');
+				clearInterval(int);
+			}
+		}, 500);
+	})();
+
 	return (
 		<div className="container">
 			<p>Pronunciation</p>
