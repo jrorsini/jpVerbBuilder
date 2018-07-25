@@ -1,8 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import LoadingBar from 'react-redux-loading-bar';
 
 const Header = () => (
 	<div className="header">
+		<LoadingBar style={{ height: '3px', zIndex: 999 }} className="loading" />
 		<div className="container">
 			<NavLink exact={true} className="header__link--home" to="/">
 				<h1 className="header__title">JRpan</h1>

@@ -1,6 +1,7 @@
 // ACTIONS
 import { extendPanel, setCurrentPanel } from '../actions/breadcrumb';
 import { setErrorTxt } from '../actions/errorMessage';
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
 
 const search = word =>
 	new Promise((resolve, reject) => {
@@ -33,14 +34,17 @@ export const searchHandler = (event, props) => {
 			dispatch(setCurrentPanel(isInBreadCrumb));
 			dispatch(setErrorTxt(null));
 		} else {
+			dispatch(showLoading());
 			search(word)
 				.then(res => {
 					if (JSON.parse(res).word !== '') {
 						dispatch(setCurrentPanel({ ...JSON.parse(res) }));
 						dispatch(extendPanel({ ...JSON.parse(res) }));
 						dispatch(setErrorTxt(null));
+						dispatch(hideLoading());
 					} else {
 						dispatch(setErrorTxt(`Apologies,  ${word} could not be found`));
+						dispatch(hideLoading());
 					}
 				})
 				.catch(err => dispatch(setErrorTxt(err)));

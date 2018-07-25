@@ -7,6 +7,7 @@ import VideoPage from './components/pages/VideoPage';
 import WordPracticePage from './components/pages/WordPracticePage';
 import WordDetails from './components/pages/WordDetails';
 import configureStore from './store/configureStore';
+import LoadingBar from 'react-redux-loading-bar';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { tokenize, getTokenizer } from 'kuromojin';
