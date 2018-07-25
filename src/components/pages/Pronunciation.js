@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { removeWord } from '../../actions/verbs';
 
-const arr = ['あいうえおいうえおあうえおあ'];
+const hiraganaString = 'あいうえおいうえおあうえおあ';
 // かきくけこ;
 // さしすせそ;
 // たちつてと;
@@ -11,17 +11,17 @@ const arr = ['あいうえおいうえおあうえおあ'];
 const Pronunciation = props => {
 	let started = false;
 	const start = () => {
-		let count = 0;
+		let iterator = 1;
 		started = true;
 		const int = setInterval(() => {
-			console.log(count);
-			count++;
-			if (count > 11) {
+			console.log(hiraganaString[iterator]);
+			iterator++;
+			if (iterator > 11) {
 				console.log('object');
 				started = false;
 				clearInterval(int);
 			}
-		}, 500);
+		}, 1000);
 	};
 
 	return (
@@ -33,7 +33,7 @@ const Pronunciation = props => {
 			<button
 				onClick={() => {
 					started = true;
-					start();
+					started && start();
 				}}
 			>
 				start
