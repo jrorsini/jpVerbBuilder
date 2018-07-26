@@ -35,6 +35,7 @@ const hiraganaString =
 	hirD +
 	hirB +
 	hirP;
+
 console.log(hiraganaString.length);
 
 const Pronunciation = props => {
@@ -71,7 +72,7 @@ const Pronunciation = props => {
 				props.dispatch(setHiragana(null));
 				clearInterval(int);
 			}
-		}, 1200);
+		}, 1500);
 	};
 
 	return (
