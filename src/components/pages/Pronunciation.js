@@ -40,15 +40,17 @@ console.log(hiraganaString.length);
 const Pronunciation = props => {
 	let started = false;
 	const start = () => {
-		let iterator = 0;
+		let iterator = 1;
 		started = true;
+		props.dispatch(setHiragana(toKatakana(hiraganaString[0])));
 		const int = setInterval(() => {
 			console.log(hiraganaString[iterator]);
 			props.dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
 			iterator++;
-			if (iterator > 125) {
+			if (iterator > 5) {
 				console.log('object');
 				started = false;
+				props.dispatch(setHiragana(null));
 				clearInterval(int);
 			}
 		}, 1200);
@@ -60,21 +62,21 @@ const Pronunciation = props => {
 				Your Pronunciation practice is about to begin, get yourself ready for a
 				couple minute then click on the start button
 			</p>
-			<button
-				className="button"
-				onClick={() => {
-					!started && start();
-					started = true;
-				}}
-			>
-				<p>
-					<span>start</span>
-				</p>
-			</button>
+
 			{props.pronunciation.current ? (
-				<p>{props.pronunciation.current}</p>
+				<p className="pronunciation__current">{props.pronunciation.current}</p>
 			) : (
-				<p>ア</p>
+				<button
+					className="button button--pronunciation"
+					onClick={() => {
+						!started && start();
+						started = true;
+					}}
+				>
+					<p>
+						<span>start</span>
+					</p>
+				</button>
 			)}
 		</div>
 	);
