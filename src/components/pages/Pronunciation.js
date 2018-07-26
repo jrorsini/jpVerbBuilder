@@ -98,11 +98,11 @@ const Pronunciation = props => {
 						</p>
 					</button>
 					<ReactCSSTransitionGroup
-						className={`pronunciation__current ${
+						/* className={`pronunciation__current ${
 							props.pronunciation.current.length > 1
 								? 'pronunciation__current--smaller'
 								: ''
-						}`}
+						}`} */
 						transitionName="example"
 						transitionAppear={true}
 						transitionAppearTimeout={200}
@@ -125,7 +125,9 @@ const Pronunciation = props => {
 						onClick={() => {
 							dispatch(startDrill());
 							console.log(props.pronunciation);
-							startDrillOne();
+							{
+								/* startDrillOne(); */
+							}
 						}}
 					>
 						<p>
@@ -137,7 +139,9 @@ const Pronunciation = props => {
 						onClick={() => {
 							dispatch(startDrill());
 							console.log(props.pronunciation);
-							startDrillTwo();
+							{
+								/* startDrillTwo(); */
+							}
 						}}
 					>
 						<p>
