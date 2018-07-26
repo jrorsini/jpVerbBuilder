@@ -43,17 +43,17 @@ const Pronunciation = props => {
 		let iterator = 1;
 		started = true;
 		props.dispatch(setHiragana(toKatakana(hiraganaString[0])));
-		// const int = setInterval(() => {
-		// 	console.log(hiraganaString[iterator]);
-		// 	props.dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
-		// 	iterator++;
-		// 	if (iterator > 5) {
-		// 		console.log('object');
-		// 		started = false;
-		// 		props.dispatch(setHiragana(null));
-		// 		clearInterval(int);
-		// 	}
-		// }, 1200);
+		const int = setInterval(() => {
+			console.log(hiraganaString[iterator]);
+			props.dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
+			iterator++;
+			if (iterator > 5) {
+				console.log('object');
+				started = false;
+				props.dispatch(setHiragana(null));
+				clearInterval(int);
+			}
+		}, 1200);
 	};
 
 	return (

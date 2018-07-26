@@ -1,5 +1,5 @@
 .button--pronunciation {
-	margin: 0 auto;
+	margin: $l-size auto 0 auto;
 	border-radius: 3px;
 }
 
@@ -15,7 +15,7 @@
 	background: #fff;
 	border-radius: 10px;
 	padding: $s-size;
-	top: $s-size;
+	top: $l-size + $l-size + $l-size + $l-size;
 	position: relative;
 }
 
