@@ -39,7 +39,7 @@ console.log(hiraganaString.length);
 
 const Pronunciation = props => {
 	let started = false;
-	const start = () => {
+	const startDrillOne = () => {
 		let iterator = 1;
 		started = true;
 		props.dispatch(setHiragana(toKatakana(hiraganaString[0])));
@@ -47,6 +47,23 @@ const Pronunciation = props => {
 			console.log(hiraganaString[iterator]);
 			props.dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
 			iterator++;
+			if (iterator > 5) {
+				console.log('object');
+				started = false;
+				props.dispatch(setHiragana(null));
+				clearInterval(int);
+			}
+		}, 1200);
+	};
+
+	const startDrillTwo = () => {
+		let iterator = 1;
+		started = true;
+		props.dispatch(setHiragana(toKatakana(hiraganaString[0])));
+		const int = setInterval(() => {
+			console.log(hiraganaString[iterator]);
+			props.dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
+			iterator += 5;
 			if (iterator > 5) {
 				console.log('object');
 				started = false;
@@ -71,17 +88,30 @@ const Pronunciation = props => {
 					<span> {props.pronunciation.current}</span>
 				</p>
 			) : (
-				<button
-					className="button button--pronunciation"
-					onClick={() => {
-						!started && start();
-						started = true;
-					}}
-				>
-					<p>
-						<span>Start</span>
-					</p>
-				</button>
+				<div>
+					<button
+						className="button button--pronunciation"
+						onClick={() => {
+							!started && startDrillOne();
+							started = true;
+						}}
+					>
+						<p>
+							<span>Start Drill 1</span>
+						</p>
+					</button>
+					<button
+						className="button button--pronunciation"
+						onClick={() => {
+							!started && startDrillTwo();
+							started = true;
+						}}
+					>
+						<p>
+							<span>Start Drill 2</span>
+						</p>
+					</button>
+				</div>
 			)}
 		</div>
 	);
