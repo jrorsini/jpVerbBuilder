@@ -3,12 +3,39 @@ import { connect } from 'react-redux';
 import { toKatakana } from 'wanakana';
 import { setHiragana } from '../../actions/pronunciation';
 
+const hira = 'あいうえおいうえおあうえおあいえおあいうおあいうえ';
+const hirK = 'かきくけこきくけこかくけこかきけこかきくこかきくけ';
+const hirS = 'さしすせそしすせそさすせそさしせそさしすそさしすせ';
+const hirT = 'たちつてとちつてとたつてとたちてとたちつとたちつて';
+const hirN = 'なにぬねのにぬねのなぬねのなにねのなにぬのなにぬね';
+const hirH = 'はひふへほひふへほはふへほはひへほはひふほはひふへ';
+const hirM = 'まみむめもみむめもまむめもまみめもまみむもまみむめ';
+const hirY = 'やいゆえよいゆえよやゆえよやいえよやいゆよやいゆえ';
+const hirR = 'らりるれろりるれろらるれろらりれろらりるろらりるれ';
+const hirW = 'わいうえおいうえおわうえおわいえおわいうおわいうえ';
+const hirG = 'がぎぐげごぎぐげごがぐげごがぎげごがぎぐごがぎぐげ';
+const hirZ = 'ざジずぜぞジずぜぞざずぜぞざジぜぞざジずぞざジずぜ';
+const hirD = 'だぢづでどぢづでどだづでどだぢでどだぢづどだぢづで';
+const hirB = 'ばびぶべぼびぶべぼばぶべぼばびべぼばびぶぼばびぶべ';
+const hirP = 'ぱぴぷぺぽぴぷぺぽぱぷぺぽぱぴぺぽぱぴぷぽぱぴぷぺ';
+
 const hiraganaString =
-	'あいうえおいうえおあうえおあいえおあいうおあいうえ-かきくけこ-きくけこか-くけこかき-けこかきく-こかきくけ';
-// かきくけこ;
-// さしすせそ;
-// たちつてと;
-// なにぬねの;
+	hira +
+	hirK +
+	hirS +
+	hirT +
+	hirN +
+	hirH +
+	hirM +
+	hirY +
+	hirR +
+	hirW +
+	hirG +
+	hirZ +
+	hirD +
+	hirB +
+	hirP;
+console.log(hiraganaString.length);
 
 const Pronunciation = props => {
 	let started = false;
@@ -19,12 +46,12 @@ const Pronunciation = props => {
 			console.log(hiraganaString[iterator]);
 			props.dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
 			iterator++;
-			if (iterator > 25) {
+			if (iterator > 125) {
 				console.log('object');
 				started = false;
 				clearInterval(int);
 			}
-		}, 1000);
+		}, 1200);
 	};
 
 	return (
@@ -34,17 +61,20 @@ const Pronunciation = props => {
 				couple minute then click on the start button
 			</p>
 			<button
+				className="button"
 				onClick={() => {
 					!started && start();
 					started = true;
 				}}
 			>
-				start
+				<p>
+					<span>start</span>
+				</p>
 			</button>
 			{props.pronunciation.current ? (
 				<p>{props.pronunciation.current}</p>
 			) : (
-				<p>あ</p>
+				<p>ア</p>
 			)}
 		</div>
 	);

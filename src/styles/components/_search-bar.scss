@@ -18,16 +18,3 @@
 .searchBar__button {
 	padding: 0 $m-size;
 }
-
-.searchBar__button p {
-	margin: 0;
-	align-items: center;
-	display: flex;
-}
-
-.searchBar__button span,
-.searchBar__button i {
-	background: -webkit-linear-gradient(#38ef7d, #11998e);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-}

@@ -27,6 +27,19 @@
 	align-items: center;
 }
 
+.button p {
+	margin: 0;
+	align-items: center;
+	display: flex;
+}
+
+.button span,
+.button i {
+	background: -webkit-linear-gradient(#38ef7d, #11998e);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
 .button i {
 	margin-right: $s-size - 0.5rem;
 }

@@ -52,14 +52,6 @@ const ExampleList = props => {
 
 	const japaneseTokenizedExample = ex =>
 		ex.map((e, i) => {
-			if (
-				speechPart[e.pos] === 'verb' ||
-				speechPart[e.pos] === 'noun' ||
-				speechPart[e.pos] === 'adjective'
-			) {
-				console.log(e);
-			}
-
 			return (
 				<span
 					className={`${
