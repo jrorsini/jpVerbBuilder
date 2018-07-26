@@ -45,10 +45,12 @@ const hiraganaString =
 
 const Pronunciation = props => {
 	const dispatch = props.dispatch;
+	const pronunciation = props.pronunciation;
 
 	const startDrillOne = () => {
 		let iterator = 1;
 		dispatch(setHiragana(toKatakana(hiraganaString[0])));
+		console.log(pronunciation);
 		const int = setInterval(() => {
 			dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
 			iterator++;
@@ -86,21 +88,23 @@ const Pronunciation = props => {
 				showing up.
 			</p>
 
-			{props.pronunciation.started === true ? (
+			{pronunciation.started === true ? (
 				<div>
-					<button
-						className="button button--pronunciation"
-						onClick={() => {
-							dispatch(stopDrill());
-						}}
-					>
-						<p>
-							<span>Stop Drill</span>
-						</p>
-					</button>
+					<div className="pronunciation__drillWrapper">
+						<button
+							className="button button--pronunciation"
+							onClick={() => {
+								dispatch(stopDrill());
+							}}
+						>
+							<p>
+								<span>Stop Drill</span>
+							</p>
+						</button>
+					</div>
 					<ReactCSSTransitionGroup
 						className={`pronunciation__current ${
-							props.pronunciation.current.length > 1
+							pronunciation.current.length > 1
 								? 'pronunciation__current--smaller'
 								: ''
 						}`}
@@ -110,12 +114,12 @@ const Pronunciation = props => {
 						transitionEnter={false}
 						transitionLeave={false}
 					>
-						{props.pronunciation.current.length > 1 ? (
-							props.pronunciation.current
+						{pronunciation.current.length > 1 ? (
+							pronunciation.current
 								.split('')
 								.map((e, i) => <span key={i}>{e}</span>)
 						) : (
-							<span key="single">{props.pronunciation.current}</span>
+							<span key="single">{pronunciation.current}</span>
 						)}
 					</ReactCSSTransitionGroup>
 				</div>
@@ -125,7 +129,6 @@ const Pronunciation = props => {
 						className="button button--pronunciation"
 						onClick={() => {
 							dispatch(startDrill());
-							console.log(props.pronunciation);
 							startDrillOne();
 						}}
 					>
@@ -137,7 +140,6 @@ const Pronunciation = props => {
 						className="button button--pronunciation"
 						onClick={() => {
 							dispatch(startDrill());
-							console.log(props.pronunciation);
 							startDrillTwo();
 						}}
 					>
