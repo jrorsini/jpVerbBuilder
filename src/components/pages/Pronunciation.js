@@ -41,17 +41,21 @@ const hiraganaString =
 
 const Pronunciation = props => {
 	let started = false;
+
 	const startDrillOne = () => {
 		let iterator = 1;
 		started = true;
 		props.dispatch(setHiragana(toKatakana(hiraganaString[0])));
 		const int = setInterval(() => {
-			props.dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
-			iterator++;
-			if (iterator > 5) {
-				started = false;
-				props.dispatch(setHiragana(null));
-				clearInterval(int);
+			console.log(started);
+			if (started) {
+				props.dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
+				iterator++;
+				if (iterator > 125 || started === false) {
+					started = false;
+					props.dispatch(setHiragana(null));
+					clearInterval(int);
+				}
 			}
 		}, 1200);
 	};
@@ -61,14 +65,16 @@ const Pronunciation = props => {
 		started = true;
 		props.dispatch(setHiragana(toKatakana(hiraganaString.slice(0, 5))));
 		const int = setInterval(() => {
-			props.dispatch(
-				setHiragana(toKatakana(hiraganaString.slice(iterator, iterator + 5)))
-			);
-			iterator += 5;
-			if (iterator > 125) {
-				started = false;
-				props.dispatch(setHiragana(null));
-				clearInterval(int);
+			if (started) {
+				props.dispatch(
+					setHiragana(toKatakana(hiraganaString.slice(iterator, iterator + 5)))
+				);
+				iterator += 5;
+				if (iterator > 125) {
+					started = false;
+					props.dispatch(setHiragana(null));
+					clearInterval(int);
+				}
 			}
 		}, 1500);
 	};
@@ -84,26 +90,38 @@ const Pronunciation = props => {
 			</p>
 
 			{props.pronunciation.current ? (
-				<ReactCSSTransitionGroup
-					className={`pronunciation__current ${
-						props.pronunciation.current.length > 1
-							? 'pronunciation__current--smaller'
-							: ''
-					}`}
-					transitionName="example"
-					transitionAppear={true}
-					transitionAppearTimeout={500}
-					transitionEnter={false}
-					transitionLeave={false}
-				>
-					{props.pronunciation.current.length > 1 ? (
-						props.pronunciation.current
-							.split('')
-							.map((e, i) => <span key={i}>{e}</span>)
-					) : (
-						<span key="single">{props.pronunciation.current}</span>
-					)}
-				</ReactCSSTransitionGroup>
+				<div>
+					<button
+						className="button button--pronunciation"
+						onClick={() => {
+							started = false;
+						}}
+					>
+						<p>
+							<span>Stop Drill</span>
+						</p>
+					</button>
+					<ReactCSSTransitionGroup
+						className={`pronunciation__current ${
+							props.pronunciation.current.length > 1
+								? 'pronunciation__current--smaller'
+								: ''
+						}`}
+						transitionName="example"
+						transitionAppear={true}
+						transitionAppearTimeout={200}
+						transitionEnter={false}
+						transitionLeave={false}
+					>
+						{props.pronunciation.current.length > 1 ? (
+							props.pronunciation.current
+								.split('')
+								.map((e, i) => <span key={i}>{e}</span>)
+						) : (
+							<span key="single">{props.pronunciation.current}</span>
+						)}
+					</ReactCSSTransitionGroup>
+				</div>
 			) : (
 				<div className="pronunciation__drillWrapper">
 					<button
