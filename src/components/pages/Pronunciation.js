@@ -46,7 +46,6 @@ const hiraganaString =
 const Pronunciation = props => {
 	const dispatch = props.dispatch;
 	const startDrillOne = () => {
-		console.log(props.pronunciation.started);
 		let iterator = 1;
 		dispatch(setHiragana(toKatakana(hiraganaString[0])));
 		const int = setInterval(() => {
@@ -86,7 +85,7 @@ const Pronunciation = props => {
 				showing up.
 			</p>
 
-			{props.pronunciation.started ? (
+			{props.pronunciation.started === true ? (
 				<div>
 					<button
 						className="button button--pronunciation"
@@ -125,6 +124,7 @@ const Pronunciation = props => {
 						className="button button--pronunciation"
 						onClick={() => {
 							dispatch(startDrill());
+							console.log(props.pronunciation);
 							startDrillOne();
 						}}
 					>
@@ -136,6 +136,7 @@ const Pronunciation = props => {
 						className="button button--pronunciation"
 						onClick={() => {
 							dispatch(startDrill());
+							console.log(props.pronunciation);
 							startDrillTwo();
 						}}
 					>

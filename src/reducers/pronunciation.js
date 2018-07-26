@@ -9,6 +9,7 @@ export default (state = initialState, action) => {
 			return { current: action.load };
 			break;
 		case 'START_DRILL':
+			console.log({ ...state, started: true });
 			return { ...state, started: true };
 		case 'STOP_DRILL':
 			return { ...state, started: false };
