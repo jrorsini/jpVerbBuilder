@@ -43,28 +43,33 @@ const Pronunciation = props => {
 		let iterator = 1;
 		started = true;
 		props.dispatch(setHiragana(toKatakana(hiraganaString[0])));
-		const int = setInterval(() => {
-			console.log(hiraganaString[iterator]);
-			props.dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
-			iterator++;
-			if (iterator > 5) {
-				console.log('object');
-				started = false;
-				props.dispatch(setHiragana(null));
-				clearInterval(int);
-			}
-		}, 1200);
+		// const int = setInterval(() => {
+		// 	console.log(hiraganaString[iterator]);
+		// 	props.dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
+		// 	iterator++;
+		// 	if (iterator > 5) {
+		// 		console.log('object');
+		// 		started = false;
+		// 		props.dispatch(setHiragana(null));
+		// 		clearInterval(int);
+		// 	}
+		// }, 1200);
 	};
 
 	return (
 		<div className="container">
+			<h1 className="pronunciation__title">
+				Your pronunciation practice is about ot begin!
+			</h1>
 			<p>
-				Your Pronunciation practice is about to begin, get yourself ready for a
-				couple minute then click on the start button
+				The first drill is about you repeating outloud the katakana character
+				showing up.
 			</p>
 
 			{props.pronunciation.current ? (
-				<p className="pronunciation__current">{props.pronunciation.current}</p>
+				<p className="pronunciation__current">
+					<span> {props.pronunciation.current}</span>
+				</p>
 			) : (
 				<button
 					className="button button--pronunciation"

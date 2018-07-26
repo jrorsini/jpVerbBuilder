@@ -6,4 +6,19 @@
 .pronunciation__current {
 	font-size: $l-size + $l-size + $l-size + $l-size;
 	text-align: center;
+	margin: 0;
+	width: 100%;
+	display: inline-block;
+}
+
+.pronunciation__current span {
+	background: #fff;
+	border-radius: 10px;
+	padding: $s-size;
+	top: $s-size;
+	position: relative;
+}
+
+.pronunciation__title {
+	color: rgba(255, 255, 255, 0.9);
 }
