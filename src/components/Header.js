@@ -17,8 +17,8 @@ const Header = () => (
 						activeClassName="header__link--active"
 						to="/practice/pronunciation"
 					>
-						<i className="material-icons">record_voice_over</i>
-						Pronunciation
+						<i className="material-icons">fitness_center</i>
+						Practice
 					</NavLink>
 				</li>
 				<li className="header__item">

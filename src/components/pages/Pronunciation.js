@@ -79,7 +79,7 @@ const Pronunciation = props => {
 					}}
 				>
 					<p>
-						<span>start</span>
+						<span>Start</span>
 					</p>
 				</button>
 			)}
