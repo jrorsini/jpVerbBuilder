@@ -57,14 +57,15 @@ const Pronunciation = props => {
 	};
 
 	const startDrillTwo = () => {
-		let iterator = 1;
+		let iterator = 5;
 		started = true;
-		props.dispatch(setHiragana(toKatakana(hiraganaString[0])));
+		props.dispatch(setHiragana(toKatakana(hiraganaString.slice(0, 5))));
 		const int = setInterval(() => {
-			console.log(hiraganaString[iterator]);
-			props.dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
+			props.dispatch(
+				setHiragana(toKatakana(hiraganaString.slice(iterator, iterator + 5)))
+			);
 			iterator += 5;
-			if (iterator > 5) {
+			if (iterator > 125) {
 				console.log('object');
 				started = false;
 				props.dispatch(setHiragana(null));
@@ -75,20 +76,32 @@ const Pronunciation = props => {
 
 	return (
 		<div className="container">
-			<h1 className="pronunciation__title">
+			<h1 className="pronunciation__ttl">
 				Your pronunciation practice is about ot begin!
 			</h1>
-			<p>
+			<p className="pronunciation__txt">
 				The first drill is about you repeating outloud the katakana character
 				showing up.
 			</p>
 
 			{props.pronunciation.current ? (
-				<p className="pronunciation__current">
-					<span> {props.pronunciation.current}</span>
+				<p
+					className={`pronunciation__current ${
+						props.pronunciation.current.length > 1
+							? 'pronunciation__current--smaller'
+							: ''
+					}`}
+				>
+					{props.pronunciation.current.length > 1 ? (
+						props.pronunciation.current
+							.split('')
+							.map((e, i) => <span key={i}>{e}</span>)
+					) : (
+						<span>{props.pronunciation.current}</span>
+					)}
 				</p>
 			) : (
-				<div>
+				<div className="pronunciation__drillWrapper">
 					<button
 						className="button button--pronunciation"
 						onClick={() => {

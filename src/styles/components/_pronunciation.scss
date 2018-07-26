@@ -1,26 +1,39 @@
+.pronunciation__drillWrapper {
+	margin-top: $l-size;
+	display: flex;
+	justify-content: space-around;
+}
+
 .button--pronunciation {
-	margin: $l-size auto 0 auto;
 	border-radius: 3px;
 	// font-weight: bold;
 }
 
 .pronunciation__current {
-	font-size: $l-size + $l-size + $l-size + $l-size;
+	font-size: $l-size + $l-size + $l-size + $m-size;
 	text-align: center;
 	margin: 0;
-	width: 100%;
-	display: inline-block;
+	display: flex;
+	justify-content: space-around;
+}
+
+.pronunciation__current--smaller {
+	font-size: $l-size + $l-size + $m-size;
 }
 
 .pronunciation__current span {
 	background: #fff;
 	border-radius: 10px;
 	padding: $s-size;
-	top: $l-size + $l-size + $l-size + $l-size;
+	top: $l-size + $l-size + $l-size;
 	position: relative;
 }
 
-.pronunciation__title {
+.pronunciation__ttl {
 	color: rgba(255, 255, 255, 0.9);
+	text-align: center;
+}
+
+.pronunciation__txt {
 	text-align: center;
 }
