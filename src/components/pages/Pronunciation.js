@@ -1,7 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { toKatakana } from 'wanakana';
-import { setHiragana } from '../../actions/pronunciation';
+import {
+	setHiragana,
+	startDrill,
+	stopDrill
+} from '../../actions/pronunciation';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const hira = 'あいうえおいうえおあうえおあいえおあいうおあいうえ';
@@ -40,41 +44,34 @@ const hiraganaString =
 // console.log(hiraganaString.length);
 
 const Pronunciation = props => {
-	let started = false;
-
+	const dispatch = props.dispatch;
 	const startDrillOne = () => {
+		console.log(props.pronunciation.started);
 		let iterator = 1;
-		started = true;
-		props.dispatch(setHiragana(toKatakana(hiraganaString[0])));
+		dispatch(setHiragana(toKatakana(hiraganaString[0])));
 		const int = setInterval(() => {
-			console.log(started);
-			if (started) {
-				props.dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
-				iterator++;
-				if (iterator > 125 || started === false) {
-					started = false;
-					props.dispatch(setHiragana(null));
-					clearInterval(int);
-				}
+			dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
+			iterator++;
+			if (iterator > 125) {
+				dispatch(setHiragana(null));
+				dispatch(stopDrill());
+				clearInterval(int);
 			}
 		}, 1200);
 	};
 
 	const startDrillTwo = () => {
 		let iterator = 5;
-		started = true;
-		props.dispatch(setHiragana(toKatakana(hiraganaString.slice(0, 5))));
+		dispatch(setHiragana(toKatakana(hiraganaString.slice(0, 5))));
 		const int = setInterval(() => {
-			if (started) {
-				props.dispatch(
-					setHiragana(toKatakana(hiraganaString.slice(iterator, iterator + 5)))
-				);
-				iterator += 5;
-				if (iterator > 125) {
-					started = false;
-					props.dispatch(setHiragana(null));
-					clearInterval(int);
-				}
+			dispatch(
+				setHiragana(toKatakana(hiraganaString.slice(iterator, iterator + 5)))
+			);
+			iterator += 5;
+			if (iterator > 125) {
+				dispatch(setHiragana(null));
+				dispatch(stopDrill());
+				clearInterval(int);
 			}
 		}, 1500);
 	};
@@ -89,12 +86,12 @@ const Pronunciation = props => {
 				showing up.
 			</p>
 
-			{props.pronunciation.current ? (
+			{props.pronunciation.started ? (
 				<div>
 					<button
 						className="button button--pronunciation"
 						onClick={() => {
-							started = false;
+							dispatch(stopDrill());
 						}}
 					>
 						<p>
@@ -127,8 +124,8 @@ const Pronunciation = props => {
 					<button
 						className="button button--pronunciation"
 						onClick={() => {
-							!started && startDrillOne();
-							started = true;
+							dispatch(startDrill());
+							startDrillOne();
 						}}
 					>
 						<p>
@@ -138,8 +135,8 @@ const Pronunciation = props => {
 					<button
 						className="button button--pronunciation"
 						onClick={() => {
-							!started && startDrillTwo();
-							started = true;
+							dispatch(startDrill());
+							startDrillTwo();
 						}}
 					>
 						<p>
