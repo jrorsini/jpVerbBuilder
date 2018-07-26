@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { toKatakana } from 'wanakana';
 import { setHiragana } from '../../actions/pronunciation';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const hira = 'あいうえおいうえおあうえおあいえおあいうおあいうえ';
 const hirK = 'かきくけこきくけこかくけこかきけこかきくこかきくけ';
@@ -36,7 +37,7 @@ const hiraganaString =
 	hirB +
 	hirP;
 
-console.log(hiraganaString.length);
+// console.log(hiraganaString.length);
 
 const Pronunciation = props => {
 	let started = false;
@@ -86,12 +87,15 @@ const Pronunciation = props => {
 			</p>
 
 			{props.pronunciation.current ? (
-				<p
+				<ReactCSSTransitionGroup
 					className={`pronunciation__current ${
 						props.pronunciation.current.length > 1
 							? 'pronunciation__current--smaller'
 							: ''
 					}`}
+					transitionName="example"
+					transitionEnterTimeout={500}
+					transitionLeaveTimeout={300}
 				>
 					{props.pronunciation.current.length > 1 ? (
 						props.pronunciation.current
@@ -100,7 +104,7 @@ const Pronunciation = props => {
 					) : (
 						<span>{props.pronunciation.current}</span>
 					)}
-				</p>
+				</ReactCSSTransitionGroup>
 			) : (
 				<div className="pronunciation__drillWrapper">
 					<button

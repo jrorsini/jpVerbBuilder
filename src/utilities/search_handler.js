@@ -38,12 +38,15 @@ export const searchHandler = (event, props) => {
 				dispatch(setCurrentPanel(isInBreadCrumb));
 				dispatch(setErrorTxt(null));
 			} else {
+				console.log('object');
 				dispatch(showLoading());
 				search(word)
-					.then(res => {
-						if (JSON.parse(res).word !== '') {
-							dispatch(setCurrentPanel({ ...JSON.parse(res) }));
-							dispatch(extendPanel({ ...JSON.parse(res) }));
+					.then(res => JSON.parse(res))
+					.then(json => {
+						console.log(json);
+						if (json.word !== '') {
+							dispatch(setCurrentPanel({ ...json }));
+							dispatch(extendPanel({ ...json }));
 							dispatch(setErrorTxt(null));
 							dispatch(hideLoading());
 						} else {
