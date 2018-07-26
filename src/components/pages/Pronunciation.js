@@ -46,11 +46,9 @@ const Pronunciation = props => {
 		started = true;
 		props.dispatch(setHiragana(toKatakana(hiraganaString[0])));
 		const int = setInterval(() => {
-			console.log(hiraganaString[iterator]);
 			props.dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
 			iterator++;
 			if (iterator > 5) {
-				console.log('object');
 				started = false;
 				props.dispatch(setHiragana(null));
 				clearInterval(int);
@@ -68,7 +66,6 @@ const Pronunciation = props => {
 			);
 			iterator += 5;
 			if (iterator > 125) {
-				console.log('object');
 				started = false;
 				props.dispatch(setHiragana(null));
 				clearInterval(int);
@@ -94,15 +91,17 @@ const Pronunciation = props => {
 							: ''
 					}`}
 					transitionName="example"
-					transitionEnterTimeout={500}
-					transitionLeaveTimeout={300}
+					transitionAppear={true}
+					transitionAppearTimeout={500}
+					transitionEnter={false}
+					transitionLeave={false}
 				>
 					{props.pronunciation.current.length > 1 ? (
 						props.pronunciation.current
 							.split('')
 							.map((e, i) => <span key={i}>{e}</span>)
 					) : (
-						<span>{props.pronunciation.current}</span>
+						<span key="single">{props.pronunciation.current}</span>
 					)}
 				</ReactCSSTransitionGroup>
 			) : (
