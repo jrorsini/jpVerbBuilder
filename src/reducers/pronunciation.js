@@ -6,7 +6,7 @@ const initialState = {
 export default (state = initialState, action) => {
 	switch (action.type) {
 		case 'SET_HIRAGANA':
-			return { current: action.load };
+			return { ...state, current: action.load };
 			break;
 		case 'START_DRILL':
 			console.log({ ...state, started: true });
