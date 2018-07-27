@@ -51,29 +51,34 @@ const Pronunciation = props => {
 
 	const startDrillTwo = () => {
 		let iterator = 5;
+		dispatch(startDrill());
 		dispatch(setHiragana(toKatakana(hiraganaString.slice(0, 5))));
-		const int = setInterval(() => {
+		setInterval(() => {
 			dispatch(
 				setHiragana(toKatakana(hiraganaString.slice(iterator, iterator + 5)))
 			);
+			console.log(iterator);
 			iterator += 5;
-			if (iterator > 125) {
-				dispatch(setHiragana(null));
-				dispatch(stopDrill());
-				clearInterval(int);
-			}
+			iterator > 125 && stopDrills();
 		}, 2000);
 	};
 
-	const drillOneHandler = () => {
+	const startDrillOne = () => {
 		let iterator = 1;
-		dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
-		console.log(iterator);
-		iterator++;
-		if (iterator > 125) {
-			dispatch(setHiragana(null));
-			dispatch(stopDrill());
-		}
+		dispatch(startDrill());
+		dispatch(setHiragana(toKatakana(hiraganaString[0])));
+		setInterval(() => {
+			dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
+			console.log(iterator);
+			iterator++;
+			iterator > 15 && stopDrills();
+		}, 1200);
+	};
+
+	const stopDrills = () => {
+		dispatch(stopDrill());
+		dispatch(setHiragana(null));
+		ClearAllIntervals();
 	};
 
 	return (
@@ -91,11 +96,7 @@ const Pronunciation = props => {
 					<div className="pronunciation__drillWrapper">
 						<button
 							className="button button--pronunciation"
-							onClick={() => {
-								dispatch(stopDrill());
-								dispatch(setHiragana(null));
-								ClearAllIntervals();
-							}}
+							onClick={stopDrills}
 						>
 							<p>
 								<span>Stop Drill</span>
@@ -127,21 +128,7 @@ const Pronunciation = props => {
 				<div className="pronunciation__drillWrapper">
 					<button
 						className="button button--pronunciation"
-						onClick={() => {
-							dispatch(startDrill());
-							dispatch(setHiragana(toKatakana(hiraganaString[0])));
-							let iterator = 1;
-							const drillOneInterval = setInterval(() => {
-								dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
-								console.log(iterator);
-								iterator++;
-								if (iterator > 2) {
-									dispatch(stopDrill());
-									dispatch(setHiragana(null));
-									ClearAllIntervals();
-								}
-							}, 1200);
-						}}
+						onClick={startDrillOne}
 					>
 						<p>
 							<span>Start Drill 1</span>
@@ -149,10 +136,7 @@ const Pronunciation = props => {
 					</button>
 					<button
 						className="button button--pronunciation"
-						onClick={() => {
-							dispatch(startDrill());
-							startDrillTwo();
-						}}
+						onClick={startDrillTwo}
 					>
 						<p>
 							<span>Start Drill 2</span>
