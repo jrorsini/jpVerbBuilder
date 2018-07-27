@@ -10,8 +10,18 @@ const config = {
 };
 
 firebase.initializeApp(config);
-
-firebase
-	.database()
+const database = firebase.database();
+database
 	.ref()
-	.set({ name: 'JR' });
+	.set({
+		name: 'JR',
+		age: 26,
+		isSingle: true,
+		location: { city: 'Tokyo', country: 'Japan' }
+	})
+	.then(data => console.log(data));
+
+database.ref('age').set(27);
+database.ref('location/city').set('Osaka');
+database.ref('height').set(177);
+database.ref('weight').set(69.5);
