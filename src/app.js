@@ -16,6 +16,7 @@ import { setQuestion, setAnswer } from './actions/flashcard';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import 'normalize.css/normalize.css';
 import './styles/style.scss';
+import './firebase/firebase';
 
 const store = configureStore();
 

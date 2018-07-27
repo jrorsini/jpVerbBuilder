@@ -14,4 +14,4 @@ firebase.initializeApp(config);
 firebase
 	.database()
 	.ref()
-	.set({ name: 'Jean-Roger' });
+	.set({ name: 'JR' });
