@@ -41,6 +41,10 @@ const hiraganaString =
 	hirB +
 	hirP;
 
+const ClearAllIntervals = () => {
+	for (var i = 1; i < 99999; i++) window.clearInterval(i);
+};
+
 const Pronunciation = props => {
 	const dispatch = props.dispatch;
 	const pronunciation = props.pronunciation;
@@ -62,12 +66,13 @@ const Pronunciation = props => {
 	};
 
 	const drillOneHandler = () => {
+		let iterator = 1;
 		dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
+		console.log(iterator);
 		iterator++;
 		if (iterator > 125) {
 			dispatch(setHiragana(null));
 			dispatch(stopDrill());
-			clearInterval(int);
 		}
 	};
 
@@ -88,6 +93,8 @@ const Pronunciation = props => {
 							className="button button--pronunciation"
 							onClick={() => {
 								dispatch(stopDrill());
+								dispatch(setHiragana(null));
+								ClearAllIntervals();
 							}}
 						>
 							<p>
@@ -112,7 +119,7 @@ const Pronunciation = props => {
 								.split('')
 								.map((e, i) => <span key={i}>{e}</span>)
 						) : (
-							<span key="single">{pronunciation.current}</span>
+							<span>{pronunciation.current}</span>
 						)}
 					</ReactCSSTransitionGroup>
 				</div>
@@ -123,7 +130,17 @@ const Pronunciation = props => {
 						onClick={() => {
 							dispatch(startDrill());
 							dispatch(setHiragana(toKatakana(hiraganaString[0])));
-							const int = setInterval(drillOneInterval, 1200);
+							let iterator = 1;
+							const drillOneInterval = setInterval(() => {
+								dispatch(setHiragana(toKatakana(hiraganaString[iterator])));
+								console.log(iterator);
+								iterator++;
+								if (iterator > 2) {
+									dispatch(stopDrill());
+									dispatch(setHiragana(null));
+									ClearAllIntervals();
+								}
+							}, 1200);
 						}}
 					>
 						<p>
