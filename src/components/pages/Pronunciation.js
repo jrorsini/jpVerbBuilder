@@ -41,13 +41,13 @@ const hiraganaString =
 	hirB +
 	hirP;
 
-const ClearAllIntervals = () => {
-	for (var i = 1; i < 99999; i++) window.clearInterval(i);
-};
-
 const Pronunciation = props => {
 	const dispatch = props.dispatch;
 	const pronunciation = props.pronunciation;
+
+	const ClearAllIntervals = () => {
+		for (var i = 1; i < 99999; i++) window.clearInterval(i);
+	};
 
 	const startDrillTwo = () => {
 		let iterator = 5;
