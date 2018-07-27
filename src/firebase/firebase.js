@@ -11,19 +11,33 @@ const config = {
 
 firebase.initializeApp(config);
 const database = firebase.database();
-database.ref().set({
-	name: 'JR',
-	age: 26,
-	isSingle: true,
-	location: { city: 'Tokyo', country: 'Japan' }
+
+database.ref().on('value', snapshot => {
+	console.log(snapshot.val());
 });
 
-database.ref('isSingle').remove();
+// database
+// 	.ref('location')
+// 	.once('value')
+// 	.then(snapshot => {
+// 		const val = snapshot.val();
+// 		console.log(val);
+// 	})
+// 	.catch(e => console.log('error fetching data'));
 
-database.ref().update({
-	name: 'Jean-Roger',
-	job: 'Software engineer',
-	'location/city': 'Osaka',
-	'location/zipCode': '162-0032',
-	age: 25
-});
+// database.ref().set({
+// 	name: 'JR',
+// 	age: 26,
+// 	isSingle: true,
+// 	location: { city: 'Tokyo', country: 'Japan' }
+// });
+
+// database.ref('isSingle').remove();
+
+// database.ref().update({
+// 	name: 'Jean-Roger',
+// 	job: 'Software engineer',
+// 	'location/city': 'Osaka',
+// 	'location/zipCode': '162-0032',
+// 	age: 25
+// });
