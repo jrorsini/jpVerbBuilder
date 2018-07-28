@@ -7,7 +7,7 @@ import { containSpecialChar } from './eng_tokenizer';
 const search = word =>
 	new Promise((resolve, reject) => {
 		const xhr = new XMLHttpRequest();
-		xhr.open('GET', `http://localhost:1234/search/${word}/`);
+		xhr.open('GET', `http://165.227.213.125/search/${word}/`);
 		xhr.setRequestHeader('Accept', 'application/json');
 		xhr.send();
 		xhr.onreadystatechange = () => {
