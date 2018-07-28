@@ -1,4 +1,4 @@
-import database from '../firebase/firebase';
+// import database from '../firebase/firebase';
 
 export const addWord = word => ({
 	type: 'ADD_WORD',
@@ -10,18 +10,18 @@ export const removeWord = word => ({
 	word
 });
 
-export const startAddWord = word => {
-	return dispatch => {
-		database
-			.ref('words')
-			.push(word)
-			.then(ref => {
-				dispatch(
-					addWord({
-						id: ref.key,
-						...word
-					})
-				);
-			});
-	};
-};
+// export const startAddWord = word => {
+// 	return dispatch => {
+// 		database
+// 			.ref('words')
+// 			.push(word)
+// 			.then(ref => {
+// 				dispatch(
+// 					addWord({
+// 						id: ref.key,
+// 						...word
+// 					})
+// 				);
+// 			});
+// 	};
+// };
