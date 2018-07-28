@@ -3,7 +3,7 @@ import WordList from '../WordList';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import { removeWord } from '../../actions/verbs';
+import { removeWord } from '../../actions/words';
 
 const WordBook = props => (
 	<div className="container">

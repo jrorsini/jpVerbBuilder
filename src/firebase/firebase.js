@@ -10,18 +10,36 @@ const config = {
 };
 
 firebase.initializeApp(config);
+
 const database = firebase.database();
 
-database.ref().on('value', snapshot => {
-	console.log(snapshot.val());
-});
+export { firebase, database as default };
+
+// database.ref('notes/-LITS-wO9Tha3m18RatQ').remove();
+
+// database.ref('notes').push({
+// 	title: 'hello',
+// 	content: 'myCOntent'
+// });
+
+// database.ref().on('value', snapshot => {
+// 	console.log(snapshot.val());
+// });
 
 // database
-// 	.ref('location')
+// 	.ref('notes')
 // 	.once('value')
 // 	.then(snapshot => {
-// 		const val = snapshot.val();
-// 		console.log(val);
+// 		// const val = snapshot.val();
+// 		// console.log(val);
+// 		const notes = [];
+// 		snapchot.forEach(childSnapshot => {
+// 			notes.push({
+// 				id: childSnapshot.key,
+// 				...childSnapshot.val()
+// 			});
+// 		});
+// 		console.log(notes);
 // 	})
 // 	.catch(e => console.log('error fetching data'));
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 // ACTIONS
-import { addWord, removeWord } from '../actions/verbs';
+import { addWord, removeWord } from '../actions/words';
 import { setCurrentPanel } from '../actions/breadcrumb';
 
 // SUB-COMPONENT

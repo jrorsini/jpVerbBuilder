@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { removeWord } from '../actions/verbs';
+import { removeWord } from '../actions/words';
 import { setQuestion, setAnswer } from '../actions/flashcard';
 
 /**
