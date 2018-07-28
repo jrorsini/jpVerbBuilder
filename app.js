@@ -94,10 +94,10 @@ const searchHandler = word =>
 		);
 	});
 
-app.use(cors({ origin: 'http://localhost:8080' }));
+app.use(cors({ origin: 'http://localhost:8080/' }));
 
 app.use((req, res, next) => {
-	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
+	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080/');
 	res.setHeader(
 		'Access-Control-Allow-Methods',
 		'GET, POST, OPTIONS, PUT, PATCH, DELETE'
@@ -123,4 +123,4 @@ kuromoji
 		// searchHandler('eat').then(res => console.log(res));
 	});
 
-app.listen(80, () => console.log('Up & Running...'));
+app.listen(1234, () => console.log('Up & Running...'));
