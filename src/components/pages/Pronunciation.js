@@ -88,7 +88,10 @@ const Pronunciation = props => {
 			</h1>
 			<p className="pronunciation__txt">
 				The first drill is about you repeating outloud the katakana character
-				showing up.
+				showing up. <br />The idea for these drills came from
+				<a href="https://www.youtube.com/watch?v=jSIwo5v5vnw" target="_blank">
+					this video
+				</a>
 			</p>
 
 			{pronunciation.started === true ? (
