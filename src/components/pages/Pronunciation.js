@@ -131,7 +131,7 @@ const Pronunciation = props => {
 						onClick={startDrillOne}
 					>
 						<p>
-							<span>Start Drill 1</span>
+							<span>First Drill</span>
 						</p>
 					</button>
 					<button
@@ -139,7 +139,7 @@ const Pronunciation = props => {
 						onClick={startDrillTwo}
 					>
 						<p>
-							<span>Start Drill 2</span>
+							<span>Second Drill</span>
 						</p>
 					</button>
 				</div>

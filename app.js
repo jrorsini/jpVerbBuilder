@@ -2,7 +2,6 @@ const querystring = require('querystring');
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const fs = require('fs');
 const request = require('request');
 const cheerio = require('cheerio');
 const kuromoji = require('kuromoji');
