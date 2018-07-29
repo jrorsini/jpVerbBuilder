@@ -1,8 +1,6 @@
 import React from 'react';
-import WordList from '../WordList';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-
 import { removeWord } from '../../actions/words';
 
 const WordBook = props => (
@@ -10,10 +8,18 @@ const WordBook = props => (
 		{props.words.length > 0 ? (
 			<ul>
 				{props.words.map((w, wId) => (
-					<li key={wId}>
-						{w.word}{' '}
-						<button onClick={() => props.dispatch(removeWord(w.word))}>
-							remove
+					<li key={wId} className="WordList__item">
+						<NavLink exact className="WordList__link" to={`/word/${w.word}`}>
+							{w.word} ({w.reading}) - {w.meanings[0]}
+						</NavLink>
+						<button
+							className="WordList__button button"
+							onClick={() => props.dispatch(removeWord(w.word))}
+						>
+							<p>
+								<i className="material-icons">delete</i>
+								<span>Delete</span>
+							</p>
 						</button>
 					</li>
 				))}
