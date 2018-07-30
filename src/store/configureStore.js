@@ -19,6 +19,7 @@ export default () => {
 			breadcrumb,
 			kTokenizer,
 			pronunciation,
+			conjugation,
 			loadingBar: loadingBarReducer
 		}),
 		composeEnhancers(applyMiddleware(thunk))
