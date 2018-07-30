@@ -9,9 +9,13 @@ const WordBook = props => (
 			<ul>
 				{props.words.map((w, wId) => (
 					<li key={wId} className="WordList__item">
-						<NavLink exact className="WordList__link" to={`/word/${w.word}`}>
-							{w.word} {w.reading && <b> - {w.reading}</b>} - {w.meanings[0]}
-						</NavLink>
+						<p>
+							<NavLink exact className="WordList__link" to={`/word/${w.word}`}>
+								{w.word}
+							</NavLink>
+							{w.reading && <b> - {w.reading}</b>} -{' '}
+							{w.meanings[0].split(', ')[0]}
+						</p>
 						<button
 							className="WordList__button button"
 							onClick={() => props.dispatch(removeWord(w.word))}
