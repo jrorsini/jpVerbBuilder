@@ -4,9 +4,11 @@ import { addToDrill, removeFromDrill } from '../../actions/conjugation';
 
 const Conjugation = props => {
 	const dispatch = props.dispatch;
+	const formsToDrill = props.conjugation.formsToDrill;
+
 	const drillFormHandler = e => {
 		const form = e.target.name;
-		props.conjugation.formsToDrill.indexOf(form) === -1
+		formsToDrill.indexOf(form) === -1
 			? dispatch(addToDrill(form))
 			: dispatch(removeFromDrill(form));
 	};
@@ -18,22 +20,19 @@ const Conjugation = props => {
 			<p>Conjugation</p>
 			<form>
 				<label>
-					て form<input
-						name="teForm"
-						type="checkbox"
-						onChange={drillFormHandler}
-					/>
+					て form{' '}
+					<input name="teForm" type="checkbox" onChange={drillFormHandler} />
 				</label>
 				<label>
-					ない form<input
-						name="naiForm"
-						type="checkbox"
-						onChange={drillFormHandler}
-					/>
+					ない form{' '}
+					<input name="naiForm" type="checkbox" onChange={drillFormHandler} />
 				</label>
 			</form>
-			{props.conjugation.formsToDrill.length > 0 ? (
-				<p>Now we're drilling</p>
+			{formsToDrill.length > 0 ? (
+				<p>
+					Now we're drilling for the following{' '}
+					{formsToDrill.map((e, i) => <span>{e} </span>)}
+				</p>
 			) : (
 				<p>Choose one of the conjugation form to drill on.</p>
 			)}
