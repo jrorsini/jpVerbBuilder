@@ -5,7 +5,11 @@ import { NavLink } from 'react-router-dom';
 const Training = props => {
 	return (
 		<div className="container">
-			<NavLink to="/practice/pronunciation">Pronunciation</NavLink>
+			<button className="button WordItem__button">
+				<NavLink to="/practice/pronunciation">
+					<span>Pronunciation</span>
+				</NavLink>
+			</button>
 		</div>
 	);
 };
