@@ -7,14 +7,6 @@ import WordItem from '../WordItem';
 import SearchBar from '../SearchBar';
 import BreadCrumb from '../BreadCrumb';
 
-// UTILITIES
-import search from '../../utilities/search_handler';
-import { tokenize } from 'kuromojin';
-
-// ACTIONS
-import { setCurrentPanel } from '../../actions/breadcrumb';
-import { setErrorTxt } from '../../actions/errorMessage';
-
 /**
 	Search engine looking for words
  */

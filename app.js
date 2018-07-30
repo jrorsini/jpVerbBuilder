@@ -45,7 +45,7 @@ const searchHandler = word =>
 									.trim()) ||
 							meaning.replace(/\;/gi, ',')
 					);
-				const type = isEnglish(word) ? '' : _tokenizer(word);
+				const type = isEnglish(word) ? '' : _tokenizer.tokenize(word);
 				console.log(type);
 				const examples = [];
 
@@ -105,9 +105,9 @@ kuromoji
 	.builder({ dicPath: 'node_modules/kuromoji/dict/' })
 	.build(function(err, tokenizer) {
 		_tokenizer = tokenizer;
-		// searchHandler('食べる').then(res => console.log(res));
-		// searchHandler('試験').then(res => console.log(res));
-		// searchHandler('eat').then(res => console.log(res));
+		searchHandler('食べる');
+		searchHandler('試験');
+		searchHandler('eat');
 	});
 
 app.listen(1234, () => console.log('Up & Running...'));
