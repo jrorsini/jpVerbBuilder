@@ -77,9 +77,21 @@
 .WordItem__link {
 	text-decoration: none;
 	color: black;
+	position: relative;
 	&:hover {
 		text-decoration: underline;
 	}
+}
+
+.WordItem__ttl {
+	position: relative;
+}
+
+.WordItem__ttl small {
+	position: absolute;
+	font-size: $s-size;
+	top: -1.5rem;
+	left: 2rem;
 }
 
 .WordItem__bookmark {

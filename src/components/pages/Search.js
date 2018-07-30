@@ -12,6 +12,7 @@ import BreadCrumb from '../BreadCrumb';
  */
 
 const Search = props => {
+	console.log(props);
 	return (
 		<div className="container">
 			<SearchBar />

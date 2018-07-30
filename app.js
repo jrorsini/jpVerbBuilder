@@ -142,6 +142,7 @@ const searchHandler = word =>
 						word,
 						reading,
 						meanings,
+						type,
 						examples: examples
 							// .filter(e => e.original.length < 40)
 							.map((e, i) => ({

@@ -41,6 +41,10 @@ const WordItem = props => {
 			props.dispatch(setCurrentPanel({ ...word, reading }));
 		});
 
+	console.log(props);
+
+	const wordType = props.breadcrumb.current.type;
+
 	const wordPreviewHeaderContent = (
 		<div>
 			{props.page === 'search' && (
@@ -59,6 +63,7 @@ const WordItem = props => {
 					{listed(props) ? 'bookmark' : 'bookmark_border'}
 				</i>
 			)}
+			{wordType && <small>{capString(wordType)}</small>}
 			{listed(props) ? (
 				<NavLink className="WordItem__link" to={`/word/${word.word}`}>
 					{capString(word.word)}
@@ -73,7 +78,7 @@ const WordItem = props => {
 	return (
 		<div>
 			<div className="WordItem__header">
-				<h2>{wordPreviewHeaderContent}</h2>
+				<h2 className="WordItem__ttl">{wordPreviewHeaderContent}</h2>
 				{props.page === 'search' && (
 					<button
 						className={
