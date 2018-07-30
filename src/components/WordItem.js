@@ -136,4 +136,6 @@ const WordItem = props => {
 	);
 };
 
-export default connect()(WordItem);
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps)(WordItem);

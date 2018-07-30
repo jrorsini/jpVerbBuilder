@@ -32,4 +32,6 @@ const Training = props => {
 	);
 };
 
-export default connect()(Training);
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps)(Training);

@@ -2,6 +2,7 @@ import React from 'React';
 import { connect } from 'react-redux';
 
 const Conjugation = props => {
+	console.log(props);
 	return (
 		<div className="container">
 			<p>Conjugation</p>
@@ -14,9 +15,15 @@ const Conjugation = props => {
 				</label>
 			</form>
 
-			<p>Choose one of the conjugation form to drill on.</p>
+			{props.conjugation.formsToDrill.length > 0 ? (
+				<p>Now we're drilling</p>
+			) : (
+				<p>Choose one of the conjugation form to drill on.</p>
+			)}
 		</div>
 	);
 };
 
-export default connect()(Conjugation);
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps)(Conjugation);

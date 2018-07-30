@@ -24,4 +24,6 @@ const Search = props => {
 	);
 };
 
-export default connect()(Search);
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps)(Search);
