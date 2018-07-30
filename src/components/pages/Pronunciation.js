@@ -154,8 +154,5 @@ const Pronunciation = props => {
 		</div>
 	);
 };
-const mapStateToProps = state => {
-	return state;
-};
 
-export default connect(mapStateToProps)(Pronunciation);
+export default connect()(Pronunciation);

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 const Conjugation = props => {
 	return (
 		<div className="container">
-			<p>ConjugationPage</p>
+			<p>Conjugation</p>
 		</div>
 	);
 };

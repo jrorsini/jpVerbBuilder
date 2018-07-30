@@ -7,14 +7,13 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Header from './components/Header';
 
 // PAGES
-import WordBook from './components/pages/WordBook';
-import Search from './components/pages/Search';
-import Training from './components/pages/Training';
-import VideosPage from './components/pages/VideosPage';
-import VideoPage from './components/pages/VideoPage';
-import WordPracticePage from './components/pages/WordPracticePage';
-import Pronunciation from './components/pages/Pronunciation';
-import WordDetails from './components/pages/WordDetails';
+import WordBookPage from './components/pages/WordBook';
+import SearchPage from './components/pages/Search';
+import TrainingPage from './components/pages/Training';
+import VideosPagePage from './components/pages/VideosPage';
+import VideoPagePage from './components/pages/VideoPage';
+import PronunciationPage from './components/pages/Pronunciation';
+import WordDetailsPage from './components/pages/WordDetails';
 import ConjugationPage from './components/pages/Conjugation.js';
 
 // STORE SETTINGS
@@ -29,6 +28,7 @@ import { setQuestion, setAnswer } from './actions/flashcard';
 // STYLE
 import 'normalize.css/normalize.css';
 import './styles/style.scss';
+
 // import './firebase/firebase';
 
 const store = configureStore();
@@ -76,15 +76,14 @@ const App = () => (
 	<Router>
 		<div>
 			<Header />
-			<Route exact path="/search" component={Search} />
-			<Route path="/wordbook" component={WordBook} />
-			<Route path="/videos" component={VideosPage} />
-			<Route path="/training" component={Training} />
+			<Route exact path="/search" component={SearchPage} />
+			<Route path="/wordbook" component={WordBookPage} />
+			<Route path="/videos" component={VideosPagePage} />
+			<Route path="/training" component={TrainingPage} />
 			<Route path="/practice/conjugation" component={ConjugationPage} />
-			<Route path="/practice/pronunciation" component={Pronunciation} />
-			<Route path="/word-practice" component={WordPracticePage} />
-			<Route path="/word/:word" component={WordDetails} />
-			<Route path="/video/:video" component={VideoPage} />
+			<Route path="/practice/pronunciation" component={PronunciationPage} />
+			<Route path="/word/:word" component={WordDetailsPage} />
+			<Route path="/video/:video" component={VideoPagePage} />
 		</div>
 	</Router>
 );
