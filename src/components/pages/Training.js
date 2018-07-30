@@ -7,21 +7,21 @@ const Training = props => {
 		<div className="container">
 			<ul className="training_list">
 				<li>
-					<NavLink to="/practice/pronunciation">
+					<NavLink className="training_link" to="/practice/pronunciation">
 						<button className="button WordItem__button">
 							<span>Pronunciation</span>
 						</button>
 					</NavLink>
 				</li>
 				<li>
-					<NavLink to="/practice/pronunciation">
+					<NavLink className="training_link" to="/practice/pronunciation">
 						<button className="button WordItem__button">
 							<span>FlashCard</span>
 						</button>
 					</NavLink>
 				</li>
 				<li>
-					<NavLink to="/practice/conjugation">
+					<NavLink className="training_link" to="/practice/conjugation">
 						<button className="button WordItem__button">
 							<span>Conjugation</span>
 						</button>

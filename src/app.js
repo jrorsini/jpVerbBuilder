@@ -1,4 +1,9 @@
 import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+// COMPONENT
 import Header from './components/Header';
 
 // PAGES
@@ -14,12 +19,14 @@ import Conjugation from './components/pages/Conjugation';
 
 // STORE SETTINGS
 import configureStore from './store/configureStore';
-import LoadingBar from 'react-redux-loading-bar';
-import { render } from 'react-dom';
-import { Provider } from 'react-redux';
+
+// UTILITIES
 import { tokenize, getTokenizer } from 'kuromojin';
+
+// ACTIONS
 import { setQuestion, setAnswer } from './actions/flashcard';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+// STYLE
 import 'normalize.css/normalize.css';
 import './styles/style.scss';
 // import './firebase/firebase';

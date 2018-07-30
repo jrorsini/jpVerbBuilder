@@ -9,6 +9,4 @@ const Conjugation = props => {
 	);
 };
 
-const mapPropsToState = state => state;
-
-export default connect(mapPropsToState)(Conjugation);
+export default connect()(Conjugation);
