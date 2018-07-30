@@ -1,12 +1,17 @@
 import React from 'React';
 import { connect } from 'react-redux';
+import { addToDrill, removeFromDrill } from '../../actions/conjugation';
 
 const Conjugation = props => {
 	const dispatch = props.dispatch;
 	const drillFormHandler = e => {
 		const form = e.target.name;
-		props.conjugation.formsToDrill.indexOf(form) === -1;
+		props.conjugation.formsToDrill.indexOf(form) === -1
+			? dispatch(addToDrill(form))
+			: dispatch(removeFromDrill(form));
 	};
+
+	console.log(props.conjugation);
 
 	return (
 		<div className="container">
