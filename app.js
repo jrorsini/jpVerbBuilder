@@ -45,6 +45,8 @@ const searchHandler = word =>
 									.trim()) ||
 							meaning.replace(/\;/gi, ',')
 					);
+				const type = isEnglish(word) ? '' : _tokenizer(word);
+				console.log(type);
 				const examples = [];
 
 				$('.qotC').each((i, e) => {
