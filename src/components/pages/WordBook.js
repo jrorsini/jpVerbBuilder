@@ -10,7 +10,7 @@ const WordBook = props => (
 				{props.words.map((w, wId) => (
 					<li key={wId} className="WordList__item">
 						<NavLink exact className="WordList__link" to={`/word/${w.word}`}>
-							{w.word} (<b>{w.reading}</b>) - {w.meanings[0]}
+							{w.word} {w.reading && <b> - {w.reading}</b>} - {w.meanings[0]}
 						</NavLink>
 						<button
 							className="WordList__button button"
