@@ -1,5 +1,7 @@
 import React from 'react';
 import Header from './components/Header';
+
+// PAGES
 import WordBook from './components/pages/WordBook';
 import Search from './components/pages/Search';
 import Training from './components/pages/Training';
@@ -8,6 +10,8 @@ import VideoPage from './components/pages/VideoPage';
 import WordPracticePage from './components/pages/WordPracticePage';
 import Pronunciation from './components/pages/Pronunciation';
 import WordDetails from './components/pages/WordDetails';
+
+// STORE SETTINGS
 import configureStore from './store/configureStore';
 import LoadingBar from 'react-redux-loading-bar';
 import { render } from 'react-dom';
@@ -68,6 +72,7 @@ const App = () => (
 			<Route path="/wordbook" component={WordBook} />
 			<Route path="/videos" component={VideosPage} />
 			<Route path="/training" component={Training} />
+			<Route path="/practice/conjugation" component={Training} />
 			<Route path="/practice/pronunciation" component={Pronunciation} />
 			<Route path="/word-practice" component={WordPracticePage} />
 			<Route path="/word/:word" component={WordDetails} />
