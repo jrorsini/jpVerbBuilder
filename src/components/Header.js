@@ -15,10 +15,10 @@ const Header = () => (
 						exact={true}
 						className="header__link"
 						activeClassName="header__link--active"
-						to="/practice/pronunciation"
+						to="/training"
 					>
 						<i className="material-icons">fitness_center</i>
-						Practice
+						Training
 					</NavLink>
 				</li>
 				<li className="header__item">

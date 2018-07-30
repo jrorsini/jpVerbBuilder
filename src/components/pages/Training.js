@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-const Practice = props => {
+const Training = props => {
 	return (
-		<div>
+		<div className="container">
 			<NavLink to="/practice/pronunciation">Pronunciation</NavLink>
 		</div>
 	);
@@ -13,4 +13,4 @@ const mapStateToProps = state => {
 	return state;
 };
 
-export default connect(mapStateToProps)(Practice);
+export default connect(mapStateToProps)(Training);
