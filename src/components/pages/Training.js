@@ -7,25 +7,25 @@ const Training = props => {
 		<div className="container">
 			<ul className="training_list">
 				<li>
-					<button className="button WordItem__button">
-						<NavLink to="/practice/pronunciation">
+					<NavLink to="/practice/pronunciation">
+						<button className="button WordItem__button">
 							<span>Pronunciation</span>
-						</NavLink>
-					</button>
+						</button>
+					</NavLink>
 				</li>
 				<li>
-					<button className="button WordItem__button">
-						<NavLink to="/practice/pronunciation">
+					<NavLink to="/practice/pronunciation">
+						<button className="button WordItem__button">
 							<span>FlashCard</span>
-						</NavLink>
-					</button>
+						</button>
+					</NavLink>
 				</li>
 				<li>
-					<button className="button WordItem__button">
-						<NavLink to="/practice/conjugation">
+					<NavLink to="/practice/conjugation">
+						<button className="button WordItem__button">
 							<span>Conjugation</span>
-						</NavLink>
-					</button>
+						</button>
+					</NavLink>
 				</li>
 			</ul>
 		</div>

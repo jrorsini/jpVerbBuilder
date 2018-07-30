@@ -10,6 +10,7 @@ import VideoPage from './components/pages/VideoPage';
 import WordPracticePage from './components/pages/WordPracticePage';
 import Pronunciation from './components/pages/Pronunciation';
 import WordDetails from './components/pages/WordDetails';
+import Conjugation from './components/pages/Conjugation';
 
 // STORE SETTINGS
 import configureStore from './store/configureStore';
@@ -72,7 +73,7 @@ const App = () => (
 			<Route path="/wordbook" component={WordBook} />
 			<Route path="/videos" component={VideosPage} />
 			<Route path="/training" component={Training} />
-			<Route path="/practice/conjugation" component={Training} />
+			<Route path="/practice/conjugation" component={Conjugation} />
 			<Route path="/practice/pronunciation" component={Pronunciation} />
 			<Route path="/word-practice" component={WordPracticePage} />
 			<Route path="/word/:word" component={WordDetails} />

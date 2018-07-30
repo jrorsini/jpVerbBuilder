@@ -1,5 +1,5 @@
 import React from 'React';
-import connect from 'react-redux';
+import { connect } from 'react-redux';
 
 const Conjugation = props => {
 	return (
