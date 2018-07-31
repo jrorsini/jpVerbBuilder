@@ -13,13 +13,13 @@ const Training = props => {
 						</button>
 					</NavLink>
 				</li>
-				<li>
+				{/* <li>
 					<NavLink className="training_link" to="/practice/pronunciation">
 						<button className="button WordItem__button">
 							<span>FlashCard</span>
 						</button>
 					</NavLink>
-				</li>
+				</li> */}
 				<li>
 					<NavLink className="training_link" to="/practice/conjugation">
 						<button className="button WordItem__button">
