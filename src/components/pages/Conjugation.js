@@ -21,11 +21,15 @@ const Conjugation = props => {
 		return res;
 	};
 
-	const getRandomVerb = verbList => {
-		console.log(verbList);
-		const verbId = Math.floor(Math.random() * Math.floor(verbList.length));
-		return verbList[verbId];
-	};
+	const renderForm = () =>
+		props.conjugation.formsToDrill[
+			Math.floor(
+				Math.random() * Math.floor(props.conjugation.formsToDrill.length)
+			)
+		];
+
+	const getRandomVerb = verbList =>
+		verbList[Math.floor(Math.random() * Math.floor(verbList.length))];
 
 	const renderVerb = () =>
 		verbIntoWordbook()
