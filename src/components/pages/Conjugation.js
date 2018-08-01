@@ -53,7 +53,7 @@ const Conjugation = props => {
 			</form>
 			{formsToDrill.length > 0 ? (
 				<div>
-					<p>{renderForm()}</p>
+					<p>{renderForm()}Ve</p>
 					<p>{renderVerb()}</p>
 				</div>
 			) : (
