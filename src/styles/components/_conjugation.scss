@@ -3,11 +3,12 @@
 	justify-content: space-around;
 	margin-top: $l-size;
 	align-items: center;
+	padding: 0 $l-size;
 }
 
 .conjugation__direction span {
 	font-size: $l-size;
-	background: #fff;
+	background: rgba(255, 255, 255, 0.4);
 	border-radius: 6px;
 	padding: $l-size;
 }

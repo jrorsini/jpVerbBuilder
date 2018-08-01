@@ -67,9 +67,9 @@ const Conjugation = props => {
 			</form>
 			{props.conjugation.current.form && props.conjugation.current.verb ? (
 				<div className="conjugation__direction">
-					<span>{props.conjugation.current.form}</span>
-					<b>+</b>
 					<span>{props.conjugation.current.verb}</span>
+					<b>+</b>
+					<span>{props.conjugation.current.form}</span>
 				</div>
 			) : (
 				<p>Choose one of the conjugation form to drill on.</p>
