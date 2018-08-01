@@ -18,7 +18,7 @@ const Conjugation = props => {
 			: dispatch(removeFromDrill(form));
 
 		renderVerb();
-		renderForm();
+		formsToDrill.length > 1 ? renderForm() : renderForm(form);
 	};
 
 	const verbIntoWordbook = () => {
@@ -29,7 +29,7 @@ const Conjugation = props => {
 		return res;
 	};
 
-	const renderForm = () =>
+	const renderForm = form =>
 		formsToDrill.length > 0 && formsToDrill.length > 1
 			? dispatch(
 					setCurrentForm(
@@ -38,7 +38,7 @@ const Conjugation = props => {
 						]
 					)
 			  )
-			: dispatch(setCurrentForm(formsToDrill[0]));
+			: dispatch(setCurrentForm(form));
 
 	const getRandomVerb = verbList =>
 		verbList[Math.floor(Math.random() * Math.floor(verbList.length))];
