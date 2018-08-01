@@ -7,6 +7,11 @@ import {
 	setCurrentForm
 } from '../../actions/conjugation';
 
+const formNames = {
+	teForm: 'て形',
+	naiForm: 'ない形'
+};
+
 const Conjugation = props => {
 	const dispatch = props.dispatch;
 	const formsToDrill = props.conjugation.formsToDrill;
@@ -56,12 +61,11 @@ const Conjugation = props => {
 		<div className="container">
 			<form>
 				<label>
-					て form{' '}
+					{formNames['teForm']}
 					<input name="teForm" type="checkbox" onChange={drillFormHandler} />
 				</label>
 				<label>
-					{' '}
-					ない form{' '}
+					{formNames['naiForm']}
 					<input name="naiForm" type="checkbox" onChange={drillFormHandler} />
 				</label>
 			</form>
@@ -71,7 +75,11 @@ const Conjugation = props => {
 				<div className="conjugation__direction">
 					<span>{props.conjugation.current.verb}</span>
 					<b>+</b>
-					<span>{props.conjugation.current.form}</span>
+					<span>
+						{formsToDrill.length === 1
+							? formNames[formsToDrill[0]]
+							: formNames[props.conjugation.current.form]}
+					</span>
 				</div>
 			) : (
 				<p>Choose one of the conjugation form to drill on.</p>
