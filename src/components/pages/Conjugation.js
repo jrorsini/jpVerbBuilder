@@ -16,6 +16,9 @@ const Conjugation = props => {
 		formsToDrill.indexOf(form) === -1
 			? dispatch(addToDrill(form))
 			: dispatch(removeFromDrill(form));
+
+		renderVerb();
+		renderForm();
 	};
 
 	const verbIntoWordbook = () => {
@@ -27,11 +30,15 @@ const Conjugation = props => {
 	};
 
 	const renderForm = () =>
-		props.conjugation.formsToDrill[
-			Math.floor(
-				Math.random() * Math.floor(props.conjugation.formsToDrill.length)
-			)
-		];
+		formsToDrill.length > 0 && formsToDrill.length > 1
+			? dispatch(
+					setCurrentForm(
+						formsToDrill[
+							Math.floor(Math.random() * Math.floor(formsToDrill.length))
+						]
+					)
+			  )
+			: dispatch(setCurrentForm(formsToDrill[0]));
 
 	const getRandomVerb = verbList =>
 		verbList[Math.floor(Math.random() * Math.floor(verbList.length))];
@@ -45,10 +52,8 @@ const Conjugation = props => {
 			  )
 			: dispatch(setCurrentVerb(getRandomVerb(props.conjugation.verbs)));
 
-	console.log(renderVerb());
 	return (
 		<div className="container">
-			<p>Conjugation</p>
 			<form>
 				<label>
 					て form{' '}
@@ -62,8 +67,12 @@ const Conjugation = props => {
 			</form>
 			{formsToDrill.length > 0 ? (
 				<div>
-					<p>{props.conjugation.current.form}</p>
-					<p>{props.conjugation.current.verb}</p>
+					<p>
+						{props.conjugation.current.form && props.conjugation.current.form}
+					</p>
+					<p>
+						{props.conjugation.current.verb && props.conjugation.current.verb}
+					</p>
 				</div>
 			) : (
 				<p>Choose one of the conjugation form to drill on.</p>
