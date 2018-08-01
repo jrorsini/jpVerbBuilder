@@ -1,6 +1,11 @@
 import React from 'React';
 import { connect } from 'react-redux';
-import { addToDrill, removeFromDrill } from '../../actions/conjugation';
+import {
+	addToDrill,
+	removeFromDrill,
+	setCurrentVerb,
+	setCurrentForm
+} from '../../actions/conjugation';
 
 const Conjugation = props => {
 	const dispatch = props.dispatch;
@@ -33,8 +38,12 @@ const Conjugation = props => {
 
 	const renderVerb = () =>
 		verbIntoWordbook()
-			? getRandomVerb(props.words.filter(e => e.type === 'verb'))
-			: getRandomVerb(props.conjugation.verbs);
+			? dispatch(
+					setCurrentVerb(
+						getRandomVerb(props.words.filter(e => e.type === 'verb'))
+					)
+			  )
+			: dispatch(setCurrentVerb(getRandomVerb(props.conjugation.verbs)));
 
 	console.log(renderVerb());
 	return (
@@ -53,8 +62,8 @@ const Conjugation = props => {
 			</form>
 			{formsToDrill.length > 0 ? (
 				<div>
-					<p>{renderForm()}</p>
-					<p>{renderVerb()}</p>
+					<p>{props.conjugation.current.form}</p>
+					<p>{props.conjugation.current.verb}</p>
 				</div>
 			) : (
 				<p>Choose one of the conjugation form to drill on.</p>

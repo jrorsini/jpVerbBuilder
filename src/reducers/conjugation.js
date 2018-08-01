@@ -1,5 +1,8 @@
 const initialState = {
-	current: '',
+	current: {
+		verb: '',
+		form: ''
+	},
 	verbs: ['食べる', '泳ぐ', '飲む', '書く', '呼ぶ', '待つ', '誘う', '言う'],
 	formsToDrill: []
 };
@@ -15,11 +18,18 @@ export default (state = initialState, action) => {
 				formsToDrill: state.formsToDrill.filter(e => e !== action.load)
 			};
 			break;
-		case 'SET_CURRENT':
+		case 'SET_CURRENT_VERB':
 			return {
 				...state,
-				current: action.load
+				current: { ...state.current, verb: action.load }
 			};
+			break;
+		case 'SET_CURRENT_FORM':
+			return {
+				...state,
+				current: { ...state.current, form: action.load }
+			};
+			break;
 		default:
 			return state;
 			break;

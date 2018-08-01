@@ -8,7 +8,12 @@ export const removeFromDrill = load => ({
 	load
 });
 
-export const setCurrent = load => ({
-	type: 'SET_CURRENT',
+export const setCurrentVerb = load => ({
+	type: 'SET_CURRENT_VERB',
+	load
+});
+
+export const setCurrentForm = load => ({
+	type: 'SET_CURRENT_FORM',
 	load
 });
