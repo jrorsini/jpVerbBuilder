@@ -1,0 +1,18 @@
+.conjugation__direction {
+	display: flex;
+	justify-content: space-around;
+	margin-top: $l-size;
+	align-items: center;
+}
+
+.conjugation__direction span {
+	font-size: $l-size;
+	background: #fff;
+	border-radius: 6px;
+	padding: $l-size;
+}
+
+.conjugation__direction b {
+	font-size: $l-size + $l-size;
+	font-weight: normal;
+}

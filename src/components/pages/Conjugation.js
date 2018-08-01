@@ -65,14 +65,11 @@ const Conjugation = props => {
 					<input name="naiForm" type="checkbox" onChange={drillFormHandler} />
 				</label>
 			</form>
-			{formsToDrill.length > 0 ? (
-				<div>
-					<p>
-						{props.conjugation.current.form && props.conjugation.current.form}
-					</p>
-					<p>
-						{props.conjugation.current.verb && props.conjugation.current.verb}
-					</p>
+			{props.conjugation.current.form && props.conjugation.current.verb ? (
+				<div className="conjugation__direction">
+					<span>{props.conjugation.current.form}</span>
+					<b>+</b>
+					<span>{props.conjugation.current.verb}</span>
 				</div>
 			) : (
 				<p>Choose one of the conjugation form to drill on.</p>
