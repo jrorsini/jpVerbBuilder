@@ -65,7 +65,9 @@ const Conjugation = props => {
 					<input name="naiForm" type="checkbox" onChange={drillFormHandler} />
 				</label>
 			</form>
-			{props.conjugation.current.form && props.conjugation.current.verb ? (
+			{props.conjugation.formsToDrill.length > 0 &&
+			props.conjugation.current.form &&
+			props.conjugation.current.verb ? (
 				<div className="conjugation__direction">
 					<span>{props.conjugation.current.verb}</span>
 					<b>+</b>
