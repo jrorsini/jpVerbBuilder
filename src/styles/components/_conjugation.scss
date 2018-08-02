@@ -17,3 +17,29 @@
 	font-size: $l-size + $l-size;
 	font-weight: normal;
 }
+
+.conjugation_form {
+	display: flex;
+	justify-content: space-between;
+}
+
+.conjugation_form span {
+	display: inline-block;
+	width: 100px;
+}
+
+.conjugation_form label {
+	background: #fff;
+	display: inline-block;
+	width: 100%;
+}
+
+.conjugation_form input {
+	width: 100px;
+	position: absolute;
+	display: inline-block;
+}
+
+.conjugation_form input:checked + label {
+	background: red;
+}

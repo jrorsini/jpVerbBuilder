@@ -9,7 +9,9 @@ import {
 
 const formNames = {
 	teForm: 'て形',
-	naiForm: 'ない形'
+	naiForm: 'ない形',
+	baForm: 'ば形',
+	pastForm: '過去形'
 };
 
 const Conjugation = props => {
@@ -59,15 +61,13 @@ const Conjugation = props => {
 
 	return (
 		<div className="container">
-			<form>
-				<label>
-					{formNames['teForm']}
-					<input name="teForm" type="checkbox" onChange={drillFormHandler} />
-				</label>
-				<label>
-					{formNames['naiForm']}
-					<input name="naiForm" type="checkbox" onChange={drillFormHandler} />
-				</label>
+			<form className="conjugation_form">
+				{Object.keys(formNames).map((e, i) => (
+					<span>
+						<input name={e} type="checkbox" onChange={drillFormHandler} />
+						<label>{formNames[e]}</label>
+					</span>
+				))}
 			</form>
 			{props.conjugation.formsToDrill.length > 0 &&
 			props.conjugation.current.form &&
