@@ -6,6 +6,9 @@ import {
 	setCurrentVerb,
 	setCurrentForm
 } from '../../actions/conjugation';
+import { tokenize, getTokenizer } from 'kuromojin';
+getTokenizer({ dicPath: '/dict' });
+tokenize('食べる').then(res => console.log(res));
 
 const formNames = {
 	teForm: 'て形',
@@ -47,8 +50,11 @@ const Conjugation = props => {
 			  )
 			: dispatch(setCurrentForm(form));
 
-	const getRandomVerb = verbList =>
-		verbList[Math.floor(Math.random() * Math.floor(verbList.length))];
+	const getRandomVerb = verbList => {
+		const verb =
+			verbList[Math.floor(Math.random() * Math.floor(verbList.length))];
+		return verb.hasOwnProperty('word') ? verb.word : verb;
+	};
 
 	const renderVerb = () =>
 		verbIntoWordbook()
@@ -63,7 +69,7 @@ const Conjugation = props => {
 		<div className="container">
 			<form className="conjugation_form">
 				{Object.keys(formNames).map((e, i) => (
-					<span>
+					<span key={i}>
 						<input name={e} type="checkbox" onChange={drillFormHandler} />
 						<label>{formNames[e]}</label>
 					</span>

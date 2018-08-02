@@ -70,7 +70,7 @@ document.addEventListener('keydown', e => {
 
 store.subscribe(() => {
 	localStorage.setItem('words', JSON.stringify(store.getState().words));
-	console.log(store.getState().conjugation);
+	console.log(store.getState());
 });
 
 const App = () => (
