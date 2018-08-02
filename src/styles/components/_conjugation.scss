@@ -24,22 +24,30 @@
 }
 
 .conjugation_form span {
+	overflow: hidden;
 	display: inline-block;
 	width: 100px;
+	height: 30px;
+	border-radius: 3px;
 }
 
 .conjugation_form label {
-	background: #fff;
+	background: rgba(255, 255, 255, 0.4);
 	display: inline-block;
 	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
 }
 
-.conjugation_form input {
-	width: 100px;
+.conjugation_form input[type='checkbox'] {
+	width: 100%;
+	height: 30px;
 	position: absolute;
+	opacity: 0;
 	display: inline-block;
 }
 
 .conjugation_form input:checked + label {
-	background: red;
+	background: rgba(255, 255, 255, 1);
 }
