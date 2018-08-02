@@ -19,6 +19,20 @@ export const setCurrentVerb = load => {
 	}));
 };
 
+export const startSettingCurrentVerb = load => {
+	return dispatch => {
+		dispatch(
+			setCurrentVerb({
+				id: ref.key,
+				...word
+			})
+		);
+		tokenize(load).then(res => {
+			dispatch(setCurrentVerb(res[0]));
+		});
+	};
+};
+
 export const setCurrentForm = load => ({
 	type: 'SET_CURRENT_FORM',
 	load

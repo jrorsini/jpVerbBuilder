@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {
 	addToDrill,
 	removeFromDrill,
-	setCurrentVerb,
+	startSettingCurrentVerb,
 	setCurrentForm
 } from '../../actions/conjugation';
 import { tokenize, getTokenizer } from 'kuromojin';
@@ -59,11 +59,13 @@ const Conjugation = props => {
 	const renderVerb = () =>
 		verbIntoWordbook()
 			? dispatch(
-					setCurrentVerb(
+					startSettingCurrentVerb(
 						getRandomVerb(props.words.filter(e => e.type === 'verb'))
 					)
 			  )
-			: dispatch(setCurrentVerb(getRandomVerb(props.conjugation.verbs)));
+			: dispatch(
+					startSettingCurrentVerb(getRandomVerb(props.conjugation.verbs))
+			  );
 
 	return (
 		<div className="container">
