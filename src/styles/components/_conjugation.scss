@@ -3,18 +3,17 @@
 	justify-content: space-around;
 	margin-top: $l-size;
 	align-items: center;
-	padding: 0 $l-size;
+	padding: $m-size $l-size;
+	background: rgba(255, 255, 255, 0.4);
+	border-radius: 6px;
 }
 
 .conjugation__direction span {
 	font-size: $l-size;
-	background: rgba(255, 255, 255, 0.4);
-	border-radius: 6px;
-	padding: $l-size;
 }
 
 .conjugation__direction b {
-	font-size: $l-size + $l-size;
+	font-size: $l-size;
 	font-weight: normal;
 }
 
