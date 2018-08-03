@@ -81,7 +81,7 @@ const Conjugation = props => {
 			props.conjugation.current.form &&
 			props.conjugation.current.verb ? (
 				<div className="conjugation__direction">
-					<span>{props.conjugation.current.verb}</span>
+					<span>{props.conjugation.current.verb.surface_form}</span>
 					<b>+</b>
 					<span>
 						{formsToDrill.length === 1

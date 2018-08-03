@@ -12,25 +12,16 @@ export const removeFromDrill = load => ({
 	load
 });
 
-export const setCurrentVerb = load => {
-	tokenize(load).then(load => ({
-		type: 'SET_CURRENT_VERB',
-		load
-	}));
-};
+export const setCurrentVerb = load => ({
+	type: 'SET_CURRENT_VERB',
+	load
+});
 
-export const startSettingCurrentVerb = load => {
-	return dispatch => {
-		dispatch(
-			setCurrentVerb({
-				id: ref.key,
-				...word
-			})
-		);
-		tokenize(load).then(res => {
-			dispatch(setCurrentVerb(res[0]));
-		});
-	};
+export const startSettingCurrentVerb = load => dispatch => {
+	tokenize(load).then(res => {
+		console.log(res[0]);
+		dispatch(setCurrentVerb(res[0]));
+	});
 };
 
 export const setCurrentForm = load => ({

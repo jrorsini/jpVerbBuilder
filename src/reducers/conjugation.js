@@ -1,6 +1,6 @@
 const initialState = {
 	current: {
-		verb: '',
+		verb: null,
 		form: ''
 	},
 	verbs: ['食べる', '泳ぐ', '飲む', '書く', '呼ぶ', '待つ', '誘う', '言う'],
