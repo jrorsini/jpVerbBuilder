@@ -41,8 +41,6 @@ const WordItem = props => {
 			props.dispatch(setCurrentPanel({ ...word, reading }));
 		});
 
-	console.log(props);
-
 	const wordType = props.breadcrumb.current.type;
 
 	const wordPreviewHeaderContent = (

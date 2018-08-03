@@ -6,9 +6,6 @@ import {
 	startSettingCurrentVerb,
 	setCurrentForm
 } from '../../actions/conjugation';
-import { tokenize, getTokenizer } from 'kuromojin';
-getTokenizer({ dicPath: '/dict' });
-tokenize('食べる').then(res => console.log(res));
 
 const formNames = {
 	teForm: 'テ形',

@@ -19,7 +19,6 @@ export const setCurrentVerb = load => ({
 
 export const startSettingCurrentVerb = load => dispatch => {
 	tokenize(load).then(res => {
-		console.log(res[0]);
 		dispatch(setCurrentVerb(res[0]));
 	});
 };
