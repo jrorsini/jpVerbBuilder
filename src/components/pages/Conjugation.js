@@ -31,6 +31,8 @@ const Conjugation = props => {
 		formsToDrill.length > 1 ? renderForm() : renderForm(form);
 	};
 
+	console.log(props.conjugation.current);
+
 	const verbIntoWordbook = () => {
 		let res = false;
 		props.words.map(e => {
