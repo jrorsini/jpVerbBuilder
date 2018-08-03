@@ -4,12 +4,13 @@
 	margin-top: $l-size;
 	align-items: center;
 	padding: $m-size $l-size;
-	background: rgba(255, 255, 255, 0.4);
+	background: rgba(255, 255, 255, 1);
 	border-radius: 6px;
 }
 
 .conjugation__direction span {
 	font-size: $l-size;
+	color: #6ed883;
 }
 
 .conjugation__direction b {

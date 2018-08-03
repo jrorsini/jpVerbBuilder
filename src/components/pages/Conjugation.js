@@ -11,9 +11,9 @@ getTokenizer({ dicPath: '/dict' });
 tokenize('食べる').then(res => console.log(res));
 
 const formNames = {
-	teForm: 'て形',
-	naiForm: 'ない形',
-	baForm: 'ば形',
+	teForm: 'テ形',
+	naiForm: '未然形',
+	conditionalForm: '仮定形',
 	pastForm: '過去形'
 };
 
