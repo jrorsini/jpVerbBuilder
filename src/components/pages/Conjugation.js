@@ -21,6 +21,8 @@ const Conjugation = props => {
 	const dispatch = props.dispatch;
 	const formsToDrill = props.conjugation.formsToDrill;
 
+	const verbType = type => (type.match('五段') !== null ? 'godan' : 'ichidan');
+
 	const drillFormHandler = e => {
 		const form = e.target.name;
 		formsToDrill.indexOf(form) === -1
@@ -31,7 +33,8 @@ const Conjugation = props => {
 		formsToDrill.length > 1 ? renderForm() : renderForm(form);
 	};
 
-	console.log(props.conjugation.current);
+	props.conjugation.current.verb &&
+		console.log(verbType(props.conjugation.current.verb.conjugated_type));
 
 	const verbIntoWordbook = () => {
 		let res = false;
