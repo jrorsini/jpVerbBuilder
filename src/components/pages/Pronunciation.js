@@ -86,6 +86,17 @@ const Pronunciation = props => {
 			<h1 className="pronunciation__ttl">
 				Your pronunciation practice is about ot begin!
 			</h1>
+			<h2>
+				But before anything plsease take a look at{' '}
+				<a
+					href="https://www.youtube.com/watch?v=jSIwo5v5vnw"
+					className="wordBook__info__link"
+					target="_blank"
+				>
+					this video
+				</a>{' '}
+				first
+			</h2>
 			<p className="pronunciation__txt">
 				The first drill is about you repeating outloud the katakana character
 				showing up. <br />The idea for these drills came from{' '}
