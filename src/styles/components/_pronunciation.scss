@@ -6,7 +6,13 @@
 
 .button--pronunciation {
 	border-radius: 3px;
-	// font-weight: bold;
+	padding: 0.8rem;
+}
+
+.button--pronunciation small {
+	display: inline-block;
+	width: 100%;
+	color: #333;
 }
 
 .pronunciation__current {

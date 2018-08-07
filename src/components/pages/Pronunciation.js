@@ -87,19 +87,7 @@ const Pronunciation = props => {
 				Your pronunciation practice is about ot begin!
 			</h1>
 			<h2>
-				But before anything plsease take a look at{' '}
-				<a
-					href="https://www.youtube.com/watch?v=jSIwo5v5vnw"
-					className="wordBook__info__link"
-					target="_blank"
-				>
-					this video
-				</a>{' '}
-				first
-			</h2>
-			<p className="pronunciation__txt">
-				The first drill is about you repeating outloud the katakana character
-				showing up. <br />The idea for these drills came from{' '}
+				But before anything please take a look at{' '}
 				<a
 					href="https://www.youtube.com/watch?v=jSIwo5v5vnw"
 					className="wordBook__info__link"
@@ -107,6 +95,9 @@ const Pronunciation = props => {
 				>
 					this video
 				</a>
+			</h2>
+			<p className="pronunciation__txt">
+				The followings are the two drills explained in the above video,
 			</p>
 
 			{pronunciation.started === true ? (
@@ -149,7 +140,9 @@ const Pronunciation = props => {
 						onClick={startDrillOne}
 					>
 						<p>
-							<span>First Drill</span>
+							<span>
+								First Drill<small>- あ -</small>
+							</span>
 						</p>
 					</button>
 					<button
@@ -157,7 +150,9 @@ const Pronunciation = props => {
 						onClick={startDrillTwo}
 					>
 						<p>
-							<span>Second Drill</span>
+							<span>
+								Second Drill<small>- あいうえお -</small>
+							</span>
 						</p>
 					</button>
 				</div>
