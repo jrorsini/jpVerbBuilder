@@ -99,7 +99,7 @@ const Pronunciation = props => {
 			<p className="pronunciation__txt">
 				The followings are the two drills explained in the above video, as a
 				japanese language learner it is crucial that you get the pronunciation
-				first! down
+				down first!
 			</p>
 
 			{pronunciation.started === true ? (
