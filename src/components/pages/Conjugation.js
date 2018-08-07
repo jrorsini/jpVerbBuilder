@@ -14,11 +14,13 @@ const formNames = {
 	pastForm: '過去形'
 };
 
+const teForm = (verb, type) => {
+	const verbType = type => (type.match('五段') !== null ? 'godan' : 'ichidan');
+};
+
 const Conjugation = props => {
 	const dispatch = props.dispatch;
 	const formsToDrill = props.conjugation.formsToDrill;
-
-	const verbType = type => (type.match('五段') !== null ? 'godan' : 'ichidan');
 
 	const drillFormHandler = e => {
 		const form = e.target.name;
