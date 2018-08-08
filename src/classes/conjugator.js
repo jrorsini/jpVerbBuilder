@@ -49,6 +49,14 @@ class Conjugator {
 
 	verbType = type => (type.match('五段') !== null ? 'godan' : 'ichidan');
 
+	form = (v, t, end) => {
+		const l = v.length;
+
+		return this.verbType(t) === 'godan'
+			? v.slice(0, l - 1) + end[v.slice(l - 1, l)]
+			: v.slice(0, l - 1) + end['る'];
+	};
+
 	teForm(v, t) {
 		const l = v.length;
 
