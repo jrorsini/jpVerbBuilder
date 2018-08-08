@@ -53,11 +53,20 @@ class Conjugator {
 		const l = v.length;
 
 		return this.verbType(t) === 'godan'
-			? v.slice(0, l - 1) + teEnding[v.slice(l - 1, l)]
+			? v.slice(0, l - 1) + this.teEnding[v.slice(l - 1, l)]
 			: v.slice(0, l - 1) + 'て';
 	}
 
-	aForm(v, t) {}
+	aForm(v, t) {
+		const l = v.length;
+
+		return this.verbType(t) === 'godan'
+			? v.slice(0, l - 1) + this.aEnding[v.slice(l - 1, l)]
+			: v.slice(0, l - 1) + 'ら';
+	}
+
+	//未然形
+	mizenkei = (v, t) => this.aForm(v, t) + 'ない';
 }
 
 export const c = new Conjugator();
@@ -65,4 +74,4 @@ export const c = new Conjugator();
 console.log(c.teForm('食べる', '一段'));
 console.log(c.teForm('飲む', '五段'));
 console.log(c.teForm('書く', '五段'));
-console.log(c.teForm('泳ぐ', '五段'));
+console.log(c.mizenkei('泳ぐ', '五段'));
