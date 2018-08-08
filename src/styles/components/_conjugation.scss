@@ -3,14 +3,25 @@
 	justify-content: space-around;
 	margin-top: $l-size;
 	align-items: center;
-	padding: $m-size $l-size;
+	padding: $m-size $l-size $m-size $l-size;
 	background: rgba(255, 255, 255, 1);
 	border-radius: 6px;
 }
 
 .conjugation__direction span {
+	position: relative;
 	font-size: $l-size;
 	color: #6ed883;
+	width: 50%;
+	text-align: center;
+}
+
+.conjugation__direction small {
+	float: left;
+	width: 100%;
+	color: #333;
+	font-size: 1.8rem;
+	text-align: center;
 }
 
 .conjugation__direction b {
@@ -51,4 +62,14 @@
 
 .conjugation_form input:checked + label {
 	background: rgba(255, 255, 255, 1);
+}
+
+.conjugation__input {
+	margin-top: 35px;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.1);
+	border-radius: 6px;
+	border: none;
+	-webkit-appearance: none;
+	height: 40px;
 }

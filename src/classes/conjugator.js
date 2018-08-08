@@ -1,5 +1,5 @@
 class Conjugator {
-	teEnding = {
+	teArr = {
 		る: 'って',
 		つ: 'って',
 		う: 'って',
@@ -11,7 +11,7 @@ class Conjugator {
 		す: 'して'
 	};
 
-	aEnding = {
+	aArr = {
 		る: 'ら',
 		つ: 'た',
 		う: 'わ',
@@ -23,7 +23,7 @@ class Conjugator {
 		す: 'さ'
 	};
 
-	iEnding = {
+	iArr = {
 		る: 'り',
 		つ: 'ち',
 		う: 'い',
@@ -35,7 +35,7 @@ class Conjugator {
 		す: 'し'
 	};
 
-	eEnding = {
+	eArr = {
 		る: 'れ',
 		つ: 'て',
 		う: 'え',
@@ -49,37 +49,24 @@ class Conjugator {
 
 	verbType = type => (type.match('五段') !== null ? 'godan' : 'ichidan');
 
-	form = (v, t, end) => {
+	form = (v, t, endArr, end) => {
 		const l = v.length;
 
 		return this.verbType(t) === 'godan'
-			? v.slice(0, l - 1) + end[v.slice(l - 1, l)]
-			: v.slice(0, l - 1) + end['る'];
+			? v.slice(0, l - 1) + endArr[v.slice(l - 1, l)]
+			: v.slice(0, l - 1) + end;
 	};
 
-	teForm(v, t) {
-		const l = v.length;
-
-		return this.verbType(t) === 'godan'
-			? v.slice(0, l - 1) + this.teEnding[v.slice(l - 1, l)]
-			: v.slice(0, l - 1) + 'て';
-	}
-
-	aForm(v, t) {
-		const l = v.length;
-
-		return this.verbType(t) === 'godan'
-			? v.slice(0, l - 1) + this.aEnding[v.slice(l - 1, l)]
-			: v.slice(0, l - 1) + 'ら';
-	}
+	//テ形
+	tekei = (v, t) => this.form(v, t, this.teArr, 'て');
 
 	//未然形
-	mizenkei = (v, t) => this.aForm(v, t) + 'ない';
+	mizenkei = (v, t) => this.form(v, t, this.aArr, '') + 'ない';
 }
 
 export const c = new Conjugator();
 
-console.log(c.teForm('食べる', '一段'));
-console.log(c.teForm('飲む', '五段'));
-console.log(c.teForm('書く', '五段'));
 console.log(c.mizenkei('泳ぐ', '五段'));
+console.log(c.mizenkei('食べる', '一段'));
+console.log(c.tekei('泳ぐ', '五段'));
+console.log(c.tekei('食べる', '一段'));
