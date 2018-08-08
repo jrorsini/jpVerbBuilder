@@ -21,6 +21,7 @@ const formNames = {
 const Conjugation = props => {
 	const dispatch = props.dispatch;
 	const formsToDrill = props.conjugation.formsToDrill;
+	const currVerb = props.conjugation.current.verb;
 
 	const drillFormHandler = e => {
 		const form = e.target.name;
@@ -32,13 +33,8 @@ const Conjugation = props => {
 		formsToDrill.length > 1 ? renderForm() : renderForm(form);
 	};
 
-	props.conjugation.current.verb &&
-		console.log(
-			c.tekei(
-				props.conjugation.current.verb.surface_form,
-				props.conjugation.current.verb.conjugated_type
-			)
-		);
+	currVerb &&
+		console.log(c.tekei(currVerb.surface_form, currVerb.conjugated_type));
 
 	const verbIntoWordbook = () => {
 		let res = false;
@@ -95,14 +91,12 @@ const Conjugation = props => {
 			</form>
 			{props.conjugation.formsToDrill.length > 0 &&
 				props.conjugation.current.form &&
-				props.conjugation.current.verb && (
+				currVerb && (
 					<div>
 						<div className="conjugation__direction">
 							<span>
-								<small>
-									{toHiragana(props.conjugation.current.verb.reading)}
-								</small>
-								{props.conjugation.current.verb.surface_form}
+								<small>{toHiragana(currVerb.reading)}</small>
+								{currVerb.surface_form}
 							</span>
 							<b>+</b>
 							<span>
