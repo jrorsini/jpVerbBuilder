@@ -6,6 +6,9 @@ import {
 	startSettingCurrentVerb,
 	setCurrentForm
 } from '../../actions/conjugation';
+import { c } from '../../classes/conjugator';
+
+console.log(c);
 
 const formNames = {
 	teForm: 'テ形',
@@ -14,9 +17,7 @@ const formNames = {
 	pastForm: '過去形'
 };
 
-const teForm = (verb, type) => {
-	const verbType = type => (type.match('五段') !== null ? 'godan' : 'ichidan');
-};
+const teForm = (verb, type) => {};
 
 const Conjugation = props => {
 	const dispatch = props.dispatch;
