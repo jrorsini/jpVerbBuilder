@@ -106,7 +106,11 @@ const Conjugation = props => {
 							</span>
 						</div>
 						<form>
-							<input type="text" className="conjugation__input" />
+							<input
+								type="text"
+								id="conjugation__input"
+								className="conjugation__input"
+							/>
 						</form>
 					</div>
 				)}
