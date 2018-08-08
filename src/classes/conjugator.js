@@ -3,9 +3,7 @@ class Conjugator {
 		return type.match('五段') !== null ? 'godan' : 'ichidan';
 	}
 
-	teForm(verb, type) {
-		let v = verb;
-		const t = this.verbType(type);
+	teForm(v, t) {
 		const teEnding = {
 			る: 'って',
 			つ: 'って',
@@ -18,7 +16,7 @@ class Conjugator {
 			す: 'して'
 		};
 
-		return t === 'godan'
+		return this.verbType(t) === 'godan'
 			? v.slice(0, v.length - 1) + teEnding[v.split('').pop()]
 			: v.slice(0, v.length - 1) + 'て';
 	}
