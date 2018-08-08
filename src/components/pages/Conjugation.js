@@ -34,7 +34,12 @@ const Conjugation = props => {
 	};
 
 	props.conjugation.current.verb &&
-		console.log(verbType(props.conjugation.current.verb.conjugated_type));
+		console.log(
+			c.teForm(
+				props.conjugation.current.verb.surface_form,
+				props.conjugation.current.verb.conjugated_type
+			)
+		);
 
 	const verbIntoWordbook = () => {
 		let res = false;
