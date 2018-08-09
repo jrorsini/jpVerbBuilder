@@ -18,6 +18,8 @@ const formNames = {
 	kakokei: '過去形'
 };
 
+// https://upload.wikimedia.org/wikipedia/commons/6/68/AMB_Japanese_Verbs.pdf
+
 const Conjugation = props => {
 	const dispatch = props.dispatch;
 	const formsToDrill = props.conjugation.formsToDrill;
