@@ -78,12 +78,15 @@ const Conjugation = props => {
 					startSettingCurrentVerb(getRandomVerb(props.conjugation.verbs))
 			  );
 
-	const answerCheckingHandler = e => {
+	const onSubmitHandler = e => {
 		console.log(e.target.elements.conjugation__input.value);
+
+		currVerb &&
+			console.log(c.tekei(currVerb.surface_form, currVerb.conjugated_type));
 		e.preventDefault();
 	};
 
-	const changeToHiragana = e => (e.target.value = toHiragana(e.target.value));
+	const onKeyUpHandler = e => (e.target.value = toHiragana(e.target.value));
 
 	return (
 		<div className="container">
@@ -118,10 +121,10 @@ const Conjugation = props => {
 									: formNames[props.conjugation.current.form]}
 							</span>
 						</div>
-						<form onSubmit={answerCheckingHandler}>
+						<form onSubmit={onSubmitHandler}>
 							<input
 								type="text"
-								onKeyUp={changeToHiragana}
+								onKeyUp={onKeyUpHandler}
 								name="conjugation__input"
 								id="conjugation__input"
 								className="conjugation__input"
