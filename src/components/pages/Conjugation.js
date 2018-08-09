@@ -83,10 +83,10 @@ const Conjugation = props => {
 		e.preventDefault();
 	};
 
-	const changeToHiragana = (e) => {
-		e.target.elements.conjugation__input.value
-
-	}
+	const changeToHiragana = e => {
+		console.log(e.target.value);
+		e.target.value = toHiragana(e.target.value);
+	};
 
 	return (
 		<div className="container">
@@ -124,7 +124,7 @@ const Conjugation = props => {
 						<form onSubmit={answerCheckingHandler}>
 							<input
 								type="text"
-								onKeyDown={}
+								onKeyUp={changeToHiragana}
 								name="conjugation__input"
 								id="conjugation__input"
 								className="conjugation__input"
