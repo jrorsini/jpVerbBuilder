@@ -16,6 +16,8 @@ const formNames = {
 	kakokei: '過去形'
 };
 
+console.log(toHiragana('konna'));
+
 // https://upload.wikimedia.org/wikipedia/commons/6/68/AMB_Japanese_Verbs.pdf
 
 const Conjugation = props => {
@@ -29,12 +31,16 @@ const Conjugation = props => {
 			? dispatch(addToDrill(form))
 			: dispatch(removeFromDrill(form));
 
+		document.getElementById('conjugation__input') &&
+			document
+				.getElementById('conjugation__input')
+				.addEventListener('keydown', e => {
+					console.log(e.target.elements.conjugation__input.value);
+					document.getElementById('conjugation__input').value = 'test';
+				});
 		renderVerb();
 		formsToDrill.length > 1 ? renderForm() : renderForm(form);
 	};
-
-	currVerb &&
-		console.log(c.tekei(currVerb.surface_form, currVerb.conjugated_type));
 
 	const verbIntoWordbook = () => {
 		let res = false;
@@ -77,6 +83,11 @@ const Conjugation = props => {
 		e.preventDefault();
 	};
 
+	const changeToHiragana = (e) => {
+		e.target.elements.conjugation__input.value
+
+	}
+
 	return (
 		<div className="container">
 			<form className="conjugation_form">
@@ -113,6 +124,7 @@ const Conjugation = props => {
 						<form onSubmit={answerCheckingHandler}>
 							<input
 								type="text"
+								onKeyDown={}
 								name="conjugation__input"
 								id="conjugation__input"
 								className="conjugation__input"

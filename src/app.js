@@ -68,14 +68,6 @@ document.addEventListener('keydown', e => {
 	}
 });
 
-document.getElementById('conjugation__input') &&
-	document
-		.getElementById('conjugation__input')
-		.addEventListener('keydown', e => {
-			console.log(e.target.elements.conjugation__input.value);
-			document.getElementById('conjugation__input').value = 'test';
-		});
-
 store.subscribe(() => {
 	localStorage.setItem('words', JSON.stringify(store.getState().words));
 	console.log(store.getState());
