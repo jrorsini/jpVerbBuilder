@@ -83,10 +83,7 @@ const Conjugation = props => {
 		e.preventDefault();
 	};
 
-	const changeToHiragana = e => {
-		console.log(e.target.value);
-		e.target.value = toHiragana(e.target.value);
-	};
+	const changeToHiragana = e => (e.target.value = toHiragana(e.target.value));
 
 	return (
 		<div className="container">
