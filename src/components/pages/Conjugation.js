@@ -8,6 +8,8 @@ import {
 } from '../../actions/conjugation';
 import { c } from '../../classes/conjugator';
 import { toHiragana } from 'wanakana';
+import { tokenize } from 'kuromojin';
+
 
 const formNames = {
 	tekei: 'テ形',
@@ -25,7 +27,7 @@ const Conjugation = props => {
 	const formsToDrill = props.conjugation.formsToDrill;
 	const currVerb = props.conjugation.current.verb;
 
-	drillFormHandler = e => {
+	const drillFormHandler = e => {
 		const form = e.target.name;
 		formsToDrill.indexOf(form) === -1
 			? dispatch(addToDrill(form))
