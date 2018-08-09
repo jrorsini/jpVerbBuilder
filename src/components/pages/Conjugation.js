@@ -9,8 +9,6 @@ import {
 import { c } from '../../classes/conjugator';
 import { toHiragana } from 'wanakana';
 
-console.log(c);
-
 const formNames = {
 	tekei: 'テ形',
 	mizenkei: '未然形',
@@ -74,6 +72,11 @@ const Conjugation = props => {
 					startSettingCurrentVerb(getRandomVerb(props.conjugation.verbs))
 			  );
 
+	const answerCheckingHandler = e => {
+		console.log(e.target.elements.conjugation__input.value);
+		e.preventDefault();
+	};
+
 	return (
 		<div className="container">
 			<form className="conjugation_form">
@@ -107,9 +110,10 @@ const Conjugation = props => {
 									: formNames[props.conjugation.current.form]}
 							</span>
 						</div>
-						<form>
+						<form onSubmit={answerCheckingHandler}>
 							<input
 								type="text"
+								name="conjugation__input"
 								id="conjugation__input"
 								className="conjugation__input"
 							/>
