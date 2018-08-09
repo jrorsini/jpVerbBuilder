@@ -8,11 +8,11 @@ import { addWord, removeWord } from '../actions/words';
 import { setCurrentPanel } from '../actions/breadcrumb';
 
 // SUB-COMPONENT
-import WordExamplesList from '../components/WordItem/WordExamplesList';
+import WordExamplesList from '../components/PageWordItem/WordExamplesList';
 
 // UTILITIES
 import { toHiragana } from 'wanakana';
-import { isEnglish, engTokenize, capString } from '../utilities/eng_tokenizer';
+import { isEnglish, capString } from '../utilities/eng_tokenizer';
 import { searchHandler } from '../utilities/search_handler';
 import { tokenize } from 'kuromojin';
 
