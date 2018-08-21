@@ -10,7 +10,6 @@ import { c } from '../../classes/conjugator';
 import { toHiragana } from 'wanakana';
 import { tokenize } from 'kuromojin';
 
-
 const formNames = {
 	tekei: 'テ形',
 	mizenkei: '未然形',
